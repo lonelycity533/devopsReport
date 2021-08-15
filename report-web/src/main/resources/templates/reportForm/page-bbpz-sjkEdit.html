@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
+		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
+		<link rel="stylesheet" href="css/modules/page-bbpz.css" th:href="@{/css/modules/page-bbpz.css}">
+	</head>
+	<body>
+		<div class="content page-bbpz">
+			<span class="layui-breadcrumb" lay-separator="/">
+				当前位置：
+				<a>首页</a>
+				<a>报表系统</a>
+				<a>报表配置</a>
+				<a><cite>数据库配置</cite></a>
+			</span>
+			<div class="layui-form-wrap mb-15">
+				<h3 class="layui-form-wrap-title mb-10">数据库配置
+					<button class="layui-btn layui-btn-normal btn-save" type="button">确认</button>
+				</h3>
+				<div class="layui-form" lay-filter="form">
+					<div class="layui-row">
+						<div class="layui-col-md4">
+							<div class="layui-form-item">
+								<label class="layui-form-label">数据源id</label>
+								<input type="text" name="id" autocomplete="off" class="layui-input" placeholder="">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<div class="layui-form-item">
+								<label class="layui-form-label">用户名</label>
+								<input type="text" name="name" autocomplete="off" class="layui-input" placeholder="">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<div class="layui-form-item">
+								<label class="layui-form-label">密码</label>
+								<input type="text" name="password" autocomplete="off" class="layui-input" placeholder="">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<div class="layui-form-item">
+								<label class="layui-form-label">连接信息</label>
+								<input type="text" name="info" autocomplete="off" class="layui-input" placeholder="">
+							</div>
+						</div>
+						<div class="layui-col-md4">
+							<div class="layui-form-item">
+								<label class="layui-form-label">数据库类型</label>
+								<select name="type">
+									<option value="oracle">oracle</option>
+									<option value="mysql">mysql</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
+		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
+		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
+		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+		<script src="js/modules/reportForm/page-bbpz-sjkEdit.js" th:src="@{/js/modules/reportForm/page-bbpz-sjkEdit.js}"></script>
+	</body>
+</html>

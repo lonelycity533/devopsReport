@@ -1,0 +1,163 @@
+{
+  "id": "2262112",
+  "name": "PC运维项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2633638",
+      "name": "统计报表",
+      "font_class": "chart",
+      "unicode": "e684",
+      "unicode_decimal": 59012
+    },
+    {
+      "icon_id": "20689060",
+      "name": "满意度",
+      "font_class": "manyidu",
+      "unicode": "e646",
+      "unicode_decimal": 58950
+    },
+    {
+      "icon_id": "5150937",
+      "name": "垃圾桶",
+      "font_class": "lajitong",
+      "unicode": "e666",
+      "unicode_decimal": 58982
+    },
+    {
+      "icon_id": "20296841",
+      "name": "修改",
+      "font_class": "xiugai",
+      "unicode": "e68c",
+      "unicode_decimal": 59020
+    },
+    {
+      "icon_id": "20309193",
+      "name": "周报",
+      "font_class": "zhoubao",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "20309182",
+      "name": "日期",
+      "font_class": "riqi",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "905458",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e6a5",
+      "unicode_decimal": 59045
+    },
+    {
+      "icon_id": "1297625",
+      "name": "22_菜品分类",
+      "font_class": "22_caipinfenlei",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "827394",
+      "name": "个人中心",
+      "font_class": "iconfontgerenzhongxin",
+      "unicode": "e645",
+      "unicode_decimal": 58949
+    },
+    {
+      "icon_id": "2959126",
+      "name": "作业报警",
+      "font_class": "zuoyebaojing",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    },
+    {
+      "icon_id": "3663228",
+      "name": "工作报告",
+      "font_class": "gongzuobaogao",
+      "unicode": "e69f",
+      "unicode_decimal": 59039
+    },
+    {
+      "icon_id": "3947711",
+      "name": "安全",
+      "font_class": "anquan",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "4814364",
+      "name": "数据库审计",
+      "font_class": "shujukushenji",
+      "unicode": "e659",
+      "unicode_decimal": 58969
+    },
+    {
+      "icon_id": "5239750",
+      "name": "资产",
+      "font_class": "zichan",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
+      "icon_id": "5429639",
+      "name": "系统管理",
+      "font_class": "xitongguanli",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "6282769",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "8673055",
+      "name": "流程设置",
+      "font_class": "liuchengshezhi",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    },
+    {
+      "icon_id": "8729898",
+      "name": "日志管理",
+      "font_class": "rizhiguanli",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "11836501",
+      "name": "知识库",
+      "font_class": "zhishiku",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "12791528",
+      "name": "作业",
+      "font_class": "zuoye",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "15872041",
+      "name": "用户管理",
+      "font_class": "yonghuguanli",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "16238793",
+      "name": "7-时间",
+      "font_class": "7-shijian",
+      "unicode": "e895",
+      "unicode_decimal": 59541
+    }
+  ]
+}

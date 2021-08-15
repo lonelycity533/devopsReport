@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
+		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
+		<link rel="stylesheet" href="css/modules/page-bbpz.css" th:href="@{/css/modules/page-bbpz.css}">
+	</head>
+	<body>
+		<div class="content page-bbpz">
+			<span class="layui-breadcrumb" lay-separator="/">
+				当前位置：
+				<a>首页</a>
+				<a>报表系统</a>
+				<a>报表配置</a>
+				<a><cite>清单报表配置</cite></a>
+			</span>
+			<div class="layui-form-wrap mb-15">
+				<div class="layui-form" lay-filter="form">
+					<div class="layui-row">
+						<div class="layui-col-md2">
+							<div class="layui-form-item label-width-70">
+								<label class="layui-form-label">报表名称</label>
+								<input type="text" name="name" autocomplete="off" class="layui-input" placeholder="">
+							</div>
+						</div>
+						<div class="layui-col-md2 pl-20">
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
+									class="iconfont icon-sousuo"></i>查询</button>
+							<button class="layui-btn layui-btn-danger btn-del" plain type="button">删除</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-table-wrap">
+				<table id="table" lay-filter="table"></table>
+			</div>
+			<div class="layer-form layui-hide">
+				<div class="layui-form-wrap">
+					<h3 class="layui-form-wrap-title mb-10">
+						数据配置
+						<button class="layui-btn layui-btn-normal btn-layer-confirm" type="button">确认</button>
+						<button class="layui-btn layui-btn-normal btn-layer-add" type="button" plain>新增</button>
+					</h3>
+					<form class="layui-form" lay-filter="layer_form">
+						<div class="layui-row">
+							<div class="part-1">
+								<div class="layui-col-md10">
+									<div class="layui-col-md12 layui-form-item-title">数据配置名称</div>
+									<div class="layui-col-md4">
+										<div class="layui-form-item">
+											<label class="layui-form-label">配置名称</label>
+											<input type="text" placeholder="请输入配置名称" autocomplete="off"
+												class="layui-input data-pzmc">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="part-2">
+								<div class="layui-col-md10">
+									<div class="layui-col-md12 layui-form-item-title">已配置属性（更新）</div>
+									<div class="layui-col-md4">
+										<div class="layui-form-item">
+											<label class="layui-form-label">field_name</label>
+											<select class="data-ypz-fieldname">
+												<option value="请选择" selected>请选择</option>
+												<option value="111">111</option>
+												<option value="222">222</option>
+											</select>
+										</div>
+									</div>
+									<div class="layui-col-md4">
+										<div class="layui-form-item">
+											<label class="layui-form-label">field_value</label>
+											<input type="text" placeholder="" autocomplete="off"
+												class="layui-input data-ypz-fieldvalue">
+										</div>
+									</div>
+									<div class="layui-col-md4">
+										<div class="layui-form-item">
+											<label class="layui-form-label">配置名称</label>
+											<input type="text" placeholder="请输入配置名称" autocomplete="off"
+												class="layui-input data-ypz-pzmc">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="part-3">
+								<div class="part-el">
+									<div class="layui-col-md10">
+										<div class="layui-col-md12 layui-form-item-title">新增属性（取消）</div>
+										<div class="layui-col-md4">
+											<div class="layui-form-item">
+												<label class="layui-form-label">field_name</label>
+												<select class="data-xpz-fieldname">
+													<option value="请选择" selected>请选择</option>
+													<option value="111">111</option>
+													<option value="222">222</option>
+												</select>
+											</div>
+										</div>
+										<div class="layui-col-md4">
+											<div class="layui-form-item">
+												<label class="layui-form-label">field_value</label>
+												<input type="text" placeholder="" autocomplete="off"
+													class="layui-input data-xpz-fieldvalue">
+											</div>
+										</div>
+										<div class="layui-col-md4">
+											<div class="layui-form-item">
+												<label class="layui-form-label">配置名称</label>
+												<input type="text" placeholder="请输入配置名称" autocomplete="off"
+													class="layui-input data-xpz-pzmc">
+											</div>
+										</div>
+									</div>
+									<div class="layui-col-md2">
+										<i class="iconfont icon-lajitong btn-layer-del"></i>
+									</div>
+								</div>
+							</div>
+							<div class="part-4">
+								<div class="layui-col-md10">
+									<div class="layui-col-md12 layui-form-item-title">业务可选字段配置</div>
+									<div class="layui-col-md12">
+										<div class="layui-form-item mb-0">
+											<label class="layui-form-label">field_name</label>
+											<input type="text" placeholder="" autocomplete="off" class="layui-input data-kxpz-fieldname">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
+		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
+		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
+		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+		<script src="js/modules/reportForm/page-bbpz-qd.js" th:src="@{/js/modules/reportForm/page-bbpz-qd.js}"></script>
+	</body>
+</html>

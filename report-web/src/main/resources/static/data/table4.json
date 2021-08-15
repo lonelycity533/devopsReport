@@ -1,0 +1,353 @@
+{
+	"code": 0,
+	"msg": "",
+	"count": 1000,
+	"title": [
+		{
+			"type": "checkbox"
+		},
+		{
+			"field":"col0",
+			"title": "日期/姓名",
+			"width":120
+		},
+		{
+			"field":"col1",
+			"title": "1<br>五",
+			"templet": "<div>{{d.col1}}</div>"
+		},
+		{
+			"field":"col2",
+			"title": "2<br>六",
+			"templet": "<div>{{d.col2}}</div>"
+		},
+		{
+			"field":"col3",
+			"title": "3<br>日",
+			"templet": "<div>{{d.col3}}</div>"
+		},
+		{
+			"field":"col4",
+			"title": "4<br>一",
+			"templet": "<div>{{d.col4}}</div>"
+		},
+		{
+			"field":"col5",
+			"title": "5<br>二",
+			"templet": "<div>{{d.col5}}</div>"
+		},
+		{
+			"field":"col6",
+			"title": "6<br>三",
+			"templet": "<div>{{d.col6}}</div>"
+		},
+		{
+			"field":"col7",
+			"title": "7<br>四",
+			"templet": "<div>{{d.col7}}</div>"
+		},
+		{
+			"field":"col8",
+			"title": "8<br>五",
+			"templet": "<div>{{d.col8}}</div>"
+		},
+		{
+			"field":"col9",
+			"title": "9<br>六",
+			"templet": "<div>{{d.col9}}</div>"
+		},
+		{
+			"field":"col10",
+			"title": "10<br>日",
+			"templet": "<div>{{d.col10}}</div>"
+		},
+		{
+			"field":"col11",
+			"title": "11<br>一",
+			"templet": "<div>{{d.col11}}</div>"
+		},
+		{
+			"field":"col12",
+			"title": "12<br>二",
+			"templet": "<div>{{d.col12}}</div>"
+		},
+		{
+			"field":"col13",
+			"title": "13<br>三",
+			"templet": "<div>{{d.col13}}</div>"
+		},
+		{
+			"field":"col14",
+			"title": "14<br>四",
+			"templet": "<div>{{d.col14}}</div>"
+		},
+		{
+			"field":"col15",
+			"title": "15<br>五",
+			"templet": "<div>{{d.col15}}</div>"
+		},
+		{
+			"field":"col16",
+			"title": "16<br>六",
+			"templet": "<div>{{d.col16}}</div>"
+		},
+		{
+			"field":"col17",
+			"title": "17<br>日",
+			"templet": "<div>{{d.col17}}</div>"
+		},
+		{
+			"field":"col18",
+			"title": "18<br>一",
+			"templet": "<div>{{d.col18}}</div>"
+		},
+		{
+			"field":"col19",
+			"title": "19<br>二",
+			"templet": "<div>{{d.col19}}</div>"
+		},
+		{
+			"field":"col20",
+			"title": "20<br>三",
+			"templet": "<div>{{d.col20}}</div>"
+		},
+		{
+			"field":"col21",
+			"title": "21<br>四",
+			"templet": "<div>{{d.col21}}</div>"
+		},
+		{
+			"field":"col22",
+			"title": "22<br>五",
+			"templet": "<div>{{d.col22}}</div>"
+		},
+		{
+			"field":"col23",
+			"title": "23<br>六",
+			"templet": "<div>{{d.col23}}</div>"
+		},
+		{
+			"field":"col24",
+			"title": "24<br>日",
+			"templet": "<div>{{d.col24}}</div>"
+		},
+		{
+			"field":"col25",
+			"title": "25<br>一",
+			"templet": "<div>{{d.col25}}</div>"
+		},
+		{
+			"field":"col26",
+			"title": "26<br>二",
+			"templet": "<div>{{d.col26}}</div>"
+		},
+		{
+			"field":"col27",
+			"title": "27<br>三",
+			"templet": "<div>{{d.col27}}</div>"
+		},
+		{
+			"field":"col28",
+			"title": "28<br>四",
+			"templet": "<div>{{d.col28}}</div>"
+		},
+		{
+			"field":"col29",
+			"title": "29<br>五",
+			"templet": "<div>{{d.col29}}</div>"
+		},
+		{
+			"field":"col30",
+			"title": "30<br>六",
+			"templet": "<div>{{d.col30}}</div>"
+		},
+		{
+			"field":"col31",
+			"title": "31<br>日",
+			"templet": "<div>{{d.col31}}</div>"
+		},
+		{
+			"field":"col32",
+			"title": "值班统计",
+			"fixed":"right",
+			"width":120
+		}
+	],
+	"data": [
+		{
+		"col0": "周xx<br>13312341234",
+		"col1": "晚",
+		"col2": "白",
+		"col3": "白",
+		"col4": "",
+		"col5": "晚",
+		"col6": "晚",
+		"col7": "晚",
+		"col8": "",
+		"col9": "全",
+		"col10": "白",
+		"col11": "白",
+		"col12": "白",
+		"col13": "白",
+		"col14": "白",
+		"col15": "白",
+		"col16": "全",
+		"col17": "白",
+		"col18": "白",
+		"col19": "白",
+		"col20": "白",
+		"col21": "晚",
+		"col22": "全",
+		"col23": "白",
+		"col24": "白",
+		"col25": "白",
+		"col26": "全",
+		"col27": "白",
+		"col28": "晚",
+		"col29": "晚",
+		"col30": "白",
+		"col31": "晚",
+		"col32": "白班:12<br>晚班：18<br>全天：1"
+	},
+		{
+		"col0": "周xx<br>13312341234",
+		"col1": "白",
+		"col2": "晚",
+		"col3": "白",
+		"col4": "白",
+		"col5": "白",
+		"col6": "白",
+		"col7": "白",
+		"col8": "晚",
+		"col9": "白",
+		"col10": "白",
+		"col11": "白",
+		"col12": "白",
+		"col13": "全",
+		"col14": "白",
+		"col15": "白",
+		"col16": "白",
+		"col17": "",
+		"col18": "全",
+		"col19": "白",
+		"col20": "全",
+		"col21": "全",
+		"col22": "全",
+		"col23": "",
+		"col24": "晚",
+		"col25": "白",
+		"col26": "白",
+		"col27": "白",
+		"col28": "白",
+		"col29": "晚",
+		"col30": "白",
+		"col31": "白",
+		"col32": "白班:13<br>晚班：19<br>全天：0"
+	},
+		{
+		"col0": "周xx<br>13312341234",
+		"col1": "晚",
+		"col2": "晚",
+		"col3": "",
+		"col4": "白",
+		"col5": "白",
+		"col6": "晚",
+		"col7": "晚",
+		"col8": "晚",
+		"col9": "白",
+		"col10": "白",
+		"col11": "白",
+		"col12": "白",
+		"col13": "晚",
+		"col14": "白",
+		"col15": "白",
+		"col16": "全",
+		"col17": "",
+		"col18": "白",
+		"col19": "晚",
+		"col20": "全",
+		"col21": "晚",
+		"col22": "白",
+		"col23": "白",
+		"col24": "白",
+		"col25": "晚",
+		"col26": "晚",
+		"col27": "晚",
+		"col28": "白",
+		"col29": "全",
+		"col30": "白",
+		"col31": "晚",
+		"col32": "白班:14<br>晚班：20<br>全天：4"
+	},
+		{
+		"col0": "周xx<br>13312341234",
+		"col1": "晚",
+		"col2": "白",
+		"col3": "晚",
+		"col4": "白",
+		"col5": "晚",
+		"col6": "白",
+		"col7": "白",
+		"col8": "晚",
+		"col9": "白",
+		"col10": "白",
+		"col11": "晚",
+		"col12": "全",
+		"col13": "晚",
+		"col14": "白",
+		"col15": "白",
+		"col16": "晚",
+		"col17": "白",
+		"col18": "晚",
+		"col19": "",
+		"col20": "白",
+		"col21": "全",
+		"col22": "白",
+		"col23": "白",
+		"col24": "",
+		"col25": "白",
+		"col26": "晚",
+		"col27": "白",
+		"col28": "白",
+		"col29": "白",
+		"col30": "全",
+		"col31": "白",
+		"col32": "白班:12<br>晚班：18<br>全天：4"
+	},
+		{
+		"col0": "周xx<br>13312341234",
+		"col1": "白",
+		"col2": "白",
+		"col3": "白",
+		"col4": "晚",
+		"col5": "全",
+		"col6": "白",
+		"col7": "",
+		"col8": "",
+		"col9": "晚",
+		"col10": "白",
+		"col11": "白",
+		"col12": "全",
+		"col13": "白",
+		"col14": "",
+		"col15": "白",
+		"col16": "",
+		"col17": "全",
+		"col18": "白",
+		"col19": "晚",
+		"col20": "晚",
+		"col21": "白",
+		"col22": "全",
+		"col23": "晚",
+		"col24": "白",
+		"col25": "白",
+		"col26": "白",
+		"col27": "晚",
+		"col28": "白",
+		"col29": "全",
+		"col30": "白",
+		"col31": "白",
+		"col32": "白班:12<br>晚班：18<br>全天：4"
+	}
+	]
+}
