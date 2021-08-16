@@ -1,24 +1,33 @@
-2021-08-16 11:16:04.653 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from databasesource
-2021-08-16 11:16:04.843 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 11:16:04.919 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 4
-2021-08-16 11:16:04.928 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from databasesource
-2021-08-16 11:16:04.930 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 11:16:04.932 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 4
-2021-08-16 11:16:05.069 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - ==>  Preparing: select * from t_user
-2021-08-16 11:16:05.069 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - ==> Parameters: 
-2021-08-16 11:16:05.092 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - <==      Total: 3
-2021-08-16 14:08:07.603 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
-2021-08-16 14:08:07.913 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 14:08:07.977 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 2
-2021-08-16 14:08:08.000 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
-2021-08-16 14:08:08.002 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 14:08:08.011 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 2
-2021-08-16 14:10:44.533 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
-2021-08-16 14:10:44.748 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 14:10:44.805 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 2
-2021-08-16 14:10:44.822 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
-2021-08-16 14:10:44.824 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - ==> Parameters: 
-2021-08-16 14:10:44.833 [DEBUG] com.hyc.report.mapper.DataSourceMapper.get - <==      Total: 2
-2021-08-16 14:10:45.321 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - ==>  Preparing: select * from testHycDEPT
-2021-08-16 14:10:45.322 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - ==> Parameters: 
-2021-08-16 14:10:45.342 [DEBUG] com.hyc.report.mapper.ReportMapper.getReportData - <==      Total: 4
+2021-08-16 11:16:04.653 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from databasesource
+2021-08-16 11:16:04.843 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 11:16:04.919 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 4
+2021-08-16 11:16:04.928 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from databasesource
+2021-08-16 11:16:04.930 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 11:16:04.932 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 4
+2021-08-16 11:16:05.069 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==>  Preparing: select * from t_user
+2021-08-16 11:16:05.069 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==> Parameters:
+2021-08-16 11:16:05.092 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - <==      Total: 3
+2021-08-16 14:08:07.603 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 14:08:07.913 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 14:08:07.977 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 14:08:08.000 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 14:08:08.002 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 14:08:08.011 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 14:10:44.533 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 14:10:44.748 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 14:10:44.805 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 14:10:44.822 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 14:10:44.824 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters:
+2021-08-16 14:10:44.833 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 14:10:45.321 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==>  Preparing: select * from testHycDEPT
+2021-08-16 14:10:45.322 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==> Parameters:
+2021-08-16 14:10:45.342 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - <==      Total: 4
+2021-08-16 15:31:59.140 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 15:31:59.518 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters: 
+2021-08-16 15:31:59.608 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 15:31:59.630 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==>  Preparing: select * from REPORT_DATABASE
+2021-08-16 15:31:59.632 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - ==> Parameters: 
+2021-08-16 15:31:59.642 [DEBUG] com.hyc.report.report.mapper.DataSourceMapper.get - <==      Total: 2
+2021-08-16 15:32:00.090 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==>  Preparing: select * from testHycDEPT
+2021-08-16 15:32:00.091 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - ==> Parameters: 
+2021-08-16 15:32:00.113 [DEBUG] com.hyc.report.report.mapper.ReportMapper.getReportData - <==      Total: 4

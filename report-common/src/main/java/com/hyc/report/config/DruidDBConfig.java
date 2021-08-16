@@ -1,4 +1,4 @@
-package com.hyc.report.dynamiconfig.config;
+package com.hyc.report.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;

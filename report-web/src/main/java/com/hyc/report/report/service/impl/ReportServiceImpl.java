@@ -1,7 +1,7 @@
-package com.hyc.report.service.impl;
+package com.hyc.report.report.service.impl;
 
-import com.hyc.report.mapper.ReportMapper;
-import com.hyc.report.service.ReportService;
+import com.hyc.report.report.mapper.ReportMapper;
+import com.hyc.report.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

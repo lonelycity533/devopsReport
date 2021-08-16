@@ -1,7 +1,6 @@
 package com.hyc.report.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -22,6 +21,6 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/reportForm/sjk").setViewName("reportForm/page-bbpz-sjk");
         registry.addViewController("/reportForm/sjkEdit").setViewName("reportForm/page-bbpz-sjkEdit");
         registry.addViewController("/reportForm/tj").setViewName("reportForm/page-bbpz-tj");
-        registry.addViewController("/reportForm/jtEdit").setViewName("reportForm/page-bbpz-jtEdit");
+        registry.addViewController("/reportForm/jtEdit").setViewName("reportForm/page-bbpz-tjEdit");
     }
 }

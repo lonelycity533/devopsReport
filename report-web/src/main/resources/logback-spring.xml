@@ -24,7 +24,7 @@
     <!-- 日志界别 -->
     <property name="log.level" value="info"/>
     <!-- 打印sql语句 需要指定dao/mapper层包的位置 -->
-    <property name="mapper.package" value="com.hyc.report.mapper"/>
+    <property name="mapper.package" value="com.hyc.report.report.mapper"/>
 
     <!-- 彩色日志 -->
     <!-- 配置格式变量：CONSOLE_LOG_PATTERN 彩色日志格式 -->

@@ -1,4 +1,4 @@
-package com.hyc.report.mapper;
+package com.hyc.report.report.mapper;
 
 import org.apache.ibatis.annotations.Param;
 

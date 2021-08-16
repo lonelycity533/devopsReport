@@ -1,4 +1,4 @@
-package com.hyc.report.service;
+package com.hyc.report.report.service;
 
 import com.hyc.report.dynamiconfig.entity.DataSource;
 

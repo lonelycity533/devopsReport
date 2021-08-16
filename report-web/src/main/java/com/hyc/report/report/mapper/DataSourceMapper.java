@@ -1,7 +1,6 @@
-package com.hyc.report.mapper;
+package com.hyc.report.report.mapper;
 
 import com.hyc.report.dynamiconfig.entity.DataSource;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;

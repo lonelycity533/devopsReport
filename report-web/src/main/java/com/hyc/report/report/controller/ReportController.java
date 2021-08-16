@@ -1,20 +1,21 @@
-package com.hyc.report.controller;
+package com.hyc.report.report.controller;
 
-import com.hyc.report.dynamiconfig.context.DBContextHolder;
-import com.hyc.report.service.DBChangeService;
+import com.hyc.report.report.service.DBChangeService;
 import com.hyc.report.response.Result;
-import com.hyc.report.service.ReportService;
+import com.hyc.report.report.service.ReportService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.hyc.report.dynamiconfig.entity.DataSource;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 @Slf4j
+@RequestMapping("/report")
 @RestController
-public class TestController {
+public class ReportController {
 
     @Autowired
     private DBChangeService dbChangeServiceImpl;
@@ -23,8 +24,8 @@ public class TestController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping("report/test")
-    public Result get() throws Exception {
+    @GetMapping("/getReportList")
+    public Result getReportList() throws Exception {
         List<DataSource> dataSources = dbChangeServiceImpl.get();
         log.info("数据库数据源数据：{}",dataSources);
         //切换到数据库dbtest2
