@@ -11,10 +11,10 @@ import lombok.ToString;
 @Data
 @ToString
 public class DataSource {
-    String datasourceId;
-    String url;
-    String userName;
-    String passWord;
-    String code;
-    String databasetype;
+    private int databaseId;
+    private String databaseName;
+    private String databaseUrl;
+    private String databaseUsername;
+    private String databasePassword;
+    private String databaseType;
 }

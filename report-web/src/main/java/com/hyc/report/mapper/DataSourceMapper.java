@@ -16,23 +16,21 @@ import java.util.List;
 public interface DataSourceMapper {
 
     /**
-     * String datasourceId;
-     *     String url;
-     *     String userName;
-     *     String passWord;
-     *     String code;
-     *     String databasetype;
+     * private int databaseId;
+     *     private String databaseName;
+     *     private String databaseUrl;
+     *     private String databaseUsername;
+     *     private String databasePassword;
+     *     private String databaseType;
      * */
     @Results({
-            @Result(column = "user_name",property = "userName"),
-            @Result(column = "url",property = "url"),
-            @Result(column = "pass_word",property = "passWord"),
-            @Result(column = "databasetype",property = "databasetype"),
-            @Result(column = "code",property = "code"),
-            @Result(column = "datasource_id",property = "datasourceId")
-
+        @Result(column = "database_name",property = "databaseName"),
+        @Result(column = "database_url",property = "databaseUrl"),
+        @Result(column = "database_username",property = "databaseUsername"),
+        @Result(column = "database_password",property = "databasePassword"),
+        @Result(column = "database_type",property = "databaseType"),
     })
-    @Select("select * from databasesource")
+    @Select("select * from REPORT_DATABASE")
     List<DataSource> get();
 
 }

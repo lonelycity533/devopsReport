@@ -82,7 +82,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
                 driveClass = "com.mysql.cj.jdbc.Driver";
                 validationQuery = "select 1";
             } else if("oracle".equalsIgnoreCase(databasetype)) {
-                driveClass = "oracle.jdbc.driver.OracleDriver";
+                driveClass = "oracle.jdbc.OracleDriver";
                 druidDataSource.setPoolPreparedStatements(true); //是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭。
                 druidDataSource.setMaxPoolPreparedStatementPerConnectionSize(50);
 //                int sqlQueryTimeout = ADIPropUtil.sqlQueryTimeOut();
@@ -200,7 +200,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     }
 
     public void createDataSourceWithCheck(DataSource dataSource) throws Exception {
-        String datasourceId = dataSource.getDatasourceId();
+        String datasourceId = dataSource.getDatabaseName();
         log.info("正在检查数据源："+datasourceId);
         Map<Object, Object> dynamicTargetDataSources2 = this.dynamicTargetDataSources;
         if (dynamicTargetDataSources2.containsKey(datasourceId)) {
@@ -248,12 +248,12 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
     }
 
     private void createDataSource(DataSource dataSource) throws Exception {
-        String datasourceId = dataSource.getDatasourceId();
+        String datasourceId = dataSource.getDatabaseName();
         log.info("准备创建数据源"+datasourceId);
-        String databasetype = dataSource.getDatabasetype();
-        String username = dataSource.getUserName();
-        String password = dataSource.getPassWord();
-        String url = dataSource.getUrl();
+        String databasetype = dataSource.getDatabaseType();
+        String username = dataSource.getDatabaseUsername();
+        String password = dataSource.getDatabasePassword();
+        String url = dataSource.getDatabaseUrl();
         String driveClass = null;
 
         if("mysql".equalsIgnoreCase(databasetype)) {

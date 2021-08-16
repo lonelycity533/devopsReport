@@ -1,0 +1,134 @@
+2021-08-16 11:13:23.010 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 12892 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 11:13:23.021 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 11:13:26.440 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 11:13:26.468 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 11:13:26.472 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 11:13:26.472 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 11:13:26.959 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 11:13:26.960 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3766 ms
+2021-08-16 11:13:27.132 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 11:13:27.150 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 11:13:30.807 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 11:13:30.844 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 11:13:30.862 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 10.189 seconds (JVM running for 13.653)
+2021-08-16 11:16:04.063 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-16 11:16:04.166 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 11:16:04.638 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-16 11:16:04.921 [INFO ] com.hyc.report.dynamiconfig.context.DBContextHolder - 已切换到主数据源
+2021-08-16 11:16:04.922 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 11:16:04.933 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - 正在检查数据源：loginsecurity
+2021-08-16 11:16:04.933 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - 准备创建数据源loginsecurity
+2021-08-16 11:16:04.969 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-2,loginsecurity} inited
+2021-08-16 11:16:04.969 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - loginsecurity数据源初始化成功
+2021-08-16 11:16:04.969 [INFO ] com.hyc.report.dynamiconfig.context.DBContextHolder - 已切换到数据源:loginsecurity
+2021-08-16 11:16:05.061 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：loginsecurity---
+2021-08-16 12:21:17.727 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 13180 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 12:21:17.737 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 12:21:21.675 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 12:21:21.710 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 12:21:21.712 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 12:21:21.713 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 12:21:22.336 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 12:21:22.336 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4447 ms
+2021-08-16 12:21:22.473 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 12:21:22.490 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 12:21:26.161 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 12:21:26.210 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 12:21:26.234 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 11.072 seconds (JVM running for 15.699)
+2021-08-16 12:21:48.211 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-16 13:58:28.208 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 14328 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 13:58:28.219 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 13:58:32.616 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 13:58:32.654 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 13:58:32.657 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 13:58:32.658 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 13:58:33.279 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 13:58:33.279 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4898 ms
+2021-08-16 13:58:33.397 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 13:58:33.415 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 13:58:36.693 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 13:58:36.735 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 13:58:36.756 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 10.609 seconds (JVM running for 14.128)
+2021-08-16 13:59:34.577 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 12672 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 13:59:34.593 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 13:59:39.294 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 13:59:39.333 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 13:59:39.336 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 13:59:39.336 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 13:59:40.039 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 13:59:40.040 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5268 ms
+2021-08-16 13:59:40.189 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 13:59:40.210 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 13:59:43.790 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 13:59:43.836 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 13:59:43.857 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 11.787 seconds (JVM running for 16.337)
+2021-08-16 14:05:27.980 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 13044 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 14:05:27.995 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 14:05:33.270 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 14:05:33.308 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:05:33.311 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 14:05:33.312 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 14:05:34.801 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 14:05:34.804 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6611 ms
+2021-08-16 14:05:35.043 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 14:05:35.084 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 14:05:40.220 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:05:40.285 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 14:05:40.312 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 15.366 seconds (JVM running for 19.241)
+2021-08-16 14:06:56.095 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 10496 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 14:06:56.111 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 14:07:00.210 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 14:07:00.245 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:07:00.248 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 14:07:00.248 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 14:07:00.692 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 14:07:00.693 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 4425 ms
+2021-08-16 14:07:00.816 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 14:07:00.831 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 14:07:04.828 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:07:04.869 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 14:07:04.885 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 11.189 seconds (JVM running for 15.353)
+2021-08-16 14:07:45.905 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 15272 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 14:07:45.915 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 14:07:49.494 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 14:07:49.526 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:07:49.529 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 14:07:49.529 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 14:07:50.067 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 14:07:50.067 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3989 ms
+2021-08-16 14:07:50.207 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 14:07:50.221 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 14:07:53.779 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:07:53.816 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 14:07:53.833 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 10.076 seconds (JVM running for 13.285)
+2021-08-16 14:08:05.899 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-16 14:08:06.046 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 14:08:07.583 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-16 14:08:07.983 [INFO ] com.hyc.report.controller.TestController - 数据库数据源数据：[DataSource(databaseId=1, databaseName=null, databaseUrl=jdbc:oracle:thin:@134.96.162.186:1521:wttest1, databaseUsername=ZJCSC517, databasePassword=99gY_52, databaseType=oracle), DataSource(databaseId=2, databaseName=null, databaseUrl=jdbc:oracle:thin:@134.96.162.186:1521:WTTEST1, databaseUsername=wt_jobs, databasePassword=99gY_38, databaseType=oracle)]
+2021-08-16 14:08:07.989 [INFO ] com.hyc.report.dynamiconfig.context.DBContextHolder - 已切换到主数据源
+2021-08-16 14:08:07.991 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 14:10:09.604 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 6060 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-16 14:10:09.620 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-16 14:10:12.813 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-16 14:10:12.840 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:10:12.841 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-16 14:10:12.842 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-16 14:10:13.250 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-16 14:10:13.251 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3452 ms
+2021-08-16 14:10:13.353 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-16 14:10:13.366 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-16 14:10:16.661 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-16 14:10:16.697 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-16 14:10:16.715 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 9.536 seconds (JVM running for 12.891)
+2021-08-16 14:10:43.104 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-16 14:10:43.230 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 14:10:44.514 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-16 14:10:44.809 [INFO ] com.hyc.report.controller.TestController - 数据库数据源数据：[DataSource(databaseId=1, databaseName=网厅测试, databaseUrl=jdbc:oracle:thin:@134.96.162.186:1521:wttest1, databaseUsername=ZJCSC517, databasePassword=99gY_52, databaseType=oracle), DataSource(databaseId=2, databaseName=wt_jobs, databaseUrl=jdbc:oracle:thin:@134.96.162.186:1521:WTTEST1, databaseUsername=wt_jobs, databasePassword=99gY_38, databaseType=oracle)]
+2021-08-16 14:10:44.812 [INFO ] com.hyc.report.dynamiconfig.context.DBContextHolder - 已切换到主数据源
+2021-08-16 14:10:44.814 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-16 14:10:44.834 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - 正在检查数据源：网厅测试
+2021-08-16 14:10:44.835 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - 准备创建数据源网厅测试
+2021-08-16 14:10:45.202 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-2,网厅测试} inited
+2021-08-16 14:10:45.203 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - 网厅测试数据源初始化成功
+2021-08-16 14:10:45.204 [INFO ] com.hyc.report.dynamiconfig.context.DBContextHolder - 已切换到数据源:网厅测试
+2021-08-16 14:10:45.312 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：网厅测试---

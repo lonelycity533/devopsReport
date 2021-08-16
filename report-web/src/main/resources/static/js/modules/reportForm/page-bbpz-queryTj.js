@@ -113,7 +113,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			var that = this;
 			var layerIndex='';
 			$(document).on('click', '.btn-detail', function() {
-				window.location.href=base+'/templates/reportForm/page-bbpz-queryDetail.html';
+				window.location.href=base+'/reportForm/queryDetail';
 			})
 		},
 		init: function() {
