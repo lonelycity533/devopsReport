@@ -15,4 +15,5 @@ public interface CustomizeResultCode {
      * @return 错误信息
      */
     String getMessage();
+
 }

@@ -7,8 +7,7 @@ import com.hyc.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.sql.DataSource;
+import com.hyc.report.dynamiconfig.entity.DataSource;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class TestController {
 
     @GetMapping("report/test")
     public Result get() throws Exception {
-        List<com.hyc.report.dynamiconfig.entity.DataSource> dataSources = dbChangeServiceImpl.get();
+        List<DataSource> dataSources = dbChangeServiceImpl.get();
         //切换到数据库dbtest2
         String datasourceId="loginsecurity";
         dbChangeServiceImpl.changeDb(datasourceId);

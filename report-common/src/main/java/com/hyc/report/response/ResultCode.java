@@ -67,4 +67,6 @@ public enum ResultCode implements CustomizeResultCode{
     public String getMessage() {
         return message;
     }
+
+
 }

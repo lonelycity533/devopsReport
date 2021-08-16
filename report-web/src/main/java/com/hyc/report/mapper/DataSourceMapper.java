@@ -13,7 +13,6 @@ import java.util.List;
  * @CreateTime : 2019/10/23
  * @Description :
  **/
-//@Mapper
 public interface DataSourceMapper {
 
     /**
