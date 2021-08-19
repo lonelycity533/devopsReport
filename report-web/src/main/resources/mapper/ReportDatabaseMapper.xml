@@ -9,6 +9,31 @@
         ,#{reportDatabase.databaseType},sysdate,sysdate)
     </insert>
 
+    <update id="updateDatabase">
+        update REPORT_DATABASE
+        <set>
+            <if test="reportDatabase.databaseName!=null and reportDatabase.databaseName!=''">
+                database_name = #{reportDatabase.databaseName},
+            </if>
+            <if test="reportDatabase.databaseUrl!=null and reportDatabase.databaseUrl!=''">
+                database_url = #{reportDatabase.databaseUrl},
+            </if>
+            <if test="reportDatabase.databaseUsername!=null and reportDatabase.databaseUsername!=''">
+                database_username = #{reportDatabase.databaseUsername},
+            </if>
+            <if test="reportDatabase.databasePassword!=null and reportDatabase.databasePassword!=''">
+                database_password = #{reportDatabase.databasePassword},
+            </if>
+            <if test="reportDatabase.databaseType!=null and reportDatabase.databaseType!=''">
+                database_type = #{reportDatabase.databaseType},
+            </if>
+            update_time = sysdate
+        </set>
+        <where>
+            database_id = #{reportDatabase.databaseId}
+        </where>
+    </update>
+
     <select id="getDataBaseByName" resultType="com.hyc.report.database.entity.ReportDatabase">
         select * from REPORT_DATABASE
         <where>

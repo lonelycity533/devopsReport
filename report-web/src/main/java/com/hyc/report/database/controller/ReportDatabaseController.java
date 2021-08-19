@@ -12,8 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
@@ -79,7 +77,34 @@ public class ReportDatabaseController {
     }
 
     @PostMapping("/updateDatabase")
-    public Result updateDatabase(@RequestBody ReportDatabase reportDatabase) {
+    public Result updateDatabase(/*@RequestBody ReportDatabase reportDatabase*/) {
+        ReportDatabase reportDatabase1 = new ReportDatabase();
+        reportDatabase1.setDatabaseId((long) 63);
+        reportDatabase1.setDatabaseName("短厅wangting");
+        reportDatabase1.setDatabasePassword("12345");
+        reportDatabase1.setDatabaseType("mysql");
+        reportDatabase1.setDatabaseUsername("sdf");
+        reportDatabase1.setDatabaseUrl("sdfsdf");
+
+        log.info("*****正在执行更新数据库配置接口");
+        int updateCount;
+//        try{
+        updateCount = reportDatabaseService.updateDatabase(reportDatabase1);
+//        }catch (Exception e) {
+//            log.info("*****数据库配置更新失败");
+//            throw new ReportException(ResultCode.DATABASE_UPDATE_ERROR.getCode(),ResultCode.DATABASE_UPDATE_ERROR.getMessage());
+//        }
+        if (updateCount>0) {
+            log.info("*****数据库配置更新成功");
+            return Result.ok().data(ResultCode.DATABASE_UPDATE_SUCCESS.getCode(),ResultCode.DATABASE_UPDATE_SUCCESS.getMessage());
+        } else {
+            log.info("*****数据库配置无更新");
+            return Result.ok().data("400","无更新数据");
+        }
+    }
+
+    /*@PostMapping("/updateDatabase")
+    public Result deleteDatabase(*//*@RequestBody ReportDatabase reportDatabase*//*) {
         ReportDatabase reportDatabase1 = new ReportDatabase();
         reportDatabase1.setDatabaseName("短厅");
         reportDatabase1.setDatabasePassword("123");
@@ -87,20 +112,22 @@ public class ReportDatabaseController {
         reportDatabase1.setDatabaseUsername("sdf");
         reportDatabase1.setDatabaseUrl("sdfsdf");
         log.info("*****正在执行更新数据库配置接口");
-        int saveCount = 0;
+        boolean updateFlag;
         try{
-            saveCount = reportDatabaseService.insertDatabase(reportDatabase);
+            LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(ReportDatabase::getDatabaseId,reportDatabase1.getDatabaseId());
+            updateFlag = reportDatabaseService.update(reportDatabase1,lambdaQueryWrapper);
         }catch (Exception e) {
             log.info("*****数据库配置更新失败");
-            throw new ReportException(ResultCode.DATABASE_INSERT_ERROR.getCode(),ResultCode.DATABASE_INSERT_ERROR.getMessage());
+            throw new ReportException(ResultCode.DATABASE_UPDATE_ERROR.getCode(),ResultCode.DATABASE_UPDATE_ERROR.getMessage());
         }
-        if (saveCount>0) {
+        if (updateFlag) {
             log.info("*****数据库配置更新成功");
-            return Result.ok().data(ResultCode.DATABASE_INSERT_SUCCESS.getCode(),ResultCode.DATABASE_INSERT_SUCCESS.getMessage());
+            return Result.ok().data(ResultCode.DATABASE_UPDATE_SUCCESS.getCode(),ResultCode.DATABASE_UPDATE_SUCCESS.getMessage());
         } else {
             log.info("*****数据库配置无更新");
             return Result.ok().data("400","无更新数据");
         }
-    }
+    }*/
 }
 

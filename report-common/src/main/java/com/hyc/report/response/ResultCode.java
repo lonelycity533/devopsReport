@@ -4,6 +4,13 @@ package com.hyc.report.response;
  * 调用接口实现输出返回码和返回信息
  * */
 public enum ResultCode implements CustomizeResultCode{
+
+    DATABASE_DELETE_ERROR(500,"数据库配置更新失败"),
+    DATABASE_DELETE_SUCCESS(200,"数据库配置更新成功"),
+
+    DATABASE_UPDATE_ERROR(500,"数据库配置更新失败"),
+
+    DATABASE_UPDATE_SUCCESS(200,"数据库配置更新成功"),
     /**
      * 数据库配置添加成功
      * */

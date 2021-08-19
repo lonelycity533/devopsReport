@@ -19,4 +19,6 @@ public interface ReportDatabaseService extends IService<ReportDatabase> {
     Page<ReportDatabase> getDataBaseByName(int current, int size, String databaseName);
 
     int insertDatabase(ReportDatabase reportDatabase);
+
+    int updateDatabase(ReportDatabase reportDatabase);
 }

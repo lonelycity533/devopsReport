@@ -38,4 +38,9 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
     public int insertDatabase(ReportDatabase reportDatabase) {
         return reportDatabaseMapper.insertDatabase(reportDatabase);
     }
+
+    @Override
+    public int updateDatabase(ReportDatabase reportDatabase) {
+        return reportDatabaseMapper.updateDatabase(reportDatabase);
+    }
 }
