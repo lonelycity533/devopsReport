@@ -60,6 +60,12 @@ mybatis-plus:
       logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
   mapper-locations: classpath:mapper/*.xml
 
+# pagehelper 分页插件
+pagehelper:
+  helperDialect: oracle
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 # 配置彩色日志logback路径
 logging:
