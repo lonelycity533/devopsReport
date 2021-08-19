@@ -22,8 +22,10 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!--mybatis-plus-generator-->
+        <mpg.version>3.4.0</mpg.version>
         <!--mybatis-plus-->
-        <mp.version>3.4.0</mp.version>
+        <mp.version>3.1.1</mp.version>
         <!--velocity模板引擎-->
         <velocity.version>2.2</velocity.version>
         <!--mysql-->
@@ -88,7 +90,7 @@
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-generator</artifactId>
-                <version>${mp.version}</version>
+                <version>${mpg.version}</version>
             </dependency>
 
             <dependency>

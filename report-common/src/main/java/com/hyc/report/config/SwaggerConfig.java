@@ -21,7 +21,8 @@ public class SwaggerConfig {
                 .title("报表系统API文档") //网站标题
                 .description("项目名称swagger RESTful APIs......") //网站描述
                 .version("1.0") //版本
-                .contact(new Contact("黄煜晨","https://gitee.com/huang_yu_chen/devops-report.git","1904843513@qq.com")) //联系人
+                .contact(new Contact("黄煜晨","https://gitee.com/huang_yu_chen/devops-report.git"
+                        ,"1904843513@qq.com")) //联系人
                 .license("The Apache License") //协议
                 .licenseUrl("http://www.baidu.com") //协议url
                 .build();
