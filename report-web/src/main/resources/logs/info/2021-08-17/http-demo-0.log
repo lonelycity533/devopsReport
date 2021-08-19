@@ -1,0 +1,17 @@
+2021-08-17 16:00:58.022 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 10144 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-17 16:00:58.040 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-17 16:01:04.615 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-17 16:01:04.662 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-17 16:01:04.666 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-17 16:01:04.667 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-17 16:01:05.346 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-17 16:01:05.346 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7102 ms
+2021-08-17 16:01:05.494 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-17 16:01:05.513 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-17 16:01:11.196 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-17 16:01:12.303 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-17 16:01:12.364 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-17 16:01:12.367 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-17 16:01:12.468 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-17 16:01:12.646 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-17 16:01:12.745 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 18.155 seconds (JVM running for 23.683)

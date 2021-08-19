@@ -3,6 +3,9 @@ package com.hyc.report.config;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.hyc.report.dynamiconfig.config.DynamicDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -97,7 +100,7 @@ public class DruidDBConfig {
         return servletRegistrationBean;
     }
 
-    /**
+   /**
      * 注册一个：filterRegistrationBean   druid监控页面配置2-允许页面正常浏览
      *
      * @return filter registration bean
@@ -135,21 +138,24 @@ public class DruidDBConfig {
         sqlSessionFactoryBean.setDataSource(dynamicDataSource());
         sqlSessionFactoryBean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
-        // 设置mybatis的主配置文件
-        /*ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource mybatisConfigXml = resolver.getResource("classpath:mybatis/mybatis-config.xml");
-        sqlSessionFactoryBean.setConfigLocation(mybatisConfigXml);*/
 
         return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.ORACLE));
+        return interceptor;
     }
 
     /**
      * 读取驼峰命名设置
      */
-    /*@Bean
+    @Bean
     @ConfigurationProperties(prefix = "mybatis.configuration")
     public org.apache.ibatis.session.Configuration configuration() {
         return new org.apache.ibatis.session.Configuration();
-    }*/
+    }
 
 }

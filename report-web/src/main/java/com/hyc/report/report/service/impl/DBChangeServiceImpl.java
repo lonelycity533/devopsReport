@@ -33,7 +33,7 @@ public class DBChangeServiceImpl implements DBChangeService {
 
         for (DataSource dataSource : dataSourcesList) {
             if (dataSource.getDatabaseName().equals(datasourceId)) {
-                System.out.println("需要使用的的数据源已经找到,datasourceName是：" + dataSource.getDatabaseName());
+                System.out.println("需要使用的的数据源已经找到,datasourceId是：" + dataSource.getDatabaseName());
                 //创建数据源连接&检查 若存在则不需重新创建
                 dynamicDataSource.createDataSourceWithCheck(dataSource);
                 //切换到该数据源

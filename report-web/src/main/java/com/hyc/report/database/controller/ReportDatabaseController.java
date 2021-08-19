@@ -1,6 +1,7 @@
 package com.hyc.report.database.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,11 +37,15 @@ public class ReportDatabaseController {
     @GetMapping("/getDatabaseList")
     public Result getDatabaseList(@RequestParam(required = true,defaultValue = "1") int current,
                                   @RequestParam(required = true,defaultValue = "5") int size) {
-        //对数据源数据进行配置
-        IPage<ReportDatabase> page = new Page<>(1,5);
-        QueryWrapper<ReportDatabase> queryWrapper = new QueryWrapper<>();
-        IPage<ReportDatabase> databasePage = reportDatabaseService.getDatabaseList(page,queryWrapper);
-        return Result.ok().data("total",databasePage.getTotal()).data("records",databasePage.getRecords());
+        Page<ReportDatabase> page = new Page<>(1,5);
+        //lamba注入条件
+        LambdaQueryWrapper<ReportDatabase> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(ReportDatabase::getDatabaseName,"asdf");
+        Page<ReportDatabase> userPage = reportDatabaseService.page(page,queryWrapper);
+        long total = userPage.getTotal();
+        //records是当前页查出来的数据
+        List<ReportDatabase> records = userPage.getRecords();
+        return Result.ok().data("total",total).data("records",records);
     }
 
 }

@@ -25,7 +25,7 @@
         <!--mybatis-plus-generator-->
         <mpg.version>3.4.0</mpg.version>
         <!--mybatis-plus-->
-        <mp.version>3.1.1</mp.version>
+        <mp.version>3.4.0</mp.version>
         <!--velocity模板引擎-->
         <velocity.version>2.2</velocity.version>
         <!--mysql-->
@@ -133,8 +133,13 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

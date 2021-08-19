@@ -12,22 +12,25 @@ import java.util.List;
  * @CreateTime : 2019/10/23
  * @Description :
  **/
+//@Mapper
 public interface DataSourceMapper {
 
     /**
-     * private int databaseId;
-     *     private String databaseName;
-     *     private String databaseUrl;
-     *     private String databaseUsername;
-     *     private String databasePassword;
-     *     private String databaseType;
+     private int databaseId;
+     private String databaseName;
+     private String databaseUrl;
+     private String databaseUsername;
+     private String databasePassword;
+     private String databaseType;
      * */
     @Results({
-        @Result(column = "database_name",property = "databaseName"),
-        @Result(column = "database_url",property = "databaseUrl"),
-        @Result(column = "database_username",property = "databaseUsername"),
-        @Result(column = "database_password",property = "databasePassword"),
-        @Result(column = "database_type",property = "databaseType"),
+            @Result(column = "database_id",property = "databaseId"),
+            @Result(column = "database_name",property = "databaseName"),
+            @Result(column = "database_url",property = "databaseUrl"),
+            @Result(column = "database_username",property = "databaseUsername"),
+            @Result(column = "database_password",property = "databasePassword"),
+            @Result(column = "database_type",property = "databaseType")
+
     })
     @Select("select * from REPORT_DATABASE")
     List<DataSource> get();
