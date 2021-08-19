@@ -71,4 +71,10 @@ public class Result {
         this.setData(map);
         return this;
     }
+
+    public Result data(int code,String message) {
+        this.setCode(code);
+        this.setMessage(message);
+        return this;
+    }
 }

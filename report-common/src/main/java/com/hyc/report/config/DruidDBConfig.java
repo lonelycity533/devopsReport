@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.extension.incrementer.OracleKeyGenerator;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
@@ -32,8 +33,6 @@ import java.util.Map;
 @Configuration
 @EnableTransactionManagement
 public class DruidDBConfig {
-
-    private final Logger log = LoggerFactory.getLogger(getClass());
 
     // adi数据库连接信息
     @Value("${spring.datasource.url}")
@@ -134,7 +133,7 @@ public class DruidDBConfig {
     @Bean
     public SqlSessionFactory sqlSessionFactory() throws Exception {
 
-        MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean  sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dynamicDataSource());
         sqlSessionFactoryBean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
@@ -142,20 +141,27 @@ public class DruidDBConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean
+    /*@Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.ORACLE));
         return interceptor;
-    }
+    }*/
 
     /**
      * 读取驼峰命名设置
      */
-    @Bean
+    /*@Bean
     @ConfigurationProperties(prefix = "mybatis.configuration")
     public org.apache.ibatis.session.Configuration configuration() {
         return new org.apache.ibatis.session.Configuration();
-    }
+    }*/
+    /**
+     * 序列生成器
+     */
+    /*@Bean
+    public OracleKeyGenerator oracleKeyGenerator(){
+        return new OracleKeyGenerator();
+    }*/
 
 }

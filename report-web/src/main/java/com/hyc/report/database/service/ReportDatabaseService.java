@@ -2,7 +2,7 @@ package com.hyc.report.database.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.Page;
 import com.hyc.report.database.entity.ReportDatabase;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -16,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ReportDatabaseService extends IService<ReportDatabase> {
 
+    Page<ReportDatabase> getDataBaseByName(int current, int size, String databaseName);
+
+    int insertDatabase(ReportDatabase reportDatabase);
 }

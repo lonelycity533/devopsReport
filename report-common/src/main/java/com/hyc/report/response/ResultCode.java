@@ -5,6 +5,18 @@ package com.hyc.report.response;
  * */
 public enum ResultCode implements CustomizeResultCode{
     /**
+     * 数据库配置添加成功
+     * */
+    DATABASE_INSERT_REPEAT(501,"数据库配置添加重复"),
+    /**
+     * 数据库配置添加成功
+     * */
+    DATABASE_INSERT_SUCCESS(200,"数据库配置添加成功"),
+    /**
+     * 数据库配置添加失败
+     * */
+    DATABASE_INSERT_ERROR(500,"数据库配置添加失败"),
+    /**
      * 20000:"成功"
      */
     SUCCESS(20000, "成功"),

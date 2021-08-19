@@ -2,20 +2,17 @@ package com.hyc.report.database.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.github.pagehelper.Page;
 import com.hyc.report.database.entity.ReportDatabase;
 import com.hyc.report.database.service.ReportDatabaseService;
+import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.Result;
+import com.hyc.report.response.ResultCode;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,18 +32,75 @@ public class ReportDatabaseController {
     private ReportDatabaseService reportDatabaseService;
 
     @GetMapping("/getDatabaseList")
-    public Result getDatabaseList(@RequestParam(required = true,defaultValue = "1") int current,
-                                  @RequestParam(required = true,defaultValue = "5") int size) {
-        Page<ReportDatabase> page = new Page<>(1,5);
-        //lamba注入条件
-        LambdaQueryWrapper<ReportDatabase> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(ReportDatabase::getDatabaseName,"asdf");
-        Page<ReportDatabase> userPage = reportDatabaseService.page(page,queryWrapper);
-        long total = userPage.getTotal();
-        //records是当前页查出来的数据
-        List<ReportDatabase> records = userPage.getRecords();
-        return Result.ok().data("total",total).data("records",records);
+    public Result getDatabaseList(@RequestParam(value = "current",required = true,defaultValue = "1") int current,
+                                  @RequestParam(value = "size",required = true,defaultValue = "5") int size,
+                                  @RequestParam("databaseName") String databaseName) {
+//        String databaseName = "h";
+        log.info("*****正在执行查询数据库配置接口");
+        Page<ReportDatabase> pageInfo = reportDatabaseService.getDataBaseByName(current, size, databaseName);
+        log.info("*****执行结束，结果已输出,数据库配置数据为第{}页",current);
+        log.info("*****当前页数据为：{}",pageInfo.getResult());
+        return Result.ok().data("total",pageInfo.getTotal()).data("records",pageInfo.getResult());
     }
 
+    /**
+     * 插入数据库数据
+     * */
+    @PostMapping("/insertDatabase")
+    public Result insertDatabase(@RequestBody ReportDatabase reportDatabase) {
+        /*ReportDatabase reportDatabase1 = new ReportDatabase();
+        reportDatabase1.setDatabaseName("短厅");
+        reportDatabase1.setDatabasePassword("123");
+        reportDatabase1.setDatabaseType("mysql");
+        reportDatabase1.setDatabaseUsername("sdf");
+        reportDatabase1.setDatabaseUrl("sdfsdf");*/
+        log.info("*****正在执行插入数据库配置接口");
+        LambdaQueryWrapper<ReportDatabase>  lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,reportDatabase.getDatabaseName());
+        int count = reportDatabaseService.count(lambdaQueryWrapper);
+        if (count>0) {
+            log.info("*****数据库配置添加重复");
+            throw new ReportException(ResultCode.DATABASE_INSERT_REPEAT.getCode(),ResultCode.DATABASE_INSERT_REPEAT.getMessage());
+        }
+        int saveCount = 0;
+        try{
+            saveCount = reportDatabaseService.insertDatabase(reportDatabase);
+        }catch (Exception e) {
+            log.info("*****数据库配置添加失败");
+            throw new ReportException(ResultCode.DATABASE_INSERT_ERROR.getCode(),ResultCode.DATABASE_INSERT_ERROR.getMessage());
+        }
+        if (saveCount>0) {
+            log.info("*****数据库配置添加成功");
+            return Result.ok().data(ResultCode.DATABASE_INSERT_SUCCESS.getCode(),ResultCode.DATABASE_INSERT_SUCCESS.getMessage());
+        } else {
+            log.info("*****数据库配置无添加");
+            return Result.ok().data("400","无添加数据");
+        }
+    }
+
+    @PostMapping("/updateDatabase")
+    public Result updateDatabase(@RequestBody ReportDatabase reportDatabase) {
+        ReportDatabase reportDatabase1 = new ReportDatabase();
+        reportDatabase1.setDatabaseName("短厅");
+        reportDatabase1.setDatabasePassword("123");
+        reportDatabase1.setDatabaseType("mysql");
+        reportDatabase1.setDatabaseUsername("sdf");
+        reportDatabase1.setDatabaseUrl("sdfsdf");
+        log.info("*****正在执行更新数据库配置接口");
+        int saveCount = 0;
+        try{
+            saveCount = reportDatabaseService.insertDatabase(reportDatabase);
+        }catch (Exception e) {
+            log.info("*****数据库配置更新失败");
+            throw new ReportException(ResultCode.DATABASE_INSERT_ERROR.getCode(),ResultCode.DATABASE_INSERT_ERROR.getMessage());
+        }
+        if (saveCount>0) {
+            log.info("*****数据库配置更新成功");
+            return Result.ok().data(ResultCode.DATABASE_INSERT_SUCCESS.getCode(),ResultCode.DATABASE_INSERT_SUCCESS.getMessage());
+        } else {
+            log.info("*****数据库配置无更新");
+            return Result.ok().data("400","无更新数据");
+        }
+    }
 }
 

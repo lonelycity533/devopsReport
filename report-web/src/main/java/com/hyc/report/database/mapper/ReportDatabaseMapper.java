@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.hyc.report.database.entity.ReportDatabase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,4 +19,7 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ReportDatabaseMapper extends BaseMapper<ReportDatabase> {
 
+    List<ReportDatabase> getDataBaseByName(@Param("databaseName") String databaseName);
+
+    int insertDatabase(@Param("reportDatabase") ReportDatabase reportDatabase);
 }
