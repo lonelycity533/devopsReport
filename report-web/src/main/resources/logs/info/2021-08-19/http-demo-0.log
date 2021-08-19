@@ -1351,3 +1351,122 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2021-08-19 22:55:45.964 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****正在执行更新数据库配置接口
 2021-08-19 22:55:46.193 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
 2021-08-19 22:55:47.542 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-19 23:05:13.035 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 5056 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:05:13.064 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:05:22.888 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:05:22.941 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:05:22.946 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:05:22.946 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:05:24.266 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:05:24.269 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 10861 ms
+2021-08-19 23:05:24.475 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:05:24.515 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:05:33.619 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:05:35.318 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:05:35.393 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:05:35.398 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:05:35.494 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:05:35.682 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:05:35.809 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 27.803 seconds (JVM running for 33.74)
+2021-08-19 23:05:54.767 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 23:05:54.990 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****正在执行更新数据库配置接口
+2021-08-19 23:05:55.258 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-19 23:05:57.447 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-19 23:05:58.129 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****数据库配置更新成功
+2021-08-19 23:11:39.806 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 6432 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:11:39.822 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:11:45.606 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:11:45.660 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:11:45.663 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:11:45.663 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:11:46.354 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:11:46.354 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6325 ms
+2021-08-19 23:11:46.504 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:11:46.523 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:11:53.019 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:11:54.185 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:11:54.231 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:11:54.235 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:11:54.318 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:11:54.448 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:11:54.515 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 17.717 seconds (JVM running for 22.948)
+2021-08-19 23:12:00.356 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 23:12:43.923 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 14040 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:12:43.936 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:12:49.236 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:12:49.275 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:12:49.278 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:12:49.278 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:12:49.988 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:12:49.989 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5817 ms
+2021-08-19 23:12:50.139 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:12:50.155 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:12:55.586 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:12:56.574 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:12:56.620 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:12:56.623 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:12:56.691 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:12:56.816 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:12:56.906 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 16.196 seconds (JVM running for 22.191)
+2021-08-19 23:13:42.389 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 23:13:42.511 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****正在执行删除数据库配置接口
+2021-08-19 23:13:42.642 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-19 23:13:44.089 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-19 23:13:44.477 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****数据库配置删除成功
+2021-08-19 23:15:34.606 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 9652 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:15:34.625 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:15:40.973 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:15:41.032 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:15:41.034 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:15:41.035 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:15:41.792 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:15:41.793 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6902 ms
+2021-08-19 23:15:41.952 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:15:41.968 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:15:48.322 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:15:49.512 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:15:49.559 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:15:49.562 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:15:49.632 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:15:49.751 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:15:49.822 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 19.921 seconds (JVM running for 26.575)
+2021-08-19 23:16:52.336 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 23:16:52.466 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****正在执行删除数据库配置接口
+2021-08-19 23:16:52.602 [INFO ] com.hyc.report.dynamiconfig.config.DynamicDataSource - ---当前数据源：默认数据源---
+2021-08-19 23:16:54.128 [INFO ] com.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+2021-08-19 23:16:54.644 [INFO ] com.hyc.report.database.controller.ReportDatabaseController - *****数据库配置删除成功
+2021-08-19 23:29:42.326 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 13412 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:29:42.340 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:29:47.344 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:29:47.376 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:29:47.378 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:29:47.378 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:29:48.009 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:29:48.010 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 5481 ms
+2021-08-19 23:29:48.155 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:29:48.177 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:29:53.681 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:29:54.652 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:29:54.715 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:29:54.718 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:29:54.790 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:29:54.909 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:29:54.975 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 15.591 seconds (JVM running for 20.486)
+2021-08-19 23:31:57.171 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-19 23:35:05.846 [INFO ] com.hyc.report.DevopsReportApplication - Starting DevopsReportApplication using Java 1.8.0_201 on DESKTOP-5A95BS0 with PID 7024 (C:\1a\working\DevopsReport\report-web\target\classes started by Administrator in C:\1a\working\DevopsReport)
+2021-08-19 23:35:05.864 [INFO ] com.hyc.report.DevopsReportApplication - No active profile set, falling back to default profiles: default
+2021-08-19 23:35:11.569 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2021-08-19 23:35:11.625 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:35:11.628 [INFO ] org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2021-08-19 23:35:11.629 [INFO ] org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.50]
+2021-08-19 23:35:12.464 [INFO ] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2021-08-19 23:35:12.465 [INFO ] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6386 ms
+2021-08-19 23:35:12.657 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Servlet statViewServlet was not registered (possibly already registered?)
+2021-08-19 23:35:12.685 [INFO ] org.springframework.boot.web.servlet.RegistrationBean - Filter webStatFilter was not registered (possibly already registered?)
+2021-08-19 23:35:20.068 [INFO ] springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2021-08-19 23:35:21.115 [INFO ] org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2021-08-19 23:35:21.179 [INFO ] org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+2021-08-19 23:35:21.184 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2021-08-19 23:35:21.285 [INFO ] springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2021-08-19 23:35:21.461 [INFO ] springfox.documentation.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2021-08-19 23:35:22.294 [INFO ] com.hyc.report.DevopsReportApplication - Started DevopsReportApplication in 20.432 seconds (JVM running for 27.112)

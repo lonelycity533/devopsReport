@@ -5,8 +5,8 @@ package com.hyc.report.response;
  * */
 public enum ResultCode implements CustomizeResultCode{
 
-    DATABASE_DELETE_ERROR(500,"数据库配置更新失败"),
-    DATABASE_DELETE_SUCCESS(200,"数据库配置更新成功"),
+    DATABASE_DELETE_ERROR(500,"数据库配置删除失败"),
+    DATABASE_DELETE_SUCCESS(200,"数据库配置删除成功"),
 
     DATABASE_UPDATE_ERROR(500,"数据库配置更新失败"),
 

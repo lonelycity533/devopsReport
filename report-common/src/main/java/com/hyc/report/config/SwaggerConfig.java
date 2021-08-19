@@ -32,7 +32,7 @@ public class SwaggerConfig {
                 .select()
                 //扫描那些controller
                 .apis(RequestHandlerSelectors.basePackage("com.hyc.report.database.controller"))
-                .apis(RequestHandlerSelectors.basePackage("com.hyc.report.report.controller"))
+//                .apis(RequestHandlerSelectors.basePackage("com.hyc.report.report.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo);

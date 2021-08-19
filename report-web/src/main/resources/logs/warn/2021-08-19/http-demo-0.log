@@ -18,3 +18,4 @@
 com.hyc.report.database.controller.ReportDatabaseController#updateDatabase()
 to {POST [/report/database/updateDatabase]}: There is already 'reportDatabaseController' bean method
 com.hyc.report.database.controller.ReportDatabaseController#deleteDatabase() mapped.
+2021-08-19 23:12:00.517 [http-nio-8080-exec-2] WARN  o.s.w.s.m.support.DefaultHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: Required request body is missing: public com.hyc.report.response.Result com.hyc.report.database.controller.ReportDatabaseController.removeDatabase(com.hyc.report.database.entity.ReportDatabase)]
