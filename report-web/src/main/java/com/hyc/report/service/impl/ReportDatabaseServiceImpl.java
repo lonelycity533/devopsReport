@@ -1,12 +1,10 @@
-package com.hyc.report.database.service.impl;
+package com.hyc.report.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.hyc.report.database.entity.ReportDatabase;
-import com.hyc.report.database.mapper.ReportDatabaseMapper;
-import com.hyc.report.database.service.ReportDatabaseService;
+import com.hyc.report.entity.ReportDatabase;
+import com.hyc.report.mapper.ReportDatabaseMapper;
+import com.hyc.report.service.ReportDatabaseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

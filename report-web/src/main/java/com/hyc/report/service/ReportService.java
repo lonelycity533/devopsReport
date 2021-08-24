@@ -1,4 +1,4 @@
-package com.hyc.report.report.service;
+package com.hyc.report.service;
 
 import java.util.LinkedHashMap;
 import java.util.List;

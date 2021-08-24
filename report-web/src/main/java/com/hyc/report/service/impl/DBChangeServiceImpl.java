@@ -1,10 +1,10 @@
-package com.hyc.report.report.service.impl;
+package com.hyc.report.service.impl;
 
 import com.hyc.report.dynamiconfig.config.DynamicDataSource;
 import com.hyc.report.dynamiconfig.context.DBContextHolder;
 import com.hyc.report.dynamiconfig.entity.DataSource;
-import com.hyc.report.report.mapper.DataSourceMapper;
-import com.hyc.report.report.service.DBChangeService;
+import com.hyc.report.mapper.DataSourceMapper;
+import com.hyc.report.service.DBChangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -26,13 +26,13 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    @ExceptionHandler(ArithmeticException.class)
+    /*@ExceptionHandler(ArithmeticException.class)
     public Result error(ArithmeticException e){
         //e.printStackTrace();
         log.error(e.getMessage());
         return Result.error().code(ResultCode.ARITHMETIC_EXCEPTION.getCode())
                 .message(ResultCode.ARITHMETIC_EXCEPTION.getMessage());
-    }
+    }*/
 
     /**
      * 处理业务异常,我们自己定义的异常

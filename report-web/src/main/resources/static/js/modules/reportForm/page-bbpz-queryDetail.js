@@ -62,7 +62,7 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 			table.render({
 				elem: '#table',
 				title: 'XX报表',
-				url: base + '/data/table3.json',
+				url: base + '/report/system/data/table3.json',
 				defaultToolbar: [],
 				toolbar: '#tableToolbar',
 				where: data.field,
@@ -96,7 +96,7 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 					//向服务端发送删除指令
 					var load = layer.load(3);
 					$.ajax({
-						url: base + '/data/table3.json',
+						url: base + '/report/system/data/table3.json',
 						data: {},
 						dataType: 'json',
 						type: 'post',

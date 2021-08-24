@@ -1,9 +1,7 @@
-package com.hyc.report.database.service;
+package com.hyc.report.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.github.pagehelper.Page;
-import com.hyc.report.database.entity.ReportDatabase;
+import com.hyc.report.entity.ReportDatabase;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

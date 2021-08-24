@@ -1,18 +1,50 @@
 package com.hyc.report.response;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiResponses;
 import lombok.Data;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Api("response输出类")
 @Data
 public class Result {
+    @ApiModelProperty(value = "请求是否成功",example = "true")
     private Boolean success;
-
+    @ApiModelProperty(value = "请求code",example = "20000")
     private Integer code;
 
+    @ApiModelProperty(value = "请求信息",example = "成功")
     private String message;
 
+    @ApiModelProperty(value = "返回response数据",example =
+            "{\"data\": {\n" +
+                    "        \"total\": 41,\n" +
+                    "        \"records\": [\n" +
+                    "            {\n" +
+                    "                \"createTime\": \"2021-08-19 14:31:56\",\n" +
+                    "                \"updateTime\": \"2021-08-19 14:31:56\",\n" +
+                    "                \"databaseId\": 32,\n" +
+                    "                \"databaseName\": \"短厅\",\n" +
+                    "                \"databaseUrl\": \"sdfsdf\",\n" +
+                    "                \"databaseUsername\": \"sdf\",\n" +
+                    "                \"databasePassword\": \"123\",\n" +
+                    "                \"databaseType\": \"mysql\"\n" +
+                    "            },\n" +
+                    "            {\n" +
+                    "                \"createTime\": \"2021-08-19 14:31:57\",\n" +
+                    "                \"updateTime\": \"2021-08-19 14:31:57\",\n" +
+                    "                \"databaseId\": 33,\n" +
+                    "                \"databaseName\": \"短厅\",\n" +
+                    "                \"databaseUrl\": \"sdfsdf\",\n" +
+                    "                \"databaseUsername\": \"sdf\",\n" +
+                    "                \"databasePassword\": \"123\",\n" +
+                    "                \"databaseType\": \"mysql\"\n" +
+                    "            }]" +
+                    "   }" +
+                    "}")
     private Map<String,Object> data = new HashMap<>();
 
     /**

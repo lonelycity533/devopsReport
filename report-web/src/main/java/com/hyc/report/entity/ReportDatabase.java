@@ -1,20 +1,12 @@
-package com.hyc.report.database.entity;
-
-import java.math.BigDecimal;
+package com.hyc.report.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hyc.report.BaseEntity;
-import com.sun.javafx.beans.IDProperty;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * <p>

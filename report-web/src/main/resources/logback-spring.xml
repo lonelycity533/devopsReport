@@ -14,9 +14,9 @@
     <!--*****************************************************************************-->
     <!--自定义项 开始-->
     <!--*****************************************************************************-->
-
+<!--    <property name="log.path" value="/app/report_tool/logs"/>-->
     <!-- 定义日志文件 输出位置 -->
-    <property name="log.home_dir" value="C:/1a/working/DevopsReport/report-web/src/main/resources/logs"/>
+    <property name="log.home_dir" value="C:/1a/working/DevopsReport/report-web/src/main/resources/log"/>
     <property name="log.app_name" value="http-demo"/>
     <!-- 日志最大的历史 30天 -->
     <property name="log.maxHistory" value="30"/>

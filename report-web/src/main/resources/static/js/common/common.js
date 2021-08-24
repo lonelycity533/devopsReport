@@ -109,4 +109,5 @@
 	}
 	mixin.onSetBase();
 	window.mixin = mixin;
-})()
+}
+)()

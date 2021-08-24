@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hyc.report.database.mapper.ReportDatabaseMapper">
+<mapper namespace="com.hyc.report.mapper.ReportDatabaseMapper">
     <insert id="insertDatabase">
         insert into REPORT_DATABASE VALUES(DATABASE_NEWSID.nextval,#{reportDatabase.databaseName}
         ,#{reportDatabase.databaseUrl}
@@ -34,7 +34,7 @@
         </where>
     </update>
 
-    <select id="getDataBaseByName" resultType="com.hyc.report.database.entity.ReportDatabase">
+    <select id="getDataBaseByName" resultType="com.hyc.report.entity.ReportDatabase">
         select * from REPORT_DATABASE
         <where>
             <if test="databaseName!=null and databaseName!=''">

@@ -37,7 +37,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			table.render({
 				elem: '#table',
 				title: '统计报表配置',
-				url: base + '/data/table3.json',
+				url: base + '/report/system/data/table3.json',
 				defaultToolbar: [],
 				where: data.field,
 				cols: that.html.cols1,
@@ -76,7 +76,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						//向服务端发送删除指令
 						var load = layer.load(3);
 						$.ajax({
-							url: base + '/data/table3.json',
+							url: base + '/report/system/data/table3.json',
 							data: {},
 							dataType: 'json',
 							type: 'post',

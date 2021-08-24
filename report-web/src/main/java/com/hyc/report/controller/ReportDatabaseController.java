@@ -1,10 +1,10 @@
-package com.hyc.report.database.controller;
+package com.hyc.report.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.Page;
-import com.hyc.report.database.entity.ReportDatabase;
-import com.hyc.report.database.service.ReportDatabaseService;
+import com.hyc.report.entity.ReportDatabase;
+import com.hyc.report.service.ReportDatabaseService;
 import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.Result;
 import com.hyc.report.response.ResultCode;
@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,9 +24,9 @@ import java.util.List;
  * @since 2021-08-16
  */
 @Slf4j
-@Api("数据源配置管理")
+@Api(tags="数据源配置管理")
 @RestController
-@RequestMapping("/report/database")
+@RequestMapping("/database")
 public class ReportDatabaseController {
 
     @Resource
@@ -36,12 +35,24 @@ public class ReportDatabaseController {
     /**
      * 分页查询数据源配置数据
      * */
-    @ApiOperation(value = "数据源配置数据遍历",notes = "通过页数、长度和模糊查询数据源配置名称条件进行遍历")
+    @ApiOperation(value = "数据源配置数据遍历",notes = "通过页数、长度和模糊查询数据源配置名称条件进行遍历"
+            , httpMethod = "GET"
+            , produces = "application/json"
+            , protocols = "http"
+    )
+//    @ApiResponses(
+//            {
+//                    @ApiResponse(code = 20000, message = "成功", response = Result.class),
+//                    @ApiResponse(code = 50000, message = "失败", response = Result.class),
+//            }
+//    )
     @GetMapping("/getDatabaseList")
     public Result getDatabaseList(@ApiParam(value = "当前页",required = true)@RequestParam(value = "current",required = true,defaultValue = "1") int current,
                                   @ApiParam(value = "每页数量",required = true)@RequestParam(value = "size",required = true,defaultValue = "5") int size,
                                   @ApiParam(value = "数据源配置名称",required = true)@RequestParam("databaseName") String databaseName) {
-//        String databaseName = "h";
+        /*int current = 1;
+        int size = 5;
+        String databaseName = "";*/
         log.info("*****正在执行查询数据库配置接口");
         Page<ReportDatabase> pageInfo = reportDatabaseService.getDataBaseByName(current, size, databaseName);
         log.info("*****执行结束，结果已输出,数据库配置数据为第{}页",current);
@@ -52,7 +63,17 @@ public class ReportDatabaseController {
     /**
      * 添加数据源配置数据
      * */
-    @ApiOperation(value = "数据源配置数据添加",notes = "通过数据源添加对象进行添加")
+    @ApiOperation(value = "数据源配置数据添加"
+            ,notes = "通过数据源添加对象进行添加"
+            , httpMethod = "POST"
+            , produces = "application/json"
+            , protocols = "http"
+    )
+    @ApiResponses(
+            {
+                    @ApiResponse(code = 20000, message = "成功", response = ReportDatabase.class),
+            }
+    )
     @PostMapping("/insertDatabase")
     public Result insertDatabase(@ApiParam(value = "数据源添加对象",required = true) @RequestBody ReportDatabase reportDatabase) {
         /*ReportDatabase reportDatabase1 = new ReportDatabase();
@@ -85,7 +106,10 @@ public class ReportDatabaseController {
         }
     }
 
-    @ApiOperation(value = "数据源配置数据修改",notes = "通过数据源添加对象进行修改")
+    @ApiImplicitParams(@ApiImplicitParam())
+    @ApiOperation(value = "数据源配置数据修改",notes = "通过数据源添加对象进行修改", httpMethod = "POST"
+            , produces = "application/json"
+            , protocols = "http")
     @PostMapping("/updateDatabase")
     public Result updateDatabase(@ApiParam(value = "数据源修改对象",required = true)@RequestBody ReportDatabase reportDatabase) {
         /*ReportDatabase reportDatabase1 = new ReportDatabase();
@@ -113,7 +137,9 @@ public class ReportDatabaseController {
         }
     }
 
-    @ApiOperation(value = "数据源配置数据单个删除或多个删除",notes = "通过数据源id集合进行单个或多个删除")
+    @ApiOperation(value = "数据源配置数据单个删除或多个删除",notes = "通过数据源id集合进行单个或多个删除", httpMethod = "POST"
+            , produces = "application/json"
+            , protocols = "http")
     @PostMapping("/removeDatabase/{ids}")
     public Result removeDatabase(@ApiParam(value = "删除数据源id集合",required = true)@PathVariable List<Integer> ids) {
        /* List<Integer> ids = new ArrayList<>();

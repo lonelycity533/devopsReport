@@ -19,7 +19,7 @@ public class SwaggerConfig {
         //http://ip地址:端口/项目名/swagger-ui.html#/
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("报表系统API文档") //网站标题
-                .description("项目名称swagger RESTful APIs......") //网站描述
+                .description("报表系统API文档") //网站描述
                 .version("1.0") //版本
                 .contact(new Contact("黄煜晨","https://gitee.com/huang_yu_chen/devops-report.git"
                         ,"1904843513@qq.com")) //联系人
@@ -31,7 +31,7 @@ public class SwaggerConfig {
                 .pathMapping("/")
                 .select()
                 //扫描那些controller
-                .apis(RequestHandlerSelectors.basePackage("com.hyc.report.database.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.hyc.report.controller"))
 //                .apis(RequestHandlerSelectors.basePackage("com.hyc.report.report.controller"))
                 .paths(PathSelectors.any())
                 .build()

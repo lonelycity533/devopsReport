@@ -11,7 +11,7 @@ layui.use(['element', 'form', 'table', 'layer', 'upload'], function() {
 			$('.btn-save').on('click',function(){
 				var load = layer.load(3);
 				$.ajax({
-					url: base + '/data/table3.json',
+					url: base + '/report/system/data/table3.json',
 					data: {},
 					dataType: 'json',
 					type: 'post',

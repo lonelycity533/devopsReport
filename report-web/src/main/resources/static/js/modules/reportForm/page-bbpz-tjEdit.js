@@ -41,7 +41,7 @@ layui.use(['element', 'form', 'table', 'layer', 'upload'], function() {
 			table.render({
 				elem: '#table',
 				title: '统计报表配置',
-				url: base + '/data/table3.json',
+				url: base + '/report/system/data/table3.json',
 				defaultToolbar: [],
 				where: data.field,
 				cols: that.html.cols1,
@@ -62,7 +62,7 @@ layui.use(['element', 'form', 'table', 'layer', 'upload'], function() {
 			//执行实例
 			upload.render({
 				elem: '.btn-upload',
-				url: base + '/data/table4.json',
+				url: base + '/report/system/data/table4.json',
 				accept: 'file',
 				// auto:false,
 				choose: function(obj) {
@@ -251,7 +251,7 @@ layui.use(['element', 'form', 'table', 'layer', 'upload'], function() {
 			$('.btn-save').on('click',function(){
 				var load = layer.load(3);
 				$.ajax({
-					url: base + '/data/table3.json',
+					url: base + '/report/system/data/table3.json',
 					data: {},
 					dataType: 'json',
 					type: 'post',

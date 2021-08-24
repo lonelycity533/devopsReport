@@ -1289,7 +1289,7 @@ if (typeof layui !== 'undefined') {
   }
 
 })();
-/*---------split--------*/(function(a,b){if("function"==typeof define&&define.amd)define([],b);else if("undefined"!=typeof exports)b();else{b(),a.FileSaver={exports:{}}.exports}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Depricated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;return b.open("HEAD",a,!1),b.send(),200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||"object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}};f.saveAs=a.saveAs=a,"undefined"!=typeof module&&(module.exports=a)});
+/*---------split--------*/(function(a,b){if("function"==typeof define&&define.amd)define([],b);else if("undefined"!=typeof exports)b();else{b(),a.FileSaver={exports:{}}.exports}})(this,function(){"use strict";function b(a,b){return"undefined"==typeof b?b={autoBom:!1}:"object"!=typeof b&&(console.warn("Depricated: Expected third argument to be a object"),b={autoBom:!b}),b.autoBom&&/^\s*(?:text\/\S*|application\/xml|\S*\/\S*\+xml)\s*;.*charset\s*=\s*utf-8/i.Test(a.type)?new Blob(["\uFEFF",a],{type:a.type}):a}function c(b,c,d){var e=new XMLHttpRequest;e.open("GET",b),e.responseType="blob",e.onload=function(){a(e.response,c,d)},e.onerror=function(){console.error("could not download file")},e.send()}function d(a){var b=new XMLHttpRequest;return b.open("HEAD",a,!1),b.send(),200<=b.status&&299>=b.status}function e(a){try{a.dispatchEvent(new MouseEvent("click"))}catch(c){var b=document.createEvent("MouseEvents");b.initMouseEvent("click",!0,!0,window,0,0,0,80,20,!1,!1,!1,!1,0,null),a.dispatchEvent(b)}}var f="object"==typeof window&&window.window===window?window:"object"==typeof self&&self.self===self?self:"object"==typeof global&&global.global===global?global:void 0,a=f.saveAs||"object"!=typeof window||window!==f?function(){}:"download"in HTMLAnchorElement.prototype?function(b,g,h){var i=f.URL||f.webkitURL,j=document.createElement("a");g=g||b.name||"download",j.download=g,j.rel="noopener","string"==typeof b?(j.href=b,j.origin===location.origin?e(j):d(j.href)?c(b,g,h):e(j,j.target="_blank")):(j.href=i.createObjectURL(b),setTimeout(function(){i.revokeObjectURL(j.href)},4E4),setTimeout(function(){e(j)},0))}:"msSaveOrOpenBlob"in navigator?function(f,g,h){if(g=g||f.name||"download","string"!=typeof f)navigator.msSaveOrOpenBlob(b(f,h),g);else if(d(f))c(f,g,h);else{var i=document.createElement("a");i.href=f,i.target="_blank",setTimeout(function(){e(i)})}}:function(a,b,d,e){if(e=e||open("","_blank"),e&&(e.document.title=e.document.body.innerText="downloading..."),"string"==typeof a)return c(a,b,d);var g="application/octet-stream"===a.type,h=/constructor/i.Test(f.HTMLElement)||f.safari,i=/CriOS\/[\d]+/.Test(navigator.userAgent);if((i||g&&h)&&"object"==typeof FileReader){var j=new FileReader;j.onloadend=function(){var a=j.result;a=i?a:a.replace(/^data:[^;]*;/,"data:attachment/file;"),e?e.location.href=a:location=a,e=null},j.readAsDataURL(a)}else{var k=f.URL||f.webkitURL,l=k.createObjectURL(a);e?e.location=l:location.href=l,e=null,setTimeout(function(){k.revokeObjectURL(l)},4E4)}};f.saveAs=a.saveAs=a,"undefined"!=typeof module&&(module.exports=a)});
 
 /*---------split--------*//*
 
@@ -1904,7 +1904,7 @@ Note: since JSZip 3 removed critical functionality, this version assigns to the
       module.exports = function(data, encoding){
         return typeof data == 'number' ? Buffer.alloc(data) : Buffer_from(data, encoding);
       };
-      module.exports.test = function(b){
+      module.exports.Test = function(b){
         return Buffer.isBuffer(b);
       };
     }).call(this,(typeof Buffer !== "undefined" ? Buffer : undefined))
@@ -2489,7 +2489,7 @@ Note: since JSZip 3 removed critical functionality, this version assigns to the
           if (utils.isRegExp(name)) {
             var regexp = name;
             return this.filter(function(relativePath, file) {
-              return !file.dir && regexp.test(relativePath);
+              return !file.dir && regexp.Test(relativePath);
             });
           }
           else { // text
@@ -2517,7 +2517,7 @@ Note: since JSZip 3 removed critical functionality, this version assigns to the
 
         if (utils.isRegExp(arg)) {
           return this.filter(function(relativePath, file) {
-            return file.dir && arg.test(relativePath);
+            return file.dir && arg.Test(relativePath);
           });
         }
 
@@ -3369,7 +3369,7 @@ Note: since JSZip 3 removed critical functionality, this version assigns to the
       if (Object.prototype.toString.call(input) === "[object Array]") {
         return "array";
       }
-      if (support.nodebuffer && nodeBuffer.test(input)) {
+      if (support.nodebuffer && nodeBuffer.Test(input)) {
         return "nodebuffer";
       }
       if (support.uint8array && input instanceof Uint8Array) {
@@ -7380,7 +7380,7 @@ exports.deflateTune = deflateTune;
       state = strm.state;
       strm.total_in = strm.total_out = state.total = 0;
       strm.msg = ''; /*Z_NULL*/
-      if (state.wrap) {       /* to support ill-conceived Java test suite */
+      if (state.wrap) {       /* to support ill-conceived Java Test suite */
         strm.adler = state.wrap & 1;
       }
       state.mode = HEAD;
@@ -10159,7 +10159,7 @@ exports.inflateUndermine = inflateUndermine;
       if ((stored_len+4 <= opt_lenb) && (buf !== -1)) {
         /* 4: two words for the lengths */
 
-        /* The test buf != NULL is only necessary if LIT_BUFSIZE > WSIZE.
+        /* The Test buf != NULL is only necessary if LIT_BUFSIZE > WSIZE.
      * Otherwise we can't have processed more than WSIZE input bytes since
      * the last block flush, because compression would have been
      * successful. If LIT_BUFSIZE <= WSIZE, it is never too late to
@@ -13035,7 +13035,7 @@ function make_xlsx_lib(XLSX){
 
   function fill(c,l) { var o = ""; while(o.length < l) o+=c; return o; }
 
-  /* TODO: stress test */
+  /* TODO: stress Test */
   function fuzzynum(s) {
     var v = Number(s);
     if(!isNaN(v)) return v;
@@ -14712,7 +14712,7 @@ function make_xlsx_lib(XLSX){
     ['xml', 'application/xml'],
     ['bin', 'application/vnd.ms-excel.sheet.binary.macroEnabled.main'],
     ['vml', 'application/vnd.openxmlformats-officedocument.vmlDrawing'],
-    /* from test files */
+    /* from Test files */
     ['bmp', 'image/bmp'],
     ['png', 'image/png'],
     ['gif', 'image/gif'],
@@ -21519,7 +21519,7 @@ function make_xlsx_lib(XLSX){
         case 'PtgElfRwV': /* [MS-XLS] 2.5.198.55 */
           throw new Error("Unsupported ELFs");
 
-        case 'PtgSxName': /* [MS-XLS] 2.5.198.91 TODO -- find a test case */
+        case 'PtgSxName': /* [MS-XLS] 2.5.198.91 TODO -- find a Test case */
           throw new Error('Unrecognized Formula Token: ' + String(f));
         default: throw new Error('Unrecognized Formula Token: ' + String(f));
       }
@@ -26830,7 +26830,7 @@ function write_cc(data, name:string, opts) {
           case 'WriteAccess': opts.lastuser = val; break;
           case 'FileSharing': break; //TODO
           case 'CodePage':
-            /* overrides based on test cases */
+            /* overrides based on Test cases */
             switch(val) {
               case 0x5212: val =  1200; break;
               case 0x8000: val = 10000; break;
@@ -28890,7 +28890,7 @@ function write_cc(data, name:string, opts) {
     }
   }
 
-  /* Based on test files */
+  /* Based on Test files */
   function write_biff2_buf(wb, opts) {
     var o = opts || {};
     if(DENSE != null && o.dense == null) o.dense = DENSE;
@@ -30722,7 +30722,7 @@ function write_cc(data, name:string, opts) {
     throw new Error("Unrecognized type " + opts.type);
   }
 
-  /* TODO: test consistency */
+  /* TODO: Test consistency */
   function write_binary_type(out, opts) {
     switch(opts.type) {
       case "string":

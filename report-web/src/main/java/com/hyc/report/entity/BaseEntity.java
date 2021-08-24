@@ -1,4 +1,4 @@
-package com.hyc.report;
+package com.hyc.report.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
