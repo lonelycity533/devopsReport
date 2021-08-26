@@ -1,21 +1,66 @@
 package com.hyc.report.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.hyc.report.entity.ReportDatabase;
+import com.hyc.report.entity.ReportDetail;
+import com.hyc.report.entity.ReportMain;
+import com.hyc.report.mapper.ReportDatabaseMapper;
 import com.hyc.report.mapper.ReportMapper;
 import com.hyc.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service("ReportService")
 public class ReportServiceImpl implements ReportService {
 
-    @Autowired
+    @Resource
     private ReportMapper reportMapper;
 
     @Override
     public List<LinkedHashMap<String, Object>> getReportData(String sql) {
         return reportMapper.getReportData(sql);
     }
+
+    @Override
+    public int insertReportMain(ReportDetail reportDetail) {
+        return reportMapper.insertReportMain(reportDetail);
+    }
+
+    @Override
+    public int insertReportDetail(ReportDetail reportDetail) {
+        return reportMapper.insertReportDetail(reportDetail);
+    }
+
+    @Override
+    public int selectReportIdByName(String reportName) {
+        return reportMapper.selectReportIdByName(reportName);
+    }
+
+    @Override
+    public Page<ReportDetail> getReportInfo(int current, int size, String reportName) {
+        Page<ReportDetail> page =PageHelper.startPage(current, size);
+        reportMapper.getReportInfo(reportName);
+        return page;
+    }
+
+    @Override
+    public ReportDetail getQdDetailByName(String reportName) {
+        return reportMapper.getQdDetailByName(reportName);
+    }
+
+    @Override
+    public int updateReportDataConfig(ReportDetail reportDetail) {
+        return reportMapper.updateReportDataConfig(reportDetail);
+    }
+
+
 }

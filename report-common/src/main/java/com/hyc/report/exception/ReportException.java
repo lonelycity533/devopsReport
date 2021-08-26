@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReportException extends RuntimeException {
+
     private Integer code;
 
     private String errMsg;

@@ -4,6 +4,13 @@ package com.hyc.report.response;
  * 调用接口实现输出返回码和返回信息
  * */
 public enum ResultCode implements CustomizeResultCode{
+    REPORT_INSERT_SUCCESS(200,"报表配置成功"),
+
+    REPORT_QUERY_DATABASE(507,"查不到该数据库"),
+
+    REPORT_INSERT_REPEAT(506,"报表配置名称重复"),
+
+    REPORT_INSERT_ERROR(505,"报表配置失败，请检查参数重新配置"),
 
     DATABASE_DELETE_ERROR(500,"数据库配置删除失败"),
 

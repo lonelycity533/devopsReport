@@ -1,5 +1,6 @@
 package com.hyc.report.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hyc.report.entity.ReportDatabase;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
  * @author hyc
  * @since 2021-08-16
  */
-@Service
+@Service("ReportDatabaseService")
 public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper, ReportDatabase> implements ReportDatabaseService {
 
     @Resource
@@ -40,5 +41,12 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
     @Override
     public int updateDatabase(ReportDatabase reportDatabase) {
         return reportDatabaseMapper.updateDatabase(reportDatabase);
+    }
+
+    @Override
+    public Long getDataBaseIdByName(String databaseName) {
+        LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+        lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,databaseName);
+        return reportDatabaseMapper.selectOne(lambdaQueryWrapper).getDatabaseId();
     }
 }

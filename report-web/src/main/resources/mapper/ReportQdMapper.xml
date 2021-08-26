@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyc.report.mapper.ReportMapper">
+    <insert id="insertReportMain">
+        insert into REPORT_QD_MAIN values
+            (report_qd_main_newsId.nextval
+            ,#{ReportMain.reportName}
+            ,#{ReportMain.reportDescribe}
+            ,sysdate,sysdate)
+    </insert>
+    <insert id="insertReportDetail">
+        insert into REPORT_QD_DETAIL values
+            (report_qd_detail_newsId.nextval
+            ,#{ReportDetail.reportName}
+            ,#{ReportDetail.fieldList}
+            ,#{ReportDetail.businessList}
+            ,#{ReportDetail.reportId}
+            ,#{ReportDetail.databaseId,jdbcType=VARCHAR}
+            ,sysdate,sysdate)
+    </insert>
+    <update id="updateReportDataConfig">
+        update
+    </update>
+    <select id="getReportData"
+            resultType="java.util.LinkedHashMap"
+            parameterType="String">
+        ${ReportSql}
+    </select>
+</mapper>

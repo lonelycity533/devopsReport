@@ -19,4 +19,6 @@ public interface ReportDatabaseService extends IService<ReportDatabase> {
     int insertDatabase(ReportDatabase reportDatabase);
 
     int updateDatabase(ReportDatabase reportDatabase);
+
+    Long getDataBaseIdByName(String databaseName);
 }

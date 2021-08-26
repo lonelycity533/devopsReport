@@ -8,15 +8,16 @@ import com.hyc.report.service.DBChangeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 
 @Service("DBChangeService")
 public class DBChangeServiceImpl implements DBChangeService {
 
-    @Autowired
+    @Resource
     DataSourceMapper dataSourceMapper;
-    @Autowired
+    @Resource
     private DynamicDataSource dynamicDataSource;
     @Override
     public List<DataSource> get() {

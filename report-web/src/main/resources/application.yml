@@ -1,6 +1,6 @@
-#server:
-#  servlet:
-#    context-path: /report/system
+server:
+  servlet:
+    context-path: /report/system
 spring:
   application:
     name: report-web
