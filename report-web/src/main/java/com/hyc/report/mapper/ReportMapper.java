@@ -2,6 +2,7 @@ package com.hyc.report.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.github.pagehelper.Page;
+import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
 import org.apache.ibatis.annotations.Param;
@@ -31,4 +32,11 @@ public interface ReportMapper{
     ReportDetail getQdDetailByName(@Param("reportName") String reportName);
 
     int updateReportDataConfig(@Param("reportDetail") ReportDetail reportDetail);
+
+    void deleteReportByIds(@Param("ids") List<Integer> ids);
+
+    @Select("select d.REPORT_NAME,d.FIELD_LIST,d.BUSINESS_FIELD,da.DATABASE_NAME \n" +
+            "from REPORT_QD_DETAIL d,REPORT_DATABASE da\n" +
+            "where d.REPORT_ID=#{reportId} and d.DATABASE_ID = da.DATABASE_ID")
+    ReportCondition getReportDetailInfo(@Param("reportId") int reportId);
 }

@@ -4,6 +4,15 @@ package com.hyc.report.response;
  * 调用接口实现输出返回码和返回信息
  * */
 public enum ResultCode implements CustomizeResultCode{
+
+    REPORT_DELETE_SUCCESS(200,"报表配置删除成功"),
+
+    REPORT_DELETE_ERROR(500,"报表配置删除失败"),
+
+    REPORT_UPDATE_ERROR(500,"报表配置修改失败"),
+
+    REPORT_UPDATE_SUCCESS(200,"报表配置修改成功"),
+
     REPORT_INSERT_SUCCESS(200,"报表配置成功"),
 
     REPORT_QUERY_DATABASE(507,"查不到该数据库"),
@@ -59,6 +68,5 @@ public enum ResultCode implements CustomizeResultCode{
     public String getMessage() {
         return message;
     }
-
 
 }

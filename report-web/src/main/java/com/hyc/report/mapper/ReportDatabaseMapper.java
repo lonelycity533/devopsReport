@@ -3,6 +3,7 @@ package com.hyc.report.mapper;
 import com.hyc.report.entity.ReportDatabase;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface ReportDatabaseMapper extends BaseMapper<ReportDatabase> {
 
 
     int updateDatabase(@Param("reportDatabase") ReportDatabase reportDatabase);
+
+    @Select("select DISTINCT(database_type) from report_database ")
+    List<String> getDatabaseTypeList();
 }

@@ -2,6 +2,7 @@ package com.hyc.report.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.Page;
+import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
 
@@ -22,4 +23,8 @@ public interface ReportService {
     ReportDetail getQdDetailByName(String reportName);
 
     int updateReportDataConfig(ReportDetail reportDetail);
+
+    void deleteReportByIds(List<Integer> ids);
+
+    ReportCondition getReportDetailInfo(int reportId);
 }

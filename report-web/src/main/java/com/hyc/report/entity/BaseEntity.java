@@ -13,12 +13,10 @@ import java.util.Date;
 @Data
 public abstract class BaseEntity {
     @ApiModelProperty(value = "系统创建时间",example = "2020-12-28 03:25:37")
-    @TableField(fill = FieldFill.INSERT_UPDATE)//创建注解
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     @ApiModelProperty(value = "系统更新时间",example = "2020-12-28 03:25:37")
-    @TableField(fill = FieldFill.INSERT_UPDATE)//更新注解
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 }

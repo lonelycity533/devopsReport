@@ -2,16 +2,18 @@ package com.hyc.report.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.Page;
-import com.hyc.report.dynamiconfig.entity.DataSource;
+import com.github.pagehelper.PageInfo;
+import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
-import com.hyc.report.entity.ReportMain;
 import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.ResultCode;
 import com.hyc.report.service.DBChangeService;
 import com.hyc.report.service.ReportDatabaseService;
 import com.hyc.report.service.ReportService;
 import com.hyc.report.response.Result;
+import com.hyc.report.util.PageInfoUtil;
+import com.hyc.report.util.StringConvertList;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.sql.Wrapper;
 import java.util.*;
 
 @Api(tags = "清单报表查询管理")
@@ -39,29 +40,33 @@ public class ReportQdController {
     private ReportDatabaseService reportDatabaseService;
 
 //    @ApiOperation(value = "清单报表查询",notes = "根据清单报表配置好的条件查询报表数据")
-    @GetMapping("/test")
-    public Result get() throws Exception {
+    @GetMapping("/getReportData")
+    public Result getReportData() throws Exception {
+        ReportDetail reportDetail =new ReportDetail();
+        reportDetail.setReportId(40);
+        ReportCondition reportDetailInfo = reportService.getReportDetailInfo(reportDetail.getReportId());
+        log.info("获取到的报表数据库信息以及前端传送的一些信息：{}",reportDetailInfo.toString());
+        List<Map<String, Object>> maps = StringConvertList.toListMap(reportDetailInfo.getFieldList());
+        log.info("获取的json数据转换为list:{}",maps);
+        String sql = "";
+        for (int i = 0 ; i<maps.size(); i++) {
+            sql+=maps.get(i).get("field_value")+" ";
+        }
+        log.info("拼接好的SQL语句为：{}",sql);
 
-        /*List results = userService.selectLatestData(deviceAdd);
-        int pageSize = 10;
-        Integer pageIndex = deviceAdd.getPageIndex();
-        Page page = new Page(pageIndex, pageSize);
-        int total = results.size();
-        page.setTotal(total);
-        int startIndex = (pageIndex - 1) * pageSize;
-        int endIndex = Math.min((startIndex + pageSize), total);
-        page.addAll(results.subList(startIndex, endIndex));
-        PageInfo pageInfo = new PageInfo(page);
-        return new ResponseVo<>(ResponseType.RegisterSuccess.getStatus(),"success", pageInfo);*/
-
-        List<DataSource> dataSources = dbChangeServiceImpl.get();
+//        List<DataSource> dataSources = dbChangeServiceImpl.get();
         //切换到数据库dbtest2
-        String datasourceId="网厅测试";
-        dbChangeServiceImpl.changeDb(datasourceId);
-        String sql = "select * from testHycDEPT";
+        dbChangeServiceImpl.changeDb(reportDetailInfo.getDatabaseName());
+//        String sql = "select * from testHycDEPT";
         List<LinkedHashMap<String, Object>> reportData = reportService.getReportData(sql);
+//        List results = userService.selectLatestData(deviceAdd);
+        int pageSize = 5;
+        Integer pageIndex = 2;
+        PageInfo pageInfo = PageInfoUtil.getPageInfoBylist(reportData, 5, 1);
 //        DBContextHolder.clearDataSource();
-        return Result.ok().data("success",reportData);
+        return Result.ok()
+                .data("list",pageInfo.getList())
+                .data("total",pageInfo.getTotal());
     }
 
     @PostMapping("/insertQdReport")
@@ -70,7 +75,7 @@ public class ReportQdController {
          * 测试数据
          * */
         ReportDetail reportDetail = new ReportDetail();
-        reportDetail.setReportName("生产2");
+        reportDetail.setReportName("ceshi1111asdf");
         reportDetail.setReportDescribe("啦啦啦啦啦");
 
         List<Map<String,Object>> businessList = new ArrayList<>();
@@ -102,24 +107,26 @@ public class ReportQdController {
                 int reportId = reportService.selectReportIdByName(reportDetail.getReportName());
                 log.info("测试输出报表Id：{}",reportId);
                 reportDetail.setReportId(reportId);
-                Long databaseId =reportDatabaseService.getDataBaseIdByName(databaseName);
-                if (!(databaseId>0)) {
-                    log.error("该数据库配置不存在");
-                    throw new ReportException(ResultCode.REPORT_QUERY_DATABASE.getCode(),
-                            ResultCode.REPORT_QUERY_DATABASE.getMessage());
-                }
-                reportDetail.setDatabaseId(Math.toIntExact(databaseId));
-                log.info("测试输出：{}",reportDetail.getDatabaseId());
-                int insertDetailFlag = reportService.insertReportDetail(reportDetail);
-                if (!(insertDetailFlag>0)) {
-                    log.info("报表插入异常，请检查代码");
-                    throw new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
-                            ,ResultCode.REPORT_INSERT_ERROR.getMessage());
-                }
             }catch (Exception e) {
+//                e.getMessage();
                 log.error("该报表已存在，请重新修改");
                 throw new ReportException(ResultCode.REPORT_INSERT_REPEAT.getCode()
                         ,ResultCode.REPORT_INSERT_REPEAT.getMessage());
+            }
+            Long databaseId =reportDatabaseService.getDataBaseIdByName(databaseName);
+            if (!(databaseId>0)) {
+                log.error("该数据库配置不存在");
+                throw new ReportException(ResultCode.REPORT_QUERY_DATABASE.getCode(),
+                        ResultCode.REPORT_QUERY_DATABASE.getMessage());
+            }
+            reportDetail.setDatabaseId(Math.toIntExact(databaseId));
+            log.info("测试输出：{}",reportDetail.getDatabaseId());
+            try{
+                reportService.insertReportDetail(reportDetail);
+            }catch (Exception e){
+                log.info("报表插入异常，请检查代码");
+                throw new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
+                        ,ResultCode.REPORT_INSERT_ERROR.getMessage());
             }
         }else {
             log.error("报表插入异常，请检查代码");
@@ -157,11 +164,16 @@ public class ReportQdController {
 
     @PostMapping("updateReportDataConfig")
     public Result updateReportDataConfig() {
+        //假设这个是接收到的对象
         ReportDetail reportDetail = new ReportDetail();
+
+        //这些都是查询时候就固定好的id
+        reportDetail.setReportDetailId(8);
+        //这些都是查询时候就固定好的id
+        reportDetail.setReportId(24);
+
         reportDetail.setReportName("生产29090");
         reportDetail.setReportDescribe("这是修改啦~~~");
-
-        reportDetail.setReportDetailId(8);
 
         List<Map<String,Object>> businessList = new ArrayList<>();
         Map<String, Object> map1= new HashMap<>();
@@ -184,10 +196,36 @@ public class ReportQdController {
         fieldList.add(map3);
         fieldList.add(map4);
         reportDetail.setFieldList(fieldList.toString());
+        Long databaseId;
+        String databaseName = "更新数据库哦";
+        try{
+            databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);
+            reportDetail.setDatabaseId(Math.toIntExact(databaseId));
+        }catch (Exception e) {
+            throw new ReportException(ResultCode.REPORT_QUERY_DATABASE.getCode(),ResultCode.REPORT_QUERY_DATABASE.getMessage());
+        }
+        try {
+            reportService.updateReportDataConfig(reportDetail);
+            return Result.ok().data(ResultCode.REPORT_UPDATE_SUCCESS.getCode(),ResultCode.REPORT_UPDATE_SUCCESS.getMessage());
+        }catch (Exception e){
+            throw new ReportException(ResultCode.REPORT_UPDATE_ERROR.getCode(),ResultCode.REPORT_UPDATE_ERROR.getMessage());
+        }
+    }
 
-        reportDetail.setReportId(24);
-
-        int i = reportService.updateReportDataConfig(reportDetail);
-        return null;
+    @PostMapping("deleteReportByIds")
+    public Result deleteReportByIds() {
+        List<Integer> Ids = new ArrayList<>();
+//        Ids.add(37);
+//        Ids.add(38);
+//        Ids.add(39);
+        if (Ids.size()>0) {
+            try{
+                reportService.deleteReportByIds(Ids);
+            }catch (Exception e){
+                throw new ReportException(ResultCode.REPORT_DELETE_ERROR.getCode(),ResultCode.REPORT_DELETE_ERROR.getMessage());
+            }
+            return Result.ok().data(ResultCode.REPORT_DELETE_SUCCESS.getCode(),ResultCode.REPORT_DELETE_SUCCESS.getMessage());
+        }
+        return Result.error();
     }
 }

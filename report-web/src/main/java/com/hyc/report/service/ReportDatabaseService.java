@@ -4,6 +4,8 @@ import com.github.pagehelper.Page;
 import com.hyc.report.entity.ReportDatabase;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -21,4 +23,6 @@ public interface ReportDatabaseService extends IService<ReportDatabase> {
     int updateDatabase(ReportDatabase reportDatabase);
 
     Long getDataBaseIdByName(String databaseName);
+
+    List<String> getDatabaseTypeList();
 }

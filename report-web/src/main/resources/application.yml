@@ -72,4 +72,8 @@ pagehelper:
 # 配置彩色日志logback路径
 logging:
   config: classpath:logback-spring.xml
-
+  level:
+    com:
+      hyc:
+        report:
+          mapper: debug

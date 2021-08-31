@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -48,5 +49,10 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
         LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,databaseName);
         return reportDatabaseMapper.selectOne(lambdaQueryWrapper).getDatabaseId();
+    }
+
+    @Override
+    public List<String> getDatabaseTypeList() {
+        return reportDatabaseMapper.getDatabaseTypeList();
     }
 }

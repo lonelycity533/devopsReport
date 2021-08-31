@@ -47,5 +47,4 @@ public class ReportDatabase extends BaseEntity implements Serializable {
     @TableField("DATABASE_TYPE")
     private String databaseType;
 
-
 }

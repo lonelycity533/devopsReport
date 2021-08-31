@@ -13,14 +13,70 @@
             (report_qd_detail_newsId.nextval
             ,#{ReportDetail.reportName}
             ,#{ReportDetail.fieldList}
-            ,#{ReportDetail.businessList}
+            ,#{ReportDetail.businessField}
             ,#{ReportDetail.reportId}
             ,#{ReportDetail.databaseId,jdbcType=VARCHAR}
             ,sysdate,sysdate)
     </insert>
     <update id="updateReportDataConfig">
-        update
+        begin
+            update REPORT_QD_DETAIL
+            <set>
+                <if test="reportDetail.reportName!=null and reportDetail.reportName!=''">
+                    report_name = #{reportDetail.reportName},
+                </if>
+                <if test="reportDetail.fieldList!=null and reportDetail.fieldList!=''">
+                    field_list = #{reportDetail.fieldList},
+                </if>
+                <if test="reportDetail.businessField!=null and reportDetail.businessField!=''">
+                    business_field = #{reportDetail.businessField},
+                </if>
+                <if test="reportDetail.databaseId!=null and reportDetail.databaseId!=''">
+                    database_id = #{reportDetail.databaseId},
+                </if>
+                update_time = sysdate
+            </set>
+            <where>
+                <if test="reportDetail.reportDetailId!=null and reportDetail.reportDetailId!=''">
+                    report_detail_id = #{reportDetail.reportDetailId}
+                </if>
+            </where>;
+
+            update REPORT_QD_MAIN
+            <set>
+                <if test="reportDetail.reportName!=null and reportDetail.reportName!=''">
+                    report_name = #{reportDetail.reportName},
+                </if>
+                <if test="reportDetail.reportDescribe!=null and reportDetail.reportDescribe!=''">
+                    report_describe = #{reportDetail.reportDescribe},
+                </if>
+                update_time = sysdate
+            </set>
+            <where>
+                <if test="reportDetail.reportId!=null and reportDetail.reportId!=''">
+                    report_id = #{reportDetail.reportId}
+                </if>
+            </where>;
+        end;
     </update>
+    <delete id="deleteReportByIds">
+        begin
+            delete from REPORT_QD_MAIN
+            <where>
+                report_id in
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </where>;
+            delete from REPORT_QD_DETAIL
+            <where>
+                report_id in
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </where>;
+        end;
+    </delete>
     <select id="getReportData"
             resultType="java.util.LinkedHashMap"
             parameterType="String">

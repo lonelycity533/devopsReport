@@ -259,7 +259,7 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
         if("mysql".equalsIgnoreCase(databasetype)) {
             driveClass = "com.mysql.cj.jdbc.Driver";
         } else if("oracle".equalsIgnoreCase(databasetype)) {
-            driveClass = "oracle.jdbc.driver.OracleDriver";
+            driveClass = "oracle.jdbc.OracleDriver";
         }
 //        }  else if("sqlserver2000".equalsIgnoreCase(databasetype)){
 //            driveClass = DBUtil.sql2000driver;

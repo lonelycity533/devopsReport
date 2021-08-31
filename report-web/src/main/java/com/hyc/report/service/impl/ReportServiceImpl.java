@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
 import com.hyc.report.entity.ReportMain;
@@ -60,6 +61,16 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public int updateReportDataConfig(ReportDetail reportDetail) {
         return reportMapper.updateReportDataConfig(reportDetail);
+    }
+
+    @Override
+    public void deleteReportByIds(List<Integer> ids) {
+        reportMapper.deleteReportByIds(ids);
+    }
+
+    @Override
+    public ReportCondition getReportDetailInfo(int reportId) {
+        return reportMapper.getReportDetailInfo(reportId);
     }
 
 

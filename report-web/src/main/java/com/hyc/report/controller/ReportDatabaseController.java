@@ -162,5 +162,11 @@ public class ReportDatabaseController {
             return Result.ok().data("400","无删除数据");
         }
     }
+
+    /*@GetMapping("getDatabaseTypeList")
+    public Result getDatabaseTypeList() {
+        List<String> datatypeList = reportDatabaseService.getDatabaseTypeList();
+//        return Result.ok().data("数据库")
+    }*/
 }
 
