@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -141,6 +142,10 @@ public class DruidDBConfig {
         return sqlSessionFactoryBean.getObject();
     }
 
+    @Bean
+    public DataSourceTransactionManager transactionManager(DynamicDataSource dynamicDataSource) {
+        return new DataSourceTransactionManager(dynamicDataSource);
+    }
     /*@Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();

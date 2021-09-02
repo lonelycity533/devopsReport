@@ -22,7 +22,7 @@ public interface ReportDatabaseService extends IService<ReportDatabase> {
 
     int updateDatabase(ReportDatabase reportDatabase);
 
-    Long getDataBaseIdByName(String databaseName);
+    Integer getDataBaseIdByName(String databaseName);
 
     List<String> getDatabaseTypeList();
 }

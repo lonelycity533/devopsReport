@@ -16,6 +16,8 @@ import com.hyc.report.util.PageInfoUtil;
 import com.hyc.report.util.StringConvertList;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,7 +56,6 @@ public class ReportQdController {
         }
         log.info("拼接好的SQL语句为：{}",sql);
 
-//        List<DataSource> dataSources = dbChangeServiceImpl.get();
         //切换到数据库dbtest2
         dbChangeServiceImpl.changeDb(reportDetailInfo.getDatabaseName());
 //        String sql = "select * from testHycDEPT";
@@ -70,73 +71,52 @@ public class ReportQdController {
     }
 
     @PostMapping("/insertQdReport")
+    @Transactional(rollbackFor = Exception.class)
     public Result insertQdReport() {
         /**
          * 测试数据
          * */
         ReportDetail reportDetail = new ReportDetail();
-        reportDetail.setReportName("ceshi1111asdf");
+        reportDetail.setReportName("ceshi111df");
         reportDetail.setReportDescribe("啦啦啦啦啦");
-
-        List<Map<String,Object>> businessList = new ArrayList<>();
-        Map<String, Object> map1= new HashMap<>();
-        map1.put("field_name","username");
-        map1.put("field_type","varchar2");
-        Map<String, Object> map2= new HashMap<>();
-        map2.put("field_name","password");
-        map2.put("field_type","number");
-        businessList.add(map1);
-        businessList.add(map2);
+        List<String> businessList = new ArrayList<>();
+        businessList.add("username");
+        businessList.add("password");
         reportDetail.setBusinessField(businessList.toString());
 
         List<Map<String,Object>> fieldList = new ArrayList<>();
         Map<String, Object> map3= new HashMap<>();
         map3.put("field_name","主SQL");
-        map3.put("field_value","select * from testHYCDEPT");
+        map3.put("field_value","select * from testHYCDEP");
         Map<String, Object> map4= new HashMap<>();
         map4.put("field_name","从SQL");
         map4.put("field_value","where id = 1");
         fieldList.add(map3);
         fieldList.add(map4);
         reportDetail.setFieldList(fieldList.toString());
-        String databaseName = "短厅wangting";
+        String databaseName = "ZJCSC517";
 
-        int insertMainFlag = reportService.insertReportMain(reportDetail);
-        if (insertMainFlag>0) {
-            try{
-                int reportId = reportService.selectReportIdByName(reportDetail.getReportName());
-                log.info("测试输出报表Id：{}",reportId);
-                reportDetail.setReportId(reportId);
-            }catch (Exception e) {
-//                e.getMessage();
-                log.error("该报表已存在，请重新修改");
-                throw new ReportException(ResultCode.REPORT_INSERT_REPEAT.getCode()
-                        ,ResultCode.REPORT_INSERT_REPEAT.getMessage());
-            }
-            Long databaseId =reportDatabaseService.getDataBaseIdByName(databaseName);
-            if (!(databaseId>0)) {
-                log.error("该数据库配置不存在");
-                throw new ReportException(ResultCode.REPORT_QUERY_DATABASE.getCode(),
-                        ResultCode.REPORT_QUERY_DATABASE.getMessage());
-            }
-            reportDetail.setDatabaseId(Math.toIntExact(databaseId));
-            log.info("测试输出：{}",reportDetail.getDatabaseId());
-            try{
-                reportService.insertReportDetail(reportDetail);
-            }catch (Exception e){
-                log.info("报表插入异常，请检查代码");
-                throw new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
-                        ,ResultCode.REPORT_INSERT_ERROR.getMessage());
-            }
-        }else {
-            log.error("报表插入异常，请检查代码");
-            return Result.ok()
-                    .data(ResultCode.REPORT_INSERT_ERROR.getCode()
+        Integer reportId = reportService.selectReportIdByName(reportDetail.getReportName());
+        if (reportId!=null) {
+            log.error("该报表已存在，请重新修改");
+            throw new ReportException(ResultCode.REPORT_INSERT_REPEAT.getCode()
+                    ,ResultCode.REPORT_INSERT_REPEAT.getMessage());
+        }
+        Integer databaseId =reportDatabaseService.getDataBaseIdByName(databaseName);
+        reportDetail.setDatabaseId(databaseId);
+        log.info("测试输出：{}",reportDetail.getDatabaseId());
+        try{
+            Integer insertMainFlag = reportService.insertReportMain(reportDetail);
+            reportId = reportService.selectReportIdByName(reportDetail.getReportName());
+            reportDetail.setReportId(reportId);
+            reportService.insertReportDetail(reportDetail);
+            return Result.ok().data(ResultCode.REPORT_INSERT_SUCCESS.getCode()
+                    ,ResultCode.REPORT_INSERT_SUCCESS.getMessage());
+        }catch (Exception e) {
+            log.error("e:{}",e.getMessage());
+            throw  new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
                     ,ResultCode.REPORT_INSERT_ERROR.getMessage());
         }
-        return Result.ok()
-                .data(ResultCode.REPORT_INSERT_SUCCESS.getCode()
-                        ,ResultCode.REPORT_INSERT_SUCCESS.getMessage());
     }
 
     @GetMapping("/getQdReport")
@@ -196,7 +176,7 @@ public class ReportQdController {
         fieldList.add(map3);
         fieldList.add(map4);
         reportDetail.setFieldList(fieldList.toString());
-        Long databaseId;
+        Integer databaseId;
         String databaseName = "更新数据库哦";
         try{
             databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);

@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
+import io.swagger.models.auth.In;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,11 +13,11 @@ import java.util.List;
 public interface ReportService {
     List<LinkedHashMap<String,Object>> getReportData(String sql);
 
-    int insertReportMain(ReportDetail reportDetail);
+    Integer insertReportMain(ReportDetail reportDetail) throws Exception;
 
-    int insertReportDetail(ReportDetail reportDetail);
+    int insertReportDetail(ReportDetail reportDetail) throws Exception;
 
-    int selectReportIdByName(String reportName);
+    Integer selectReportIdByName(String reportName);
 
     Page<ReportDetail> getReportInfo(int current, int size, String reportName);
 

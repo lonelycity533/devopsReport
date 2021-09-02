@@ -15,12 +15,12 @@ public interface ReportMapper{
 
     List<LinkedHashMap<String, Object>> getReportData(@Param("ReportSql") String sql);
 
-    int insertReportMain(@Param("ReportMain")ReportDetail reportDetail);
+    Integer insertReportMain(@Param("ReportMain")ReportDetail reportDetail);
 
     int insertReportDetail(@Param("ReportDetail")ReportDetail reportDetail);
 
     @Select("select report_id from REPORT_QD_MAIN where report_name = #{reportName}")
-    int selectReportIdByName(@Param("reportName") String reportName);
+    Integer selectReportIdByName(@Param("reportName") String reportName);
 
     @Select("select m.REPORT_NAME,m.REPORT_DESCRIBE,m.CREATE_TIME,m.UPDATE_TIME " +
             "from REPORT_QD_MAIN m " +

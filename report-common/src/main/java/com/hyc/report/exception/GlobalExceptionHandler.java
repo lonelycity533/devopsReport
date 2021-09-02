@@ -3,6 +3,7 @@ package com.hyc.report.exception;
 import com.hyc.report.response.Result;
 import com.hyc.report.response.ResultCode;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

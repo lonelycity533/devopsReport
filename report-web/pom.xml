@@ -19,19 +19,20 @@
             <artifactId>report-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
-    <!--<build>
-        <finalName>maintain</finalName>
+    <build>
+<!--        <finalName>maintain</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
+                <!--<configuration>
 　　　　　　　　　　　　&lt;!&ndash;项目启动类&ndash;&gt;
 　　　　　　　　　　　　<mainClass>com.hyc.report.DevopsReportApplication</mainClass>
-                </configuration>
+                </configuration>-->
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 
 </project>

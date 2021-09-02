@@ -25,7 +25,7 @@ public class ReportDatabase extends BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "数据源配置id",example = "1")
     @TableId(value="DATABASE_ID",type = IdType.INPUT)
-    private Long databaseId;
+    private Integer databaseId;
 
     @ApiModelProperty(value = "数据源配置名称",example = "B2I数据源")
     @TableField("DATABASE_NAME")

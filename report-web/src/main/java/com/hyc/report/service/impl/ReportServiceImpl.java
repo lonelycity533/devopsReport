@@ -9,17 +9,20 @@ import com.hyc.report.entity.ReportCondition;
 import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
 import com.hyc.report.entity.ReportMain;
+import com.hyc.report.exception.ReportException;
 import com.hyc.report.mapper.ReportDatabaseMapper;
 import com.hyc.report.mapper.ReportMapper;
 import com.hyc.report.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+@Transactional(rollbackFor = ReportException.class)
 @Service("ReportService")
 public class ReportServiceImpl implements ReportService {
 
@@ -32,17 +35,17 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public int insertReportMain(ReportDetail reportDetail) {
+    public Integer insertReportMain(ReportDetail reportDetail) throws Exception{
         return reportMapper.insertReportMain(reportDetail);
     }
 
     @Override
-    public int insertReportDetail(ReportDetail reportDetail) {
+    public int insertReportDetail(ReportDetail reportDetail) throws Exception{
         return reportMapper.insertReportDetail(reportDetail);
     }
 
     @Override
-    public int selectReportIdByName(String reportName) {
+    public Integer selectReportIdByName(String reportName) {
         return reportMapper.selectReportIdByName(reportName);
     }
 

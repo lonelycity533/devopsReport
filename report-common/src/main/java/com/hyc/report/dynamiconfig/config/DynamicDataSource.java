@@ -7,6 +7,7 @@ import com.hyc.report.dynamiconfig.entity.DataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.util.StringUtils;
@@ -17,6 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 
+//@Configuration
 public class DynamicDataSource extends AbstractRoutingDataSource {
     private boolean debug = true;
     private final Logger log = LoggerFactory.getLogger(getClass());
@@ -278,9 +280,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
         }
     }
 
-    @Bean
-    public DataSourceTransactionManager transactionManager(DynamicDataSource dynamicDataSource) {
-        return new DataSourceTransactionManager(dynamicDataSource);
-    }
+
 }
 
