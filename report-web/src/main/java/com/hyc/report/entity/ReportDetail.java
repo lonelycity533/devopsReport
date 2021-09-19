@@ -16,8 +16,8 @@ import java.util.Map;
 //@Getter
 public class ReportDetail extends ReportMain{
     private Integer reportDetailId;
-    private String fieldList;
-    private String businessField;
+    private List<Field> fieldList;
+    private List<Business> businessField;
     private int databaseId;
 
 }

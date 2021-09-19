@@ -1,8 +1,12 @@
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.hyc.report.util.SqlUtil;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 public class test {
@@ -30,4 +34,14 @@ public class test {
         List<String> tableNameBySql = SqlUtil.getTableNameBySql("select * from testHYCDEPT");
         System.out.println(tableNameBySql.get(0));
     }
+
+    @Test
+    public void test2(){
+        String str = "[{field_value=select * from testHYCDEPT, field_name=主SQL},{field_value=where id = 1, field_name=从SQL}]";
+
+        System.out.println(str);
+
+    }
+
+
 }

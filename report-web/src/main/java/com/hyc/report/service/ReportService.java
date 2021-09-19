@@ -1,11 +1,8 @@
 package com.hyc.report.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.Page;
 import com.hyc.report.entity.ReportCondition;
-import com.hyc.report.entity.ReportDatabase;
 import com.hyc.report.entity.ReportDetail;
-import io.swagger.models.auth.In;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -25,7 +22,13 @@ public interface ReportService {
 
     int updateReportDataConfig(ReportDetail reportDetail);
 
-    void deleteReportByIds(List<Integer> ids);
+    void deleteReportByIds(List<Integer> ids,List<Integer> delIds);
 
     ReportCondition getReportDetailInfo(int reportId);
+
+    void insertReportDetailCondition(ReportDetail reportDetail);
+
+    Integer getReportDetailId(String reportName);
+
+    List<Integer> getDelId(List<Integer> ids);
 }

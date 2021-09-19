@@ -22,7 +22,7 @@
 
     </dependencies>
     <build>
-<!--        <finalName>maintain</finalName>-->
+<!--        <finalName>DevopsReport</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -31,6 +31,13 @@
 　　　　　　　　　　　　&lt;!&ndash;项目启动类&ndash;&gt;
 　　　　　　　　　　　　<mainClass>com.hyc.report.DevopsReportApplication</mainClass>
                 </configuration>-->
+                <!--<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>-->
             </plugin>
         </plugins>
     </build>

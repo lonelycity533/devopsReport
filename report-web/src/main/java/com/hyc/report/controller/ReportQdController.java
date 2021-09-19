@@ -1,11 +1,10 @@
 package com.hyc.report.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.hyc.report.entity.ReportCondition;
-import com.hyc.report.entity.ReportDatabase;
-import com.hyc.report.entity.ReportDetail;
+import com.hyc.report.entity.*;
 import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.ResultCode;
 import com.hyc.report.service.DBChangeService;
@@ -48,6 +47,7 @@ public class ReportQdController {
         reportDetail.setReportId(40);
         ReportCondition reportDetailInfo = reportService.getReportDetailInfo(reportDetail.getReportId());
         log.info("获取到的报表数据库信息以及前端传送的一些信息：{}",reportDetailInfo.toString());
+
         List<Map<String, Object>> maps = StringConvertList.toListMap(reportDetailInfo.getFieldList());
         log.info("获取的json数据转换为list:{}",maps);
         String sql = "";
@@ -79,21 +79,16 @@ public class ReportQdController {
         ReportDetail reportDetail = new ReportDetail();
         reportDetail.setReportName("ceshi111df");
         reportDetail.setReportDescribe("啦啦啦啦啦");
-        List<String> businessList = new ArrayList<>();
-        businessList.add("username");
-        businessList.add("password");
-        reportDetail.setBusinessField(businessList.toString());
 
-        List<Map<String,Object>> fieldList = new ArrayList<>();
-        Map<String, Object> map3= new HashMap<>();
-        map3.put("field_name","主SQL");
-        map3.put("field_value","select * from testHYCDEP");
-        Map<String, Object> map4= new HashMap<>();
-        map4.put("field_name","从SQL");
-        map4.put("field_value","where id = 1");
-        fieldList.add(map3);
-        fieldList.add(map4);
-        reportDetail.setFieldList(fieldList.toString());
+        List<Business> businessList = new ArrayList<>();
+        businessList.add(new Business(null,"username"));
+        businessList.add(new Business(null,"password"));
+        reportDetail.setBusinessField(businessList);
+
+        List<Field> fieldList = new ArrayList<>();
+        fieldList.add(new Field(null,"主SQL","select * from testHycDEPT"));
+        fieldList.add(new Field(null,"从SQL","where password = '123'"));
+        reportDetail.setFieldList(fieldList);
 
         String databaseName = "ZJCSC517";
 
@@ -111,6 +106,9 @@ public class ReportQdController {
             reportId = reportService.selectReportIdByName(reportDetail.getReportName());
             reportDetail.setReportId(reportId);
             reportService.insertReportDetail(reportDetail);
+            Integer reportDetailId = reportService.getReportDetailId(reportDetail.getReportName());
+            reportDetail.setReportDetailId(reportDetailId);
+            reportService.insertReportDetailCondition(reportDetail);
             return Result.ok().data(ResultCode.REPORT_INSERT_SUCCESS.getCode()
                     ,ResultCode.REPORT_INSERT_SUCCESS.getMessage());
         }catch (Exception e) {
@@ -136,9 +134,12 @@ public class ReportQdController {
         }
     }
 
+    /**
+     * 通过清单报表查询点击获取自定义字段名称及类型
+     * */
     @GetMapping("getQdDetailByName")
     public Result getQdDetailByName() {
-        String reportName = "测试1";
+        String reportName = "ceshi111df";
         try {
             ReportDetail queryInfo = reportService.getQdDetailByName(reportName);
             log.info("查询数据为：{}",queryInfo);
@@ -160,34 +161,21 @@ public class ReportQdController {
         ReportDetail reportDetail = new ReportDetail();
 
         //这些都是查询时候就固定好的id
-        reportDetail.setReportDetailId(8);
+        reportDetail.setReportDetailId(84);
         //这些都是查询时候就固定好的id
-        reportDetail.setReportId(24);
+        reportDetail.setReportId(129);
 
         reportDetail.setReportName("生产29090");
         reportDetail.setReportDescribe("这是修改啦~~~");
 
-        List<Map<String,Object>> businessList = new ArrayList<>();
-        Map<String, Object> map1= new HashMap<>();
-        map1.put("field_name","username");
-        map1.put("field_type","varchar2");
-        Map<String, Object> map2= new HashMap<>();
-        map2.put("field_name","password");
-        map2.put("field_type","number");
-        businessList.add(map1);
-        businessList.add(map2);
-        reportDetail.setBusinessField(businessList.toString());
+        List<Business> businessList = new ArrayList<>();
+        businessList.add(new Business(null,"username"));
+        reportDetail.setBusinessField(businessList);
 
-        List<Map<String,Object>> fieldList = new ArrayList<>();
-        Map<String, Object> map3= new HashMap<>();
-        map3.put("field_name","主SQL");
-        map3.put("field_value","select * from testHYCDEPT");
-        Map<String, Object> map4= new HashMap<>();
-        map4.put("field_name","从SQL");
-        map4.put("field_value","where id = 1");
-        fieldList.add(map3);
-        fieldList.add(map4);
-        reportDetail.setFieldList(fieldList.toString());
+        List<Field> fieldList = new ArrayList<>();
+        fieldList.add(new Field(null,"主SQL","select * from testHycDEPT"));
+        fieldList.add(new Field(null,"从SQL","where password = '345'"));
+        reportDetail.setFieldList(fieldList);
 
         String databaseName = "更新数据库哦";
         Integer databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);
@@ -210,7 +198,8 @@ public class ReportQdController {
 //        Ids.add(39);
         if (Ids.size()>0) {
             try{
-                reportService.deleteReportByIds(Ids);
+                List<Integer> delIds = reportService.getDelId(Ids);
+                reportService.deleteReportByIds(Ids,delIds);
             }catch (Exception e){
                 throw new ReportException(ResultCode.REPORT_DELETE_ERROR.getCode(),ResultCode.REPORT_DELETE_ERROR.getMessage());
             }
