@@ -10,6 +10,7 @@ import com.hyc.report.response.Result;
 import com.hyc.report.response.ResultCode;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,12 +41,6 @@ public class ReportDatabaseController {
             , produces = "application/json"
             , protocols = "http"
     )
-//    @ApiResponses(
-//            {
-//                    @ApiResponse(code = 20000, message = "成功", response = Result.class),
-//                    @ApiResponse(code = 50000, message = "失败", response = Result.class),
-//            }
-//    )
     @GetMapping("/getDatabaseList")
     public Result getDatabaseList(@ApiParam(value = "当前页",required = true)@RequestParam(value = "current",required = true,defaultValue = "1") int current,
                                   @ApiParam(value = "每页数量",required = true)@RequestParam(value = "size",required = true,defaultValue = "5") int size,
@@ -93,24 +88,25 @@ public class ReportDatabaseController {
         int saveCount = 0;
         try{
             saveCount = reportDatabaseService.insertDatabase(reportDatabase);
+            if (saveCount>0) {
+                log.info("*****数据库配置添加成功");
+                return Result.ok().data(ResultCode.DATABASE_INSERT_SUCCESS.getCode(),ResultCode.DATABASE_INSERT_SUCCESS.getMessage());
+            } else {
+                log.info("*****数据库配置无添加");
+                return Result.ok().data("400","无添加数据");
+            }
         }catch (Exception e) {
             log.info("*****数据库配置添加失败");
             throw new ReportException(ResultCode.DATABASE_INSERT_ERROR.getCode(),ResultCode.DATABASE_INSERT_ERROR.getMessage());
         }
-        if (saveCount>0) {
-            log.info("*****数据库配置添加成功");
-            return Result.ok().data(ResultCode.DATABASE_INSERT_SUCCESS.getCode(),ResultCode.DATABASE_INSERT_SUCCESS.getMessage());
-        } else {
-            log.info("*****数据库配置无添加");
-            return Result.ok().data("400","无添加数据");
-        }
+
     }
 
-    @ApiImplicitParams(@ApiImplicitParam())
     @ApiOperation(value = "数据源配置数据修改",notes = "通过数据源添加对象进行修改", httpMethod = "POST"
             , produces = "application/json"
             , protocols = "http")
     @PostMapping("/updateDatabase")
+    @Transactional(rollbackFor = Exception.class)
     public Result updateDatabase(@ApiParam(value = "数据源修改对象",required = true)@RequestBody ReportDatabase reportDatabase) {
         /*ReportDatabase reportDatabase1 = new ReportDatabase();
         reportDatabase1.setDatabaseId((long) 63);
@@ -124,23 +120,20 @@ public class ReportDatabaseController {
         int updateCount;
         try{
             updateCount = reportDatabaseService.updateDatabase(reportDatabase);
+            log.info("*****数据库配置更新成功");
+            return Result.ok().data(ResultCode.DATABASE_UPDATE_SUCCESS.getCode(),ResultCode.DATABASE_UPDATE_SUCCESS.getMessage());
         }catch (Exception e) {
             log.info("*****数据库配置更新失败");
             throw new ReportException(ResultCode.DATABASE_UPDATE_ERROR.getCode(),ResultCode.DATABASE_UPDATE_ERROR.getMessage());
         }
-        if (updateCount>0) {
-            log.info("*****数据库配置更新成功");
-            return Result.ok().data(ResultCode.DATABASE_UPDATE_SUCCESS.getCode(),ResultCode.DATABASE_UPDATE_SUCCESS.getMessage());
-        } else {
-            log.info("*****数据库配置无更新");
-            return Result.ok().data("400","无更新数据");
-        }
+
     }
 
     @ApiOperation(value = "数据源配置数据单个删除或多个删除",notes = "通过数据源id集合进行单个或多个删除", httpMethod = "POST"
             , produces = "application/json"
             , protocols = "http")
     @PostMapping("/removeDatabase/{ids}")
+    @Transactional(rollbackFor = Exception.class)
     public Result removeDatabase(@ApiParam(value = "删除数据源id集合",required = true)@PathVariable List<Integer> ids) {
        /* List<Integer> ids = new ArrayList<>();
         ids.add(67);*/
@@ -150,17 +143,13 @@ public class ReportDatabaseController {
         boolean delFlag;
         try{
             delFlag = reportDatabaseService.removeByIds(ids);
+            log.info("*****数据库配置删除成功");
+            return Result.ok().data(ResultCode.DATABASE_DELETE_SUCCESS.getCode(),ResultCode.DATABASE_DELETE_SUCCESS.getMessage());
         }catch (Exception e) {
             log.info("*****数据库配置删除失败");
             throw new ReportException(ResultCode.DATABASE_DELETE_ERROR.getCode(),ResultCode.DATABASE_DELETE_ERROR.getMessage());
         }
-        if (delFlag) {
-            log.info("*****数据库配置删除成功");
-            return Result.ok().data(ResultCode.DATABASE_DELETE_SUCCESS.getCode(),ResultCode.DATABASE_DELETE_SUCCESS.getMessage());
-        } else {
-            log.info("*****数据库配置无法删除");
-            return Result.ok().data("400","无删除数据");
-        }
+
     }
 
     /*@GetMapping("getDatabaseTypeList")

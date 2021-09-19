@@ -77,5 +77,3 @@ logging:
       hyc:
         report:
           mapper: debug
-
-

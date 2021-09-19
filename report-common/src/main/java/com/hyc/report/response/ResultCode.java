@@ -5,6 +5,10 @@ package com.hyc.report.response;
  * */
 public enum ResultCode implements CustomizeResultCode{
 
+    REPORT_DATABASE_ERROR(500,"数据库查询失败"),
+
+    REPORT_QUERY_ERROR(500,"报表查询失败"),
+
     REPORT_DELETE_SUCCESS(200,"报表配置删除成功"),
 
     REPORT_DELETE_ERROR(500,"报表配置删除失败"),

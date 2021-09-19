@@ -94,6 +94,7 @@ public class ReportQdController {
         fieldList.add(map3);
         fieldList.add(map4);
         reportDetail.setFieldList(fieldList.toString());
+
         String databaseName = "ZJCSC517";
 
         Integer reportId = reportService.selectReportIdByName(reportDetail.getReportName());
@@ -106,7 +107,7 @@ public class ReportQdController {
         reportDetail.setDatabaseId(databaseId);
         log.info("测试输出：{}",reportDetail.getDatabaseId());
         try{
-            Integer insertMainFlag = reportService.insertReportMain(reportDetail);
+            reportService.insertReportMain(reportDetail);
             reportId = reportService.selectReportIdByName(reportDetail.getReportName());
             reportDetail.setReportId(reportId);
             reportService.insertReportDetail(reportDetail);
@@ -114,7 +115,7 @@ public class ReportQdController {
                     ,ResultCode.REPORT_INSERT_SUCCESS.getMessage());
         }catch (Exception e) {
             log.error("e:{}",e.getMessage());
-            throw  new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
+            throw new ReportException(ResultCode.REPORT_INSERT_ERROR.getCode()
                     ,ResultCode.REPORT_INSERT_ERROR.getMessage());
         }
     }
@@ -124,25 +125,36 @@ public class ReportQdController {
         int current = 1;
         int size = 5;
         String reportName = "测试";
-        log.info("*****正在执行查询报表查询接口");
-        Page<ReportDetail> pageInfo = reportService.getReportInfo(current, size, reportName);
-        log.info("*****执行结束，结果已输出,报表查询数据为第{}页",current);
-        return Result.ok().data("total",pageInfo.getTotal()).data("records",pageInfo.getResult());
+        try{
+            log.info("*****正在执行查询报表查询接口");
+            Page<ReportDetail> pageInfo = reportService.getReportInfo(current, size, reportName);
+            log.info("*****执行结束，结果已输出,报表查询数据为第{}页",current);
+            return Result.ok().data("total",pageInfo.getTotal()).data("records",pageInfo.getResult());
+        }catch (Exception e){
+            log.error("*****查询清单报表失败");
+            throw new ReportException(ResultCode.REPORT_QUERY_ERROR.getCode(),ResultCode.REPORT_QUERY_ERROR.getMessage());
+        }
     }
 
     @GetMapping("getQdDetailByName")
     public Result getQdDetailByName() {
         String reportName = "测试1";
-        ReportDetail queryInfo = reportService.getQdDetailByName(reportName);
-        log.info("查询数据为：{}",queryInfo);
-        LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
-        lambdaQueryWrapper.eq(ReportDatabase::getDatabaseId,queryInfo.getDatabaseId());
-        String databaseName = reportDatabaseService.getOne(lambdaQueryWrapper).getDatabaseName();
-        log.info("查询数据库配置为:{}",databaseName);
-        return Result.ok().data("queryInfo",queryInfo).data("databaseName",databaseName);
+        try {
+            ReportDetail queryInfo = reportService.getQdDetailByName(reportName);
+            log.info("查询数据为：{}",queryInfo);
+            LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(ReportDatabase::getDatabaseId,queryInfo.getDatabaseId());
+            String databaseName = reportDatabaseService.getOne(lambdaQueryWrapper).getDatabaseName();
+            log.info("查询数据库配置为:{}",databaseName);
+            return Result.ok().data("queryInfo",queryInfo).data("databaseName",databaseName);
+        }catch (Exception e){
+            log.error("查询报表失败");
+            return Result.error().data("message","查询报表失败");
+        }
     }
 
     @PostMapping("updateReportDataConfig")
+    @Transactional(rollbackFor = Exception.class)
     public Result updateReportDataConfig() {
         //假设这个是接收到的对象
         ReportDetail reportDetail = new ReportDetail();
@@ -176,23 +188,21 @@ public class ReportQdController {
         fieldList.add(map3);
         fieldList.add(map4);
         reportDetail.setFieldList(fieldList.toString());
-        Integer databaseId;
+
         String databaseName = "更新数据库哦";
-        try{
-            databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);
-            reportDetail.setDatabaseId(Math.toIntExact(databaseId));
-        }catch (Exception e) {
-            throw new ReportException(ResultCode.REPORT_QUERY_DATABASE.getCode(),ResultCode.REPORT_QUERY_DATABASE.getMessage());
-        }
+        Integer databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);
+        reportDetail.setDatabaseId(Math.toIntExact(databaseId));
         try {
             reportService.updateReportDataConfig(reportDetail);
             return Result.ok().data(ResultCode.REPORT_UPDATE_SUCCESS.getCode(),ResultCode.REPORT_UPDATE_SUCCESS.getMessage());
         }catch (Exception e){
+            log.error("报表配置修改失败");
             throw new ReportException(ResultCode.REPORT_UPDATE_ERROR.getCode(),ResultCode.REPORT_UPDATE_ERROR.getMessage());
         }
     }
 
     @PostMapping("deleteReportByIds")
+    @Transactional(rollbackFor = Exception.class)
     public Result deleteReportByIds() {
         List<Integer> Ids = new ArrayList<>();
 //        Ids.add(37);

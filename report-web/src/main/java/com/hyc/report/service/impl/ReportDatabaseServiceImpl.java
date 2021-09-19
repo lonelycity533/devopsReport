@@ -33,9 +33,14 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
 
     @Override
     public Page<ReportDatabase> getDataBaseByName(int current, int size, String databaseName) {
-        Page<ReportDatabase> page = PageHelper.startPage(current, size);
-        reportDatabaseMapper.getDataBaseByName(databaseName);
-        return page;
+        try{
+            Page<ReportDatabase> page = PageHelper.startPage(current, size);
+            reportDatabaseMapper.getDataBaseByName(databaseName);
+            return page;
+        }catch (Exception e){
+            log.error(ResultCode.REPORT_DATABASE_ERROR.getMessage());
+            throw new ReportException(ResultCode.REPORT_DATABASE_ERROR.getCode(),ResultCode.REPORT_DATABASE_ERROR.getMessage());
+        }
     }
 
     @Override
@@ -49,7 +54,6 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
     public Integer getDataBaseIdByName(String databaseName) {
         try{
             LambdaQueryWrapper<ReportDatabase> lambdaQueryWrapper = new LambdaQueryWrapper<>();
