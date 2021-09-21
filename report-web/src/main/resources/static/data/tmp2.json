@@ -1,0 +1,6 @@
+{
+     "success": true,
+      "code": 200,
+      "message": "数据库配置删除成功",
+      "data": {}
+}

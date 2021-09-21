@@ -8,27 +8,33 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				[{
 					type: 'checkbox',
 				}, {
-					field: 'col1',
+					field: 'databaseId',
 					title: 'ID',
 					templet: function(d) {
-						return '<div class="data-id" data-id="' + d.col1 + '">' + d.col1 +
+						return '<div class="data-id" data-id="' + d.databaseId + '">' + d.databaseId +
 							'</div>'
 					}
 				}, {
-					field: 'col2',
-					title: '报表',
+					field: 'databaseName',
+					title: '数据源名称',
 				}, {
-					field: 'col3',
-					title: '描述',
+					field: 'databaseUrl',
+					title: '数据库地址',
 				}, {
-					field: 'col4',
+					field: 'databaseType',
+					title: '数据库类型',
+				}, {
+					field: 'createTime',
 					title: '创建时间',
 				}, {
-					field: 'col5',
+					field: '',
 					title: '操作',
 					templet: '<div><i class="iconfont icon-xiugai btn-edit"></i></div>'
 				}]
 			],
+		},
+		data:{
+			tableData:[]
 		},
 		// 查询信息
 		onQueryData: function(data) {
@@ -37,7 +43,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			table.render({
 				elem: '#table',
 				title: '清单报表配置',
-				url: base + '/report/system/data/table3.json',
+				url: base + '/report/system/qdReport/deleteReportByIds',
+				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 				defaultToolbar: [],
 				where: data.field,
 				cols: that.html.cols1,
@@ -47,6 +54,19 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					limits: [10, 20, 30, 40, 50, 1000],
 					layout: ['count', 'limit', 'skip', 'prev', 'page', 'next']
 				},
+				request: {
+				    pageName: 'current', //页码的参数名称，默认：page
+				    limitName: 'size' //每页数据量的参数名，默认：limit
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					that.data.tableData = res.data.data.records
+					return {
+						"code": res.code == '20000' ? 0 : 1, //解析接口状态
+						"msg": res.message, //解析提示文本
+						"count": res.data.data.total, //解析数据长度
+						"data": res.data.data.records //解析数据列表
+					};
+				}
 			});
 			return;
 		},
@@ -260,7 +280,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 		},
 		init: function() {
 			var that = this;
-			that.onQueryData({});
+			that.onQueryData({field:{databaseName:''}});
 			that.onClickSubmit();
 			that.onClickDel();
 			that.onClickEdit();

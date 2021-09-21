@@ -16,24 +16,27 @@
 				<a>报表配置</a>
 				<a><cite>数据库配置</cite></a>
 			</span>
-			<div class="layui-form-wrap mb-15">
+			<div class="layui-form-wrap">
 				<div class="layui-form" lay-filter="form">
 					<div class="layui-row">
 						<div class="layui-col-md2">
 							<div class="layui-form-item label-width-70">
 								<label class="layui-form-label">数据库名称</label>
-								<input type="text" name="name" autocomplete="off" class="layui-input" placeholder="">
+								<input type="text" name="databaseName" autocomplete="off" class="layui-input" placeholder="">
 							</div>
 						</div>
 						<div class="layui-col-md2 pl-20">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
-									class="iconfont icon-sousuo"></i>查询</button>
-							<button class="layui-btn layui-btn-danger btn-del" plain type="button">删除</button>
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i class="iconfont icon-sousuo"></i>查询</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="layui-table-wrap">
+				<script type="text/html" id="tableToolbar">
+					<div class="layui-btn-container">
+				    <button class="layui-btn layui-btn-danger" plain lay-event="delete">删除</button>
+				  </div>
+				</script>
 				<table id="table" lay-filter="table"></table>
 			</div>
 		</div>

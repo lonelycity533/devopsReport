@@ -1,0 +1,32 @@
+{
+    "code": 20000,
+    "data": {
+        "data": {
+            "total": 41,
+            "records": [
+                {
+                    "createTime": "2021-08-19 14:31:56",
+                    "updateTime": "2021-08-19 14:31:56",
+                    "databaseId": 32,
+                    "databaseName": "短厅",
+                    "databaseUrl": "sdfsdf",
+                    "databaseUsername": "sdf",
+                    "databasePassword": "123",
+                    "databaseType": "mysql"
+                },
+                {
+                    "createTime": "2021-08-19 14:31:57",
+                    "updateTime": "2021-08-19 14:31:57",
+                    "databaseId": 33,
+                    "databaseName": "短厅",
+                    "databaseUrl": "sdfsdf",
+                    "databaseUsername": "sdf",
+                    "databasePassword": "123",
+                    "databaseType": "mysql"
+                }
+            ]
+        }
+    },
+    "message": "成功",
+    "success": true
+}
