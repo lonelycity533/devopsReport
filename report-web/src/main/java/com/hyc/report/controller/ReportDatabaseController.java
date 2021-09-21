@@ -64,11 +64,6 @@ public class ReportDatabaseController {
             , produces = "application/json"
             , protocols = "http"
     )
-    @ApiResponses(
-            {
-                    @ApiResponse(code = 20000, message = "成功", response = ReportDatabase.class),
-            }
-    )
     @PostMapping("/insertDatabase")
     public Result insertDatabase(@ApiParam(value = "数据源添加对象",required = true) @RequestBody ReportDatabase reportDatabase) {
         /*ReportDatabase reportDatabase1 = new ReportDatabase();

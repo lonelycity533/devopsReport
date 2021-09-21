@@ -14,7 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Scanner;
 
 public class ORACLECodeGenerator {
-    public static String scanner(String tip) {
+    /*public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
@@ -53,11 +53,11 @@ public class ORACLECodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        /*dsc.setUrl("jdbc:oracle:thin:@134.96.162.186:1521:wttest1");
+        *//*dsc.setUrl("jdbc:oracle:thin:@134.96.162.186:1521:wttest1");
         // dsc.setSchemaName("public");
         dsc.setDriverName("oracle.jdbc.driver.OracleDriver");
         dsc.setUsername("ZJCSC517");
-        dsc.setPassword("99gY_52");*/
+        dsc.setPassword("99gY_52");*//*
         dsc.setUrl("jdbc:oracle:thin:@134.96.162.189:1521:wtuat2");
         dsc.setDriverName("oracle.jdbc.OracleDriver");
         dsc.setUsername("devops");
@@ -97,5 +97,5 @@ public class ORACLECodeGenerator {
 //        strategy.setTablePrefix("tb_");
         mpg.setStrategy(strategy);
         mpg.execute();
-    }
+    }*/
 }

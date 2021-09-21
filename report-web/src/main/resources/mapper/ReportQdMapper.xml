@@ -12,11 +12,26 @@
         insert into REPORT_QD_DETAIL values
             (report_qd_detail_newsId.nextval
             ,#{ReportDetail.reportName}
-            ,#{ReportDetail.fieldList}
-            ,#{ReportDetail.businessField}
             ,#{ReportDetail.reportId}
             ,#{ReportDetail.databaseId,jdbcType=VARCHAR}
             ,sysdate,sysdate)
+    </insert>
+    <insert id="insertReportDetailCondition">
+        begin
+            <foreach collection="reportDetail.fieldList" item="item" index="index">
+                insert into REPORT_QD_FIELDLIST values
+                (fieldList_newsId.nextval
+                ,#{reportDetail.reportDetailId,jdbcType=VARCHAR}
+                ,#{item.sqlType}
+                ,#{item.sqlContent});
+            </foreach>
+            <foreach collection="reportDetail.businessField" item="item" index="index">
+                insert into REPORT_QD_BUSINESS values
+                (businessList_newsId.nextval
+                ,#{reportDetail.reportDetailId,jdbcType=VARCHAR}
+                ,#{item.businessField});
+            </foreach>
+        end;
     </insert>
     <update id="updateReportDataConfig">
         begin
@@ -24,12 +39,6 @@
             <set>
                 <if test="reportDetail.reportName!=null and reportDetail.reportName!=''">
                     report_name = #{reportDetail.reportName},
-                </if>
-                <if test="reportDetail.fieldList!=null and reportDetail.fieldList!=''">
-                    field_list = #{reportDetail.fieldList},
-                </if>
-                <if test="reportDetail.businessField!=null and reportDetail.businessField!=''">
-                    business_field = #{reportDetail.businessField},
                 </if>
                 <if test="reportDetail.databaseId!=null and reportDetail.databaseId!=''">
                     database_id = #{reportDetail.databaseId},
@@ -57,6 +66,24 @@
                     report_id = #{reportDetail.reportId}
                 </if>
             </where>;
+
+            delete from REPORT_QD_FIELDLIST where report_detail_id = #{reportDetail.reportDetailId};
+            delete from REPORT_QD_BUSINESS where report_detail_id = #{reportDetail.reportDetailId};
+
+            <foreach collection="reportDetail.fieldList" item="item" index="index">
+                insert into REPORT_QD_FIELDLIST values
+                (fieldList_newsId.nextval
+                ,#{reportDetail.reportDetailId,jdbcType=VARCHAR}
+                ,#{item.sqlType}
+                ,#{item.sqlContent});
+            </foreach>
+
+            <foreach collection="reportDetail.businessField" item="item" index="index">
+                insert into REPORT_QD_BUSINESS values
+                (businessList_newsId.nextval
+                ,#{reportDetail.reportDetailId,jdbcType=VARCHAR}
+                ,#{item.businessField});
+            </foreach>
         end;
     </update>
     <delete id="deleteReportByIds">
@@ -75,11 +102,33 @@
                     #{item}
                 </foreach>
             </where>;
-        end;
+
+            delete from REPORT_QD_FIELDLIST
+            <where>
+                report_detail_id in
+                <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </where>
+
+            delete from REPORT_QD_BUSINESS
+            <where>
+                report_detail_id in
+                <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </where>
+        end
     </delete>
     <select id="getReportData"
             resultType="java.util.LinkedHashMap"
             parameterType="String">
         ${ReportSql}
+    </select>
+    <select id="getDelId" resultType="java.lang.Integer">
+        select report_detail_id from REPORT_QD_DETAIL
+        <foreach collection="ids" item="item" separator="," index="index" open="(" close=")">
+            #{item}
+        </foreach>
     </select>
 </mapper>

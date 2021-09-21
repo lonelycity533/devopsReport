@@ -14,7 +14,10 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Scanner;
 
 public class MYSQLCodeGenerator {
-    public static String scanner(String tip) {
+    public static void main(String[] args) {
+
+    }
+    /*public static String scanner(String tip) {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
@@ -53,11 +56,11 @@ public class MYSQLCodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        /*dsc.setUrl("jdbc:oracle:thin:@134.96.162.186:1521:wttest1");
+        *//*dsc.setUrl("jdbc:oracle:thin:@134.96.162.186:1521:wttest1");
         // dsc.setSchemaName("public");
         dsc.setDriverName("oracle.jdbc.driver.OracleDriver");
         dsc.setUsername("ZJCSC517");
-        dsc.setPassword("99gY_52");*/
+        dsc.setPassword("99gY_52");*//*
         dsc.setUrl("jdbc:mysql://localhost:3306/loginsecurity?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
@@ -97,5 +100,5 @@ public class MYSQLCodeGenerator {
 //        strategy.setTablePrefix("tb_");
         mpg.setStrategy(strategy);
         mpg.execute();
-    }
+    }*/
 }
