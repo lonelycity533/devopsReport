@@ -42,7 +42,6 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
         } else {
             log.info("---当前数据源：默认数据源---");
         }
-
         return datasource;
     }
 
@@ -279,7 +278,5 @@ public class DynamicDataSource extends AbstractRoutingDataSource {
 //            throw new ADIException("数据源配置有错误",500);
         }
     }
-
-
 }
 

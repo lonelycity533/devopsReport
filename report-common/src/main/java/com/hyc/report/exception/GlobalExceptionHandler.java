@@ -15,12 +15,12 @@ public class GlobalExceptionHandler {
      * @param e
      * @return
      */
-    /*@ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)
     public Result error(Exception e){
         //e.printStackTrace();
         log.error(e.getMessage());
         return Result.error();
-    }*/
+    }
 
     /**
      * 处理特定异常类型,可以定义多个,这里只以ArithmeticException为例

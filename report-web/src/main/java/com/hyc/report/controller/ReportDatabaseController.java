@@ -144,7 +144,6 @@ public class ReportDatabaseController {
             log.info("*****数据库配置删除失败");
             throw new ReportException(ResultCode.DATABASE_DELETE_ERROR.getCode(),ResultCode.DATABASE_DELETE_ERROR.getMessage());
         }
-
     }
 
     /*@GetMapping("getDatabaseTypeList")
