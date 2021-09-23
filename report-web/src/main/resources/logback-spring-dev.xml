@@ -14,7 +14,7 @@
     <!--*****************************************************************************-->
     <!--自定义项 开始-->
     <!--*****************************************************************************-->
-    <property name="log.path" value="/app/report_tool/logs"/>
+    <property name="log.path" value="/app/report_tool/log"/>
     <!-- 定义日志文件 输出位置 -->
 <!--    <property name="log.home_dir" value="C:/1a/working/DevopsReport/report-web/src/main/resources/log"/>-->
     <property name="log.home_dir" value="${log.path}"/>

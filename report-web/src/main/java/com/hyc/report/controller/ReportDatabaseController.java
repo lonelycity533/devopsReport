@@ -9,6 +9,7 @@ import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.Result;
 import com.hyc.report.response.ResultCode;
 import io.swagger.annotations.*;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +66,7 @@ public class ReportDatabaseController {
             , protocols = "http"
     )
     @PostMapping("/insertDatabase")
+    @Transactional(rollbackFor = Exception.class)
     public Result insertDatabase(@ApiParam(value = "数据源添加对象",required = true) @RequestBody ReportDatabase reportDatabase) {
         /*ReportDatabase reportDatabase1 = new ReportDatabase();
         reportDatabase1.setDatabaseName("短厅");
@@ -146,6 +148,7 @@ public class ReportDatabaseController {
         }
     }
 
+    //该接口不用
     /*@GetMapping("getDatabaseTypeList")
     public Result getDatabaseTypeList() {
         List<String> datatypeList = reportDatabaseService.getDatabaseTypeList();

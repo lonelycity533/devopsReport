@@ -1,5 +1,6 @@
 package com.hyc.report.util;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,5 +34,20 @@ public class SqlUtil {
             }
         }
         return tableList;
+    }
+
+    public static String sqlCompose(String dataType,String columnName,Object dataValue) {
+        String condition = "";
+        if(dataType.equals("VARCHAR2")){
+            condition+=columnName+" = "+"'"+dataValue+"'";
+        }else if(dataType.equals("NUMBER")){
+            condition+=columnName+" = "+dataValue;
+        }else if (dataType.equals("DATE")){
+            List<String> list = (ArrayList<String>)dataValue;
+            String dateSql = columnName+" between ";
+            dateSql+="to_date('"+list.get(0)+"','yyyy-mm-dd hh24:mi:ss')"+" and to_date('"+list.get(1)+"','yyyy-mm-dd hh24:mi:ss')";
+            condition+=dateSql;
+        }
+        return condition;
     }
 }

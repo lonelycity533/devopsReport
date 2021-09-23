@@ -24,5 +24,6 @@ public interface ReportDatabaseService extends IService<ReportDatabase> {
 
     Integer getDataBaseIdByName(String databaseName);
 
+    @Deprecated
     List<String> getDatabaseTypeList();
 }

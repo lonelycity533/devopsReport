@@ -24,6 +24,7 @@ public interface ReportDatabaseMapper extends BaseMapper<ReportDatabase> {
 
     int updateDatabase(@Param("reportDatabase") ReportDatabase reportDatabase);
 
+    @Deprecated
     @Select("select DISTINCT(database_type) from report_database ")
     List<String> getDatabaseTypeList();
 }

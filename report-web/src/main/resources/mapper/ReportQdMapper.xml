@@ -146,11 +146,12 @@
 
     <!--查询报表信息遍历到查询页面-->
     <select id="getReportInfo" resultType="com.hyc.report.entity.ReportDetail">
-        select m.REPORT_ID,m.REPORT_DETAIL_ID,m.REPORT_NAME,m.REPORT_DESCRIBE,m.CREATE_TIME,m.UPDATE_TIME
-            from REPORT_QD_MAIN m
+        select m.REPORT_ID,d.REPORT_DETAIL_ID,m.REPORT_NAME,m.REPORT_DESCRIBE,m.CREATE_TIME,m.UPDATE_TIME
+            from REPORT_QD_MAIN m,REPORT_QD_DETAIL d
         <where>
+            m.REPORT_ID = d.REPORT_ID
             <if test="reportName!=null and reportName!=''">
-                m.REPORT_NAME like concat(concat('%',#{reportName}),'%')
+                and m.REPORT_NAME like concat(concat('%',#{reportName}),'%')
             </if>
         </where>
     </select>
