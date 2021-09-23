@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyc.report.mapper.ReportMapper">
+    <!--这3个标签对应的是对清单报表的配置-->
     <insert id="insertReportMain">
         insert into REPORT_QD_MAIN values
             (report_qd_main_newsId.nextval
@@ -33,6 +34,55 @@
             </foreach>
         end;
     </insert>
+
+    <!--这个包含了4个删除语句，由于表的配置问题，所以4个全是删除-->
+    <delete id="deleteReportByIds">
+        begin
+        delete from REPORT_QD_MAIN
+        <where>
+            report_id in
+            <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>;
+
+        delete from REPORT_QD_DETAIL
+        <where>
+            report_id in
+            <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>;
+
+        delete from REPORT_QD_FIELDLIST
+        <where>
+            report_detail_id in
+            <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>;
+
+        delete from REPORT_QD_BUSINESS
+        <where>
+            report_detail_id in
+            <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </where>;
+        end;
+    </delete>
+    <!--查询多个删除id集合-->
+    <select id="getDelId" resultType="java.lang.Integer">
+        select report_detail_id from REPORT_QD_DETAIL
+        <where>
+            report_id in
+            <foreach collection="ids" item="item" separator="," index="index" open="(" close=")">
+                #{item}
+            </foreach>
+        </where>
+    </select>
+
+    <!--这个是更新报表信息，里面配置好了好几条语句，例如删除、更新和插入-->
     <update id="updateReportDataConfig">
         begin
             update REPORT_QD_DETAIL
@@ -86,49 +136,37 @@
             </foreach>
         end;
     </update>
-    <delete id="deleteReportByIds">
-        begin
-            delete from REPORT_QD_MAIN
-            <where>
-                report_id in
-                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </where>;
-            delete from REPORT_QD_DETAIL
-            <where>
-                report_id in
-                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </where>;
 
-            delete from REPORT_QD_FIELDLIST
-            <where>
-                report_detail_id in
-                <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </where>
-
-            delete from REPORT_QD_BUSINESS
-            <where>
-                report_detail_id in
-                <foreach collection="delIds" index="index" item="item" open="(" separator="," close=")">
-                    #{item}
-                </foreach>
-            </where>
-        end
-    </delete>
+    <!--自定义查询报表语句执行就是这个标签-->
     <select id="getReportData"
             resultType="java.util.LinkedHashMap"
             parameterType="String">
         ${ReportSql}
     </select>
-    <select id="getDelId" resultType="java.lang.Integer">
-        select report_detail_id from REPORT_QD_DETAIL
-        <foreach collection="ids" item="item" separator="," index="index" open="(" close=")">
-            #{item}
-        </foreach>
+
+    <!--查询报表信息遍历到查询页面-->
+    <select id="getReportInfo" resultType="com.hyc.report.entity.ReportDetail">
+        select m.REPORT_ID,m.REPORT_DETAIL_ID,m.REPORT_NAME,m.REPORT_DESCRIBE,m.CREATE_TIME,m.UPDATE_TIME
+            from REPORT_QD_MAIN m
+        <where>
+            <if test="reportName!=null and reportName!=''">
+                m.REPORT_NAME like concat(concat('%',#{reportName}),'%')
+            </if>
+        </where>
+    </select>
+
+    <!--清单报表详情需要返回的字段列结构-->
+    <select id="getBusinessInfoList" resultType="com.hyc.report.entity.BusinessInfo">
+        select c.COLUMN_NAME,c.DATA_TYPE
+        from user_tab_columns c
+        <where>
+            c.COLUMN_NAME in
+            <foreach collection="businessList" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            <if test="tableName!=null and tableName!=''">
+                and c.TABLE_NAME=#{tableName}
+            </if>
+        </where>
     </select>
 </mapper>

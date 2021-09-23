@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ReportException.class)
     public Result error(ReportException e){
-        //e.printStackTrace();
+        e.printStackTrace();
         log.error(e.getErrMsg());
         return Result.error().code(e.getCode())
                 .message(e.getErrMsg());

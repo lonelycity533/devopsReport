@@ -2,8 +2,7 @@ package com.hyc.report.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.hyc.report.entity.ReportCondition;
-import com.hyc.report.entity.ReportDetail;
+import com.hyc.report.entity.*;
 import com.hyc.report.mapper.ReportMapper;
 import com.hyc.report.service.ReportService;
 import org.springframework.stereotype.Service;
@@ -79,6 +78,21 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public List<Integer> getDelId(List<Integer> ids) {
         return reportMapper.getDelId(ids);
+    }
+
+    @Override
+    public List<Business> getQdBusinessById(Integer reportDetailId) {
+        return reportMapper.getQdBusinessById(reportDetailId);
+    }
+
+    @Override
+    public List<Field> getQdFieldById(Integer reportDetailId) {
+        return reportMapper.getQdFieldById(reportDetailId);
+    }
+
+    @Override
+    public List<BusinessInfo> getBusinessInfoList(List<String> businessList,String tableName) {
+        return reportMapper.getBusinessInfoList(businessList,tableName);
     }
 
 

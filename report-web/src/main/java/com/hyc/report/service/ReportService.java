@@ -1,8 +1,7 @@
 package com.hyc.report.service;
 
 import com.github.pagehelper.Page;
-import com.hyc.report.entity.ReportCondition;
-import com.hyc.report.entity.ReportDetail;
+import com.hyc.report.entity.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,4 +30,10 @@ public interface ReportService {
     Integer getReportDetailId(String reportName);
 
     List<Integer> getDelId(List<Integer> ids);
+
+    List<Business> getQdBusinessById(Integer reportDetailId);
+
+    List<Field> getQdFieldById(Integer reportDetailId);
+
+    List<BusinessInfo> getBusinessInfoList(List<String> businessList,String tableName);
 }

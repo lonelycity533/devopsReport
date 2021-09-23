@@ -102,7 +102,6 @@ public class DruidDBConfig {
 
    /**
      * 注册一个：filterRegistrationBean   druid监控页面配置2-允许页面正常浏览
-     *
      * @return filter registration bean
      */
     @Bean
@@ -138,7 +137,6 @@ public class DruidDBConfig {
         sqlSessionFactoryBean.setDataSource(dynamicDataSource());
         sqlSessionFactoryBean.setMapperLocations(
                 new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
-
         return sqlSessionFactoryBean.getObject();
     }
 
@@ -146,6 +144,7 @@ public class DruidDBConfig {
     public DataSourceTransactionManager transactionManager(DynamicDataSource dynamicDataSource) {
         return new DataSourceTransactionManager(dynamicDataSource);
     }
+
     /*@Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
