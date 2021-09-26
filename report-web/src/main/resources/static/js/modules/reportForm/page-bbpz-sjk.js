@@ -223,6 +223,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						$('.data-connectinfo').val($data.databaseUrl);
 						$('.data-type').val($data.databaseType);
 						form.render('select','layerForm');
+						
 					},
 					yes: function(index) {
 						var $name=$('.data-name').val();
