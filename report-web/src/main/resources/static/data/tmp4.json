@@ -1,32 +1,31 @@
 {
-    "code": 20000,
-    "data": {
-        "data": {
-            "total": 41,
-            "records": [
-                {
-                    "createTime": "2021-08-19 14:31:56",
-                    "updateTime": "2021-08-19 14:31:56",
-                    "databaseId": 32,
-                    "databaseName": "短厅",
-                    "databaseUrl": "sdfsdf",
-                    "databaseUsername": "sdf",
-                    "databasePassword": "123",
-                    "databaseType": "mysql"
-                },
-                {
-                    "createTime": "2021-08-19 14:31:57",
-                    "updateTime": "2021-08-19 14:31:57",
-                    "databaseId": 33,
-                    "databaseName": "短厅",
-                    "databaseUrl": "sdfsdf",
-                    "databaseUsername": "sdf",
-                    "databasePassword": "123",
-                    "databaseType": "mysql"
-                }
-            ]
-        }
-    },
-    "message": "成功",
-    "success": true
+	"success": true,
+	"code": 20000,
+	"message": "成功",
+	"data": {
+		"total": 2,
+		"records": [{
+			"createTime": "2021-09-22 07:03:22",
+			"updateTime": "2021-09-22 07:03:22",
+			"reportId": 142,
+			"reportName": "测试2",
+			"reportDescribe": "啦啦啦啦啦",
+			"reportDetailId": 102,
+			"fieldList": null,
+			"businessField": null,
+			"businessInfoList": null,
+			"databaseId": 0
+		}, {
+			"createTime": "2021-09-22 06:59:24",
+			"updateTime": "2021-09-22 07:06:03",
+			"reportId": 141,
+			"reportName": "生产29090",
+			"reportDescribe": "这是修改啦~~~",
+			"reportDetailId": 101,
+			"fieldList": null,
+			"businessField": null,
+			"businessInfoList": null,
+			"databaseId": 0
+		}]
+	}
 }

@@ -148,23 +148,38 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							var $connectinfo=$('.data-connectinfo').val();
 							var $type=$('.data-type').val();
 							if(!$name){
-								layer.msg('请输入数据源id');
+								layer.msg('请输入数据源名称', {
+									icon: 5,
+									anim: 6
+								});
 								return;
 							}
 							if(!$username){
-								layer.msg('请输入用户名');
+								layer.msg('请输入用户名', {
+									icon: 5,
+									anim: 6
+								});
 								return;
 							}
 							if(!$password){
-								layer.msg('请输入密码');
+								layer.msg('请输入密码', {
+									icon: 5,
+									anim: 6
+								});
 								return;
 							}
 							if(!$connectinfo){
-								layer.msg('请输入连接信息');
+								layer.msg('请输入连接信息', {
+									icon: 5,
+									anim: 6
+								});
 								return;
 							}
 							if(!$type){
-								layer.msg('请选择数据库类型');
+								layer.msg('请选择数据库类型', {
+									icon: 5,
+									anim: 6
+								});
 								return;
 							}
 							layer.close(index);
@@ -237,23 +252,38 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						var $connectinfo=$('.data-connectinfo').val();
 						var $type=$('.data-type').val();
 						if(!$name){
-							layer.msg('请输入数据源名称');
+							layer.msg('请输入数据源名称', {
+								icon: 5,
+								anim: 6
+							});
 							return;
 						}
 						if(!$username){
-							layer.msg('请输入用户名');
+							layer.msg('请输入用户名', {
+								icon: 5,
+								anim: 6
+							});
 							return;
 						}
 						if(!$password){
-							layer.msg('请输入密码');
+							layer.msg('请输入密码', {
+								icon: 5,
+								anim: 6
+							});
 							return;
 						}
 						if(!$connectinfo){
-							layer.msg('请输入连接信息');
+							layer.msg('请输入连接信息', {
+								icon: 5,
+								anim: 6
+							});
 							return;
 						}
 						if(!$type){
-							layer.msg('请选择数据库类型');
+							layer.msg('请选择数据库类型', {
+								icon: 5,
+								anim: 6
+							});
 							return;
 						}
 						layer.close(index);

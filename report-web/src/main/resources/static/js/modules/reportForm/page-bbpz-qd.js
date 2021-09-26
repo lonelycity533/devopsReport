@@ -8,21 +8,14 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				[{
 					type: 'checkbox',
 				}, {
-					field: 'databaseId',
+					field: 'reportId',
 					title: 'ID',
-					templet: function(d) {
-						return '<div class="data-id" data-id="' + d.databaseId + '">' + d.databaseId +
-							'</div>'
-					}
 				}, {
-					field: 'databaseName',
-					title: '数据源名称',
+					field: 'reportName',
+					title: '报表',
 				}, {
-					field: 'databaseUrl',
-					title: '数据库地址',
-				}, {
-					field: 'databaseType',
-					title: '数据库类型',
+					field: 'reportDescribe',
+					title: '描述',
 				}, {
 					field: 'createTime',
 					title: '创建时间',
@@ -43,9 +36,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			table.render({
 				elem: '#table',
 				title: '清单报表配置',
-				url: base + '/report/system/qdReport/deleteReportByIds',
+				url: base + '/report/system/qdReport/getQdReport',
 				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 				defaultToolbar: [],
+				toolbar: '#tableToolbar',
 				where: data.field,
 				cols: that.html.cols1,
 				page: {
@@ -59,12 +53,12 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				    limitName: 'size' //每页数据量的参数名，默认：limit
 				},
 				parseData: function(res) { //res 即为原始返回的数据
-					that.data.tableData = res.data.data.records
+					that.data.tableData = res.data.records
 					return {
 						"code": res.code == '20000' ? 0 : 1, //解析接口状态
 						"msg": res.message, //解析提示文本
-						"count": res.data.data.total, //解析数据长度
-						"data": res.data.data.records //解析数据列表
+						"count": res.data.total, //解析数据长度
+						"data": res.data.records //解析数据列表
 					};
 				}
 			});
@@ -78,55 +72,69 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				return false;
 			});
 		},
-		// 删除
-		onClickDel: function() {
+		// 监听工具栏事件
+		onClickTool: function() {
 			var that = this;
-			$('.btn-del').on('click', function() {
-				var $checked = $('.layui-table-view[lay-id="table"]').find(
-					'.layui-table-body .layui-form-checked');
-				var arr = []; //删除列表的数组
-				for (var i = 0, j = $checked.length; i < j; i++) {
-					arr.push($checked.eq(i).closest('tr').find('.data-id').data('id'))
-				}
-				if ($checked.length === 0) {
-					layer.msg('请选择至少一行');
-				} else {
-					layer.confirm('确定要删除选中的清单报表配置吗？', function(index) {
-						layer.close(index);
-						//向服务端发送删除指令
-						var load = layer.load(3);
-						$.ajax({
-							url: base + '/report/system/data/table3.json',
-							data: {},
-							dataType: 'json',
-							type: 'post',
-							success: function() {
-								layer.close(load)
-								// 成功回调
-								var $tr = $(
-										'.layui-table-view[lay-id="table"]')
-									.find('.layui-table-body tr'); //当前行目
-								for (var i = $tr.length - 1; i > -1; i--) {
-									var $checkbox = $tr.eq(i).find(
-										'.layui-form-checkbox');
-									// 如果是选中的则删除
-									if ($checkbox.hasClass(
-											'layui-form-checked')) {
-										$tr.eq(i).remove();
-									}
-								}
-								layer.msg('删除成功！', {
-									icon: 1,
-								});
-							},
-							error: function() {
-								layer.close(load)
-								layer.msg('系统繁忙，请稍后再试～');
-							}
+			table.on('toolbar(table)', function(obj) {
+				var checkStatus = table.checkStatus(obj.config.id),
+					data = checkStatus.data,
+					event = obj.event;
+				// 删除
+				if (event == 'delete') {
+					if (data.length === 0) {
+						layer.msg('请选择至少一行');
+					} else {
+						var ids=[];
+						data.forEach(function(item){
+							ids.push(item.databaseId)
 						})
+						ids=ids.join(',')
+						layer.confirm('真的删除行么', function(index) {
+							layer.close(index);
+							// 向服务端发送删除指令
+							var load=layer.load(3);
+							$.ajax({
+								url: base + '/report/system/qdReport/deleteReportByIds/' + ids,
+								url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp2.json',
+								data: {'ids':ids},
+								dataType:'json',
+								type:'post',
+								success:function(res){
+									layer.close(load)
+									// 成功回调
+									if (res.code == 200){
+										layer.msg(res.message, {
+											icon: 1
+										});
+										table.reload('table');
+										return;
+									}
+									layer.msg(res.message);
+								},
+								error:function(){
+									layer.close(load)
+									layer.msg('系统繁忙，请稍后再试～');
+								}
+							})
+						});
+					}
+				}
+				if (event == 'add') {
+					var layerIndex = '';
+					layerIndex = layer.open({
+						type: 1,
+						title: '清单报表配置',
+						skin: 'layer-form',
+						shadeClose: true,
+						area: ['90%', '486px'],
+						maxHeight: '80%',
+						content: $('.layer-form'),
+						success: function() {
+							$('.layer-form').removeClass('layui-hide');
+						}
 					});
 				}
-			})
+			});
 		},
 		// 编辑
 		onClickEdit: function() {
@@ -259,7 +267,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				}
 				var load = layer.load(3);
 				$.ajax({
-					url: base + '/report/system/data/table3.json',
+					url: base + '/report/system/qdReport/insertQdReport',
+					url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 					data: {},
 					dataType: 'json',
 					type: 'post',
@@ -280,9 +289,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 		},
 		init: function() {
 			var that = this;
-			that.onQueryData({field:{databaseName:''}});
+			that.onQueryData({field:{reportName:''}});
+			that.onClickTool();
 			that.onClickSubmit();
-			that.onClickDel();
 			that.onClickEdit();
 		}
 	}
