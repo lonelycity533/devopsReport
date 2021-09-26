@@ -10,10 +10,6 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				}, {
 					field: 'databaseId',
 					title: 'ID',
-					templet: function(d) {
-						return '<div class="data-id" data-id="' + d.databaseId + '">' + d.databaseId +
-							'</div>'
-					}
 				}, {
 					field: 'databaseName',
 					title: '数据源名称',
@@ -126,17 +122,166 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						});
 					}
 				}
+				if (event == 'add') {
+					var layerIndex = '';
+					layerIndex = layer.open({
+						type: 1,
+						title: '新增',
+						skin: 'layer-form',
+						shadeClose: true,
+						area: ['520px', '377px'],
+						content: $('.layer-form'),
+						btn: ['确认生成', '返回'],
+						success: function() {
+							$('.layer-form').removeClass('layui-hide');
+							form.render('select','layerForm');
+						},
+						yes: function(index) {
+							var $name=$('.data-name').val();
+							var $username=$('.data-username').val();
+							var $password=$('.data-password').val();
+							var $connectinfo=$('.data-connectinfo').val();
+							var $type=$('.data-type').val();
+							if(!$name){
+								layer.msg('请输入数据源id');
+								return;
+							}
+							if(!$username){
+								layer.msg('请输入用户名');
+								return;
+							}
+							if(!$password){
+								layer.msg('请输入密码');
+								return;
+							}
+							if(!$connectinfo){
+								layer.msg('请输入连接信息');
+								return;
+							}
+							if(!$type){
+								layer.msg('请选择数据库类型');
+								return;
+							}
+							layer.close(index);
+							var obj={};
+							obj.databaseName=$name;
+							obj.databaseUsername=$username;
+							obj.databasePassword=$password;
+							obj.databaseUrl=$connectinfo;
+							obj.databaseType=$type;
+							var load = layer.load(3);
+							$.ajax({
+								url: base + '/report/system/database/insertDatabase',
+								// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp3.json',
+								data: JSON.stringify(obj),
+								contentType: 'application/json;charset=utf-8',
+								dataType: 'json',
+								type: 'post',
+								success: function(res) {
+									layer.close(load)
+									// 成功回调
+									if(res.code==200){
+										layer.msg(res.message, {
+											icon: 1
+										});
+										table.reload('table');
+									}
+								},
+								error: function() {
+									layer.close(load)
+									layer.msg('系统繁忙，请稍后再试～');
+								}
+							})
+						},
+					});
+				}
 			});
 		
 		},
 		// 编辑
 		onClickEdit: function() {
 			var that = this;
+			var layerIndex = '';
+			// 编辑
 			$(document).on('click', '.btn-edit', function() {
 				var $this=$(this);
-				var $index=jQuery('.layui-table-wrap .btn-edit').index($this);
-				window.sessionStorage.setItem('BbpzSjkInfo',JSON.stringify(that.data.tableData[$index]));
-				window.location.href = base + '/report-web/src/main/resources/templates/reportForm/page-bbpz-sjkEdit.html';
+				var $index=$('.layui-table-wrap .btn-edit').index($this);
+				var $data=that.data.tableData[$index];
+				layerIndex = layer.open({
+					type: 1,
+					title: '编辑',
+					skin: 'layer-form',
+					shadeClose: true,
+					area: ['520px', '377px'],
+					content: $('.layer-form'),
+					btn: ['确认生成', '返回'],
+					success: function() {
+						$('.layer-form').removeClass('layui-hide');
+						$('.data-name').val($data.databaseName);
+						$('.data-username').val($data.databaseUsername);
+						$('.data-password').val($data.databasePassword);
+						$('.data-connectinfo').val($data.databaseUrl);
+						$('.data-type').val($data.databaseType);
+						form.render('select','layerForm');
+					},
+					yes: function(index) {
+						var $name=$('.data-name').val();
+						var $username=$('.data-username').val();
+						var $password=$('.data-password').val();
+						var $connectinfo=$('.data-connectinfo').val();
+						var $type=$('.data-type').val();
+						if(!$name){
+							layer.msg('请输入数据源名称');
+							return;
+						}
+						if(!$username){
+							layer.msg('请输入用户名');
+							return;
+						}
+						if(!$password){
+							layer.msg('请输入密码');
+							return;
+						}
+						if(!$connectinfo){
+							layer.msg('请输入连接信息');
+							return;
+						}
+						if(!$type){
+							layer.msg('请选择数据库类型');
+							return;
+						}
+						layer.close(index);
+						var obj={};
+						obj.databaseName=$name;
+						obj.databaseUsername=$username;
+						obj.databasePassword=$password;
+						obj.databaseUrl=$connectinfo;
+						obj.databaseType=$type;
+						var load = layer.load(3);
+						$.ajax({
+							url: base + '/report/system/database/updateDatabase',
+							// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp3.json',
+							data: JSON.stringify(obj),
+							contentType: 'application/json;charset=utf-8',
+							dataType: 'json',
+							type: 'post',
+							success: function(res) {
+								layer.close(load)
+								// 成功回调
+								if(res.code==200){
+									layer.msg(res.message, {
+										icon: 1
+									});
+									table.reload('table');
+								}
+							},
+							error: function() {
+								layer.close(load)
+								layer.msg('系统繁忙，请稍后再试～');
+							}
+						})
+					},
+				});
 			})
 		},
 		init: function() {

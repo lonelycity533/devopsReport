@@ -5,7 +5,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
 		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
-		<link rel="stylesheet" href="css/modules/page-bbpz.css" th:href="@{/css/modules/page-bbpz.css}">
 	</head>
 	<body>
 		<div class="content page-bbpz">
@@ -22,11 +21,13 @@
 						<div class="layui-col-md2">
 							<div class="layui-form-item label-width-70">
 								<label class="layui-form-label">数据库名称</label>
-								<input type="text" name="databaseName" autocomplete="off" class="layui-input" placeholder="">
+								<input type="text" name="databaseName" autocomplete="off" class="layui-input"
+									placeholder="">
 							</div>
 						</div>
 						<div class="layui-col-md2 pl-20">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i class="iconfont icon-sousuo"></i>查询</button>
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
+									class="iconfont icon-sousuo"></i>查询</button>
 						</div>
 					</div>
 				</div>
@@ -34,17 +35,61 @@
 			<div class="layui-table-wrap">
 				<script type="text/html" id="tableToolbar">
 					<div class="layui-btn-container">
-				    <button class="layui-btn layui-btn-danger" plain lay-event="delete">删除</button>
-				  </div>
+						<button class="layui-btn" lay-event="add">新增</button>
+						<button class="layui-btn layui-btn-danger" plain lay-event="delete">删除</button>
+					</div>
 				</script>
 				<table id="table" lay-filter="table"></table>
+			</div>
+			<div class="layer-form layui-hide">
+				<div class="layui-form-wrap">
+					<form class="layui-form" lay-filter="layerForm">
+						<div class="layui-row">
+							<div class="layui-col-md12">
+								<div class="layui-form-item">
+									<label class="layui-form-label">数据源名称</label>
+									<input type="text" placeholder="" autocomplete="off" class="layui-input data-name">
+								</div>
+							</div>
+							<div class="layui-col-md12">
+								<div class="layui-form-item">
+									<label class="layui-form-label">用户名</label>
+									<input type="text" placeholder="" autocomplete="off" class="layui-input data-username">
+								</div>
+							</div>
+							<div class="layui-col-md12">
+								<div class="layui-form-item">
+									<label class="layui-form-label">密码</label>
+									<input type="text" placeholder="" autocomplete="off" class="layui-input data-password">
+								</div>
+							</div>
+							<div class="layui-col-md12">
+								<div class="layui-form-item">
+									<label class="layui-form-label">连接信息</label>
+									<input type="text" placeholder="" autocomplete="off" class="layui-input data-connectinfo">
+								</div>
+							</div>
+							<div class="layui-col-md12">
+								<div class="layui-form-item mb-0">
+									<label class="layui-form-label">数据库类型</label>
+									<select name="type" class="data-type">
+										<option value="oracle">oracle</option>
+										<option value="mysql">mysql</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
 		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
-		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}">
+		</script>
 		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
 		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
-		<script src="js/modules/reportForm/page-bbpz-sjk.js" th:src="@{/js/modules/reportForm/page-bbpz-sjk.js}"></script>
+		<script src="js/modules/reportForm/page-bbpz-sjk.js"
+			th:src="@{/js/modules/reportForm/page-bbpz-sjk.js}"></script>
 	</body>
 </html>
