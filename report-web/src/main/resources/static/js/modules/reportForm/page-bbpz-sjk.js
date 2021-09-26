@@ -131,7 +131,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						shadeClose: true,
 						area: ['520px', '377px'],
 						content: $('.layer-form'),
-						btn: ['确认生成', '返回'],
+						btn: ['连接测试','确认生成', '返回'],
 						success: function() {
 							$('.layer-form').removeClass('layui-hide');
 							$('.data-name').val('');
