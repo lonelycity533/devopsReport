@@ -137,6 +137,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							// 清空数据
 							$('.data-pzmc').val('');
 							$('.data-pzms').val('');
+							$('.data-pzms').val('');
 							$('.data-kxpz-fieldname').val('');
 							if($('.part-el').length>1){
 								$('.part-el').eq(0).find('.data-xpz-fieldname').val('主SQL');

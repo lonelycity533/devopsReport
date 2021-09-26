@@ -379,8 +379,9 @@ select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i{ po
 .layui-layer .layer-table .layui-table-body.moreShow{overflow: visible;}
 
 .layui-layer .layui-layer-btn{padding: 10px 15px 15px;}
-.layui-layer .layui-layer-btn a{border-radius: 8px;height: 30px;line-height: 28px;min-width: 85px;text-align: center;margin: 0 0 0 40px}
+.layui-layer .layui-layer-btn a{border-radius: 8px;height: 30px;line-height: 28px;min-width: 85px;text-align: center;margin: 0 0 0 40px;border-color: #1E9FFF;background-color: #1E9FFF;color: #fff;}
 .layui-layer .layui-layer-btn a:first-child{margin-left: 0;}
+.layui-layer .layui-layer-btn a:last-child{ border-color:#dedede;background-color: #fff;color: #333;}
 .layui-layer .layui-layer-btn.layui-layer-btn-c{padding-bottom: 30px;}
 .layui-layer .layui-layer-btn.layui-layer-btn-c .layui-layer-btn0{min-width: 134px;}
 

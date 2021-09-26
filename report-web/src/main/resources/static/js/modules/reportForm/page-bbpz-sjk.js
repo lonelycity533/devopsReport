@@ -138,10 +138,53 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							$('.data-username').val('');
 							$('.data-password').val('');
 							$('.data-connectinfo').val('');
-							$('.data-type').val('');
+							$('.data-type').val('oracle');
 							form.render('select','layerForm');
 						},
-						yes: function(index) {
+						btn1:function(index){
+							var $name=$('.data-name').val();
+							var $type=$('.data-type').val();
+							if(!$name){
+								layer.msg('请输入数据源名称', {
+									icon: 5,
+									anim: 6
+								});
+								return false;
+							}
+							if(!$type){
+								layer.msg('请选择数据库类型', {
+									icon: 5,
+									anim: 6
+								});
+								return false;
+							}
+							var load = layer.load(3);
+							$.ajax({
+								url: base + '/report/system/database/testDatabase',
+								data: {
+									dataBaseName:'',
+									dataBaseType:'',
+								},
+								dataType: 'json',
+								type: 'post',
+								success: function(res) {
+									layer.close(load)
+									// 成功回调
+									if(res.code==200){
+										layer.msg(res.message, {
+											icon: 1
+										});
+										return;
+									}
+									layer.msg(res.message);
+								},
+								error: function() {
+									layer.close(load)
+									layer.msg('系统繁忙，请稍后再试～');
+								}
+							})
+						},
+						btn2: function(index) {
 							var $name=$('.data-name').val();
 							var $username=$('.data-username').val();
 							var $password=$('.data-password').val();
@@ -152,35 +195,35 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									icon: 5,
 									anim: 6
 								});
-								return;
+								return false;
 							}
 							if(!$username){
 								layer.msg('请输入用户名', {
 									icon: 5,
 									anim: 6
 								});
-								return;
+								return false;
 							}
 							if(!$password){
 								layer.msg('请输入密码', {
 									icon: 5,
 									anim: 6
 								});
-								return;
+								return false;
 							}
 							if(!$connectinfo){
 								layer.msg('请输入连接信息', {
 									icon: 5,
 									anim: 6
 								});
-								return;
+								return false;
 							}
 							if(!$type){
 								layer.msg('请选择数据库类型', {
 									icon: 5,
 									anim: 6
 								});
-								return;
+								return false;
 							}
 							layer.close(index);
 							var obj={};
@@ -236,7 +279,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					shadeClose: true,
 					area: ['520px', '377px'],
 					content: $('.layer-form'),
-					btn: ['确认生成', '返回'],
+					btn: ['连接测试','确认生成', '返回'],
 					success: function() {
 						$('.layer-form').removeClass('layui-hide');
 						$('.data-name').val($data.databaseName);
@@ -247,7 +290,50 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						form.render('select','layerForm');
 						
 					},
-					yes: function(index) {
+					btn1:function(index){
+						var $name=$('.data-name').val();
+						var $type=$('.data-type').val();
+						if(!$name){
+							layer.msg('请输入数据源名称', {
+								icon: 5,
+								anim: 6
+							});
+							return false;
+						}
+						if(!$type){
+							layer.msg('请选择数据库类型', {
+								icon: 5,
+								anim: 6
+							});
+							return false;
+						}
+						var load = layer.load(3);
+						$.ajax({
+							url: base + '/report/system/database/testDatabase',
+							data: {
+								dataBaseName:'',
+								dataBaseType:'',
+							},
+							dataType: 'json',
+							type: 'post',
+							success: function(res) {
+								layer.close(load)
+								// 成功回调
+								if(res.code==200){
+									layer.msg(res.message, {
+										icon: 1
+									});
+									return;
+								}
+								layer.msg(res.message);
+							},
+							error: function() {
+								layer.close(load)
+								layer.msg('系统繁忙，请稍后再试～');
+							}
+						})
+					},
+					btn2: function(index) {
 						var $name=$('.data-name').val();
 						var $username=$('.data-username').val();
 						var $password=$('.data-password').val();
@@ -258,35 +344,35 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								icon: 5,
 								anim: 6
 							});
-							return;
+							return false;
 						}
 						if(!$username){
 							layer.msg('请输入用户名', {
 								icon: 5,
 								anim: 6
 							});
-							return;
+							return false;
 						}
 						if(!$password){
 							layer.msg('请输入密码', {
 								icon: 5,
 								anim: 6
 							});
-							return;
+							return false;
 						}
 						if(!$connectinfo){
 							layer.msg('请输入连接信息', {
 								icon: 5,
 								anim: 6
 							});
-							return;
+							return false;
 						}
 						if(!$type){
 							layer.msg('请选择数据库类型', {
 								icon: 5,
 								anim: 6
 							});
-							return;
+							return false;
 						}
 						layer.close(index);
 						var obj={};
