@@ -183,7 +183,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									$('.layer-form').removeClass('layui-hide');
 									// 赋值
 									$('.data-pzmc').val(res.data.databaseName);
-									$('.data-pzms').val();
+									$('.data-pzms').val(res.data.reportDescribe);
+									$('.data-bbmc').val(res.data.reportName);
 									$('.part-2').html('');
 									var con='';
 									for(var i=0,j=res.data.fieldList.length;i<j;i++){
@@ -279,6 +280,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				var $this=$(this);
 				var $pzmc=$('.data-pzmc').val();
 				var $pzms=$('.data-pzms').val();
+				var $bbmc=$('.data-bbmc').val();
 				var $kxpzFieldname=$('.data-kxpz-fieldname').val();
 				// 下面部分看情况删减，是否需要强制输入
 				if(!$pzmc){
@@ -338,6 +340,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				obj.reportDescribe=$pzms;
 				obj.businessField=businessFieldArr;
 				obj.fieldList=fieldList;
+				obj.reportName=$bbmc;
 				if(that.data.layerType=='add'){
 					var load = layer.load(3);
 					$.ajax({
