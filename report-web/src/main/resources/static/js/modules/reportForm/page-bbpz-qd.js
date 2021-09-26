@@ -138,7 +138,15 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							$('.data-pzmc').val('');
 							$('.data-pzms').val('');
 							$('.data-kxpz-fieldname').val('');
-							$('.part-2').html('');
+							if($('.part-el').length>1){
+								$('.part-el').eq(0).find('.data-xpz-fieldname').val('主SQL');
+								$('.part-el').eq(0).find('.data-xpz-fieldvalue').val('');
+								$('.part-el').eq(0).find('.layui-form-item-title').text('新增属性1');
+								for(var i=0,j=$('.part-el').length;i<j;i++){
+									$('.part-el').eq(i+1).remove();
+								}
+							}
+							form.render('select','layer_form');
 						}
 					});
 				}
@@ -176,6 +184,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									// 赋值
 									$('.data-pzmc').val(res.data.databaseName);
 									$('.data-pzms').val();
+									$('.part-2').html('');
 									var con='';
 									for(var i=0,j=res.data.fieldList.length;i<j;i++){
 										con += '<div class="part-el">';
