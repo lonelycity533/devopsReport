@@ -183,8 +183,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									$('.layer-form').removeClass('layui-hide');
 									// 赋值
 									$('.data-pzmc').val(res.data.databaseName);
-									$('.data-pzms').val(res.data.reportDescribe);
-									$('.data-bbmc').val(res.data.reportName);
+									$('.data-pzms').val(res.data.queryInfo.reportDescribe);
+									$('.data-bbmc').val(res.data.queryInfo.reportName);
 									$('.part-2').html('');
 									var con='';
 									for(var i=0,j=res.data.fieldList.length;i<j;i++){
