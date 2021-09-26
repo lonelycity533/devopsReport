@@ -40,7 +40,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				elem: '#table',
 				title: '统计报表配置',
 				url: base + '/report/system/database/getDatabaseList',
-				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp1.json',
+				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp1.json',
 				defaultToolbar: [],
 				toolbar: '#tableToolbar',
 				where: data.field,
