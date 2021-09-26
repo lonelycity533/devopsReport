@@ -15,8 +15,8 @@ public interface ReportMapper{
     /**
      * 编辑页面查询遍历出详情表的详细信息
      * */
-    @Select("SELECT  REPORT_id,REPORT_DETAIL_ID,report_name,database_id  " +
-            "FROM REPORT_QD_DETAIL  WHERE report_name = #{reportName}")
+    @Select("SELECT  m.REPORT_DESCRIBE,d.REPORT_id,d.REPORT_DETAIL_ID,d.report_name,d.database_id  " +
+            "FROM REPORT_QD_DETAIL d,REPORT_QD_MAIN m  WHERE d.report_id = m.report_id and d.report_name = #{reportName}")
     ReportDetail getQdDetailByName(@Param("reportName") String reportName);
 
     @Select("select d.REPORT_NAME,da.DATABASE_NAME \n" +

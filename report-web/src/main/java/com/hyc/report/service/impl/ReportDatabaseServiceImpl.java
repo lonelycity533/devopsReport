@@ -9,6 +9,7 @@ import com.hyc.report.mapper.ReportDatabaseMapper;
 import com.hyc.report.response.ResultCode;
 import com.hyc.report.service.ReportDatabaseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hyc.report.util.DesensitizedUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,9 +36,14 @@ public class ReportDatabaseServiceImpl extends ServiceImpl<ReportDatabaseMapper,
     public Page<ReportDatabase> getDataBaseByName(int current, int size, String databaseName) {
         try{
             Page<ReportDatabase> page = PageHelper.startPage(current, size);
-            reportDatabaseMapper.getDataBaseByName(databaseName);
+            List<ReportDatabase> dataBaseByName = reportDatabaseMapper.getDataBaseByName(databaseName);
+            for (int i = 0; i < dataBaseByName.size(); i++) {
+                dataBaseByName.get(i).setDatabaseUrl(DesensitizedUtil.urlReplace1(dataBaseByName.get(i).getDatabaseUrl()));
+                dataBaseByName.get(i).setDatabasePassword(DesensitizedUtil.passwordReplace1(dataBaseByName.get(i).getDatabasePassword()));
+            }
             return page;
         }catch (Exception e){
+            log.error(e.getMessage());
             log.error(ResultCode.REPORT_DATABASE_ERROR.getMessage());
             throw new ReportException(ResultCode.REPORT_DATABASE_ERROR.getCode(),ResultCode.REPORT_DATABASE_ERROR.getMessage());
         }
