@@ -14,14 +14,14 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					field: 'databaseName',
 					title: '数据源名称',
 				}, {
-					field: 'databaseUrl',
-					title: '数据库地址',
-				}, {
 					field: 'databaseType',
 					title: '数据库类型',
 				}, {
 					field: 'createTime',
 					title: '创建时间',
+				}, {
+					field: 'updateTime',
+					title: '更新时间',
 				}, {
 					field: '',
 					title: '操作',
