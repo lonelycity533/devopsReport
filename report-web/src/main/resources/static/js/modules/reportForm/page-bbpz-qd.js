@@ -27,7 +27,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			],
 		},
 		data:{
-			tableData:[]
+			tableData:[],
+			layerIndex:'',
+			layerType:''
 		},
 		// 查询信息
 		onQueryData: function(data) {
@@ -37,7 +39,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				elem: '#table',
 				title: '清单报表配置',
 				url: base + '/report/system/qdReport/getQdReport',
-				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
+				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 				defaultToolbar: [],
 				toolbar: '#tableToolbar',
 				where: data.field,
@@ -95,7 +97,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							var load=layer.load(3);
 							$.ajax({
 								url: base + '/report/system/qdReport/deleteReportByIds/' + ids,
-								url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp2.json',
+								// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp2.json',
 								data: {'ids':ids},
 								dataType:'json',
 								type:'post',
@@ -119,9 +121,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						});
 					}
 				}
+				// 新增
 				if (event == 'add') {
-					var layerIndex = '';
-					layerIndex = layer.open({
+					that.data.layerType='add';
+					that.data.layerIndex = layer.open({
 						type: 1,
 						title: '清单报表配置',
 						skin: 'layer-form',
@@ -131,6 +134,11 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						content: $('.layer-form'),
 						success: function() {
 							$('.layer-form').removeClass('layui-hide');
+							// 清空数据
+							$('.data-pzmc').val('');
+							$('.data-pzms').val('');
+							$('.data-kxpz-fieldname').val('');
+							$('.part-2').html('');
 						}
 					});
 				}
@@ -139,33 +147,101 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 		// 编辑
 		onClickEdit: function() {
 			var that = this;
-			var layerIndex='';
 			$(document).on('click', '.btn-edit', function() {
-				layerIndex=layer.open({
-					type: 1,
-					title: '清单报表配置',
-					skin: 'layer-form',
-					shadeClose: true,
-					area: ['90%', '486px'],
-					maxHeight: '80%',
-					content: $('.layer-form'),
-					success: function() {
-						$('.layer-form').removeClass('layui-hide');
+				that.data.layerType='edit';
+				var $this=$(this);
+				var $index=$('.layui-table-wrap .btn-edit').index($this);
+				var $data=that.data.tableData[$index];
+				var load = layer.load(3);
+				$.ajax({
+					url: base + '/report/system/qdReport/getQdDetailByName',
+					// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp5.json',
+					data: {reportName:$data.reportName},
+					dataType: 'json',
+					type: 'get',
+					success: function(res) {
+						layer.close(load);
+						// 成功回调
+						if(res.code==20000){
+							that.data.layerIndex=layer.open({
+								type: 1,
+								title: '清单报表配置',
+								skin: 'layer-form',
+								shadeClose: true,
+								area: ['90%', '486px'],
+								maxHeight: '80%',
+								content: $('.layer-form'),
+								success: function() {
+									$('.layer-form').removeClass('layui-hide');
+									// 赋值
+									$('.data-pzmc').val(res.data.databaseName);
+									$('.data-pzms').val();
+									var con='';
+									for(var i=0,j=res.data.fieldList.length;i<j;i++){
+										con += '<div class="part-el">';
+										con += '<div class="layui-col-md10">';
+										con += '<div class="layui-col-md12 layui-form-item-title">已配置属性'+(i+1)+'</div>';
+										con += '<div class="layui-col-md4">';
+										con += '<div class="layui-form-item">';
+										con += '<label class="layui-form-label">field_name</label>';
+										con += '<select class="data-xpz-fieldname">';
+										if(res.data.fieldList[i].sqlType=='主SQL'){
+											con += '<option value="主SQL" selected>主SQL</option>';
+										}else{
+											con += '<option value="主SQL">主SQL</option>';
+										}
+										if(res.data.fieldList[i].sqlType=='从SQL'){
+											con += '<option value="从SQL" selected>从SQL</option>';
+										}else{
+											con += '<option value="从SQL">从SQL</option>';
+										}
+										con += '</select>';
+										con += '</div>';
+										con += '</div>';
+										con += '<div class="layui-col-md4">';
+										con += '<div class="layui-form-item">';
+										con += '<label class="layui-form-label">field_value</label>';
+										con += '<input type="text" placeholder="" autocomplete="off" class="layui-input data-xpz-fieldvalue" value="'+res.data.fieldList[i].sqlContent+'">';
+										con += '</div>';
+										con += '</div>';
+										con += '<div class="layui-col-md2">';
+										con += '<i class="iconfont icon-lajitong btn-layer-del"></i>';
+										con += '</div>';
+										con += '</div>';
+										con += '</div>';
+									}
+									$('.part-2').append(con);
+									form.render('select','layer_form');
+									var businessList='';
+									for(var i=0,j=res.data.businessList.length;i<j;i++){
+										businessList+=res.data.businessList[i].businessField+',';
+									}
+									businessList=businessList.substring(0,businessList.length-1);
+									$('.data-kxpz-fieldname').val(businessList);
+								}
+							});
+							return;
+						}
+						layer.msg(res.message);
+					},
+					error: function() {
+						layer.close(load)
+						layer.msg('系统繁忙，请稍后再试～');
 					}
-				});
+				})
+				
 			})
 			$(document).on('click', '.btn-layer-add', function() {
-				var filter='filter'+$('.part-el').length;
+				var length=$('.part-el').length;
 				var con = '<div class="part-el">';
 				con += '<div class="layui-col-md10">';
-				con += '<div class="layui-col-md12 layui-form-item-title">已配置属性1（取消）</div>';
+				con += '<div class="layui-col-md12 layui-form-item-title">新增属性'+(length+1)+'</div>';
 				con += '<div class="layui-col-md4">';
 				con += '<div class="layui-form-item">';
 				con += '<label class="layui-form-label">field_name</label>';
 				con += '<select class="data-xpz-fieldname">';
-				con += '<option>请选择</option>';
-				con += '<option>请选择1</option>';
-				con += '<option>请选择2</option>';
+				con += '<option>主SQL</option>';
+				con += '<option>从SQL</option>';
 				con += '</select>';
 				con += '</div>';
 				con += '</div>';
@@ -175,18 +251,12 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				con += '<input type="text" placeholder="" autocomplete="off" class="layui-input data-xpz-fieldvalue">';
 				con += '</div>';
 				con += '</div>';
-				con += '<div class="layui-col-md4">';
-				con += '<div class="layui-form-item">';
-				con += '<label class="layui-form-label">配置名称</label>';
-				con += '<input type="text" placeholder="请输入配置名称" autocomplete="off" class="layui-input data-xpz-pzmc">';
-				con += '</div>';
-				con += '</div>';
-				con += '</div>';
 				con += '<div class="layui-col-md2">';
 				con += '<i class="iconfont icon-lajitong btn-layer-del"></i>';
 				con += '</div>';
 				con += '</div>';
-				$('.part-3').append(con);
+				con += '</div>';
+				$('.part-2').append(con);
 				form.render('select','layer_form');
 			})
 			// 删除配置
@@ -199,9 +269,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			$(document).on('click', '.btn-layer-confirm', function() {
 				var $this=$(this);
 				var $pzmc=$('.data-pzmc').val();
-				var $ypzFieldname=$('.data-ypz-fieldname').val();
-				var $ypzFieldvalue=$('.data-ypz-fieldvalue').val();
-				var $ypzPzmc=$('.data-ypz-pzmc').val();
+				var $pzms=$('.data-pzms').val();
 				var $kxpzFieldname=$('.data-kxpz-fieldname').val();
 				// 下面部分看情况删减，是否需要强制输入
 				if(!$pzmc){
@@ -211,22 +279,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					});
 					return;
 				}
-				if(!$ypzFieldname){
-					layer.msg('请选择field_name', {
-						icon: 5,
-						anim: 6
-					});
-					return;
-				}
-				if(!$ypzFieldvalue){
-					layer.msg('请输入field_value', {
-						icon: 5,
-						anim: 6
-					});
-					return;
-				}
-				if(!$ypzPzmc){
-					layer.msg('请输入配置名称', {
+				if(!$pzms){
+					layer.msg('请输入配置描述', {
 						icon: 5,
 						anim: 6
 					});
@@ -235,23 +289,16 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				for(var i=0,j=$('.part-el').length;i<j;i++){
 					var $xpzFieldname=$('.part-el').eq(i).find('.data-xpz-fieldname').val();
 					var $xpzFieldvalue=$('.part-el').eq(i).find('.data-xpz-fieldvalue').val();
-					var $xpzPzmc=$('.part-el').eq(i).find('.data-xpz-pzmc').val();
+					var $title=$('.part-el').eq(i).closest('.part-el').find('.layui-form-item-title').text();
 					if(!$xpzFieldname){
-						layer.msg('请选择field_name', {
+						layer.msg('请选择'+$title+'的field_name', {
 							icon: 5,
 							anim: 6
 						});
 						return;
 					}
 					if(!$xpzFieldvalue){
-						layer.msg('请输入field_value', {
-							icon: 5,
-							anim: 6
-						});
-						return;
-					}
-					if(!$xpzPzmc){
-						layer.msg('请输入配置名称', {
+						layer.msg('请输入'+$title+'的field_value', {
 							icon: 5,
 							anim: 6
 						});
@@ -259,32 +306,88 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					}
 				}
 				if(!$kxpzFieldname){
-					layer.msg('请输入field_name', {
+					layer.msg('请输入业务可选字段配置', {
 						icon: 5,
 						anim: 6
 					});
 					return;
 				}
-				var load = layer.load(3);
-				$.ajax({
-					url: base + '/report/system/qdReport/insertQdReport',
-					url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
-					data: {},
-					dataType: 'json',
-					type: 'post',
-					success: function() {
-						layer.close(load);
-						layer.close(layerIndex);
-						// 成功回调
-						layer.msg('保存成功！', {
-							icon: 1,
-						});
-					},
-					error: function() {
-						layer.close(load)
-						layer.msg('系统繁忙，请稍后再试～');
-					}
+				var obj={};
+				var businessField=$kxpzFieldname.split(/，|,/);
+				var businessFieldArr=[];
+				var fieldList=[];
+				businessField.forEach(function(item){
+					businessFieldArr.push({businessField:item})
 				})
+				for(var i=0,j=$('.part-el').length;i<j;i++){
+					var $xpzFieldname=$('.part-el').eq(i).find('.data-xpz-fieldname').val();
+					var $xpzFieldvalue=$('.part-el').eq(i).find('.data-xpz-fieldvalue').val();
+					var $xpzPzmc=$('.part-el').eq(i).find('.data-xpz-pzmc').val();
+					fieldList.push({sqlContent:$xpzFieldname,sqlType:$xpzFieldvalue})
+				}
+				obj.reportName=$pzmc;
+				obj.reportDescribe=$pzms;
+				obj.businessField=businessFieldArr;
+				obj.fieldList=fieldList;
+				if(that.data.layerType=='add'){
+					var load = layer.load(3);
+					$.ajax({
+						url: base + '/report/system/qdReport/insertQdReport',
+						// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
+						data: JSON.stringify(obj),
+						contentType: 'application/json;charset=utf-8',
+						dataType: 'json',
+						type: 'post',
+						success: function(res) {
+							layer.close(load);
+							// 成功回调
+							if(res.code==200){
+								layer.close(that.data.layerIndex);
+								layer.msg(res.message, {
+									icon: 1
+								});
+								table.reload('table');
+								return;
+							}
+							layer.msg(res.message);
+							
+						},
+						error: function() {
+							layer.close(load)
+							layer.msg('系统繁忙，请稍后再试～');
+						}
+					})
+				}
+				if(that.data.layerType=='edit'){
+					var load = layer.load(3);
+					$.ajax({
+						url: base + '/report/system/qdReport/updateReportDataConfig',
+						// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
+						data: JSON.stringify(obj),
+						contentType: 'application/json;charset=utf-8',
+						dataType: 'json',
+						type: 'post',
+						success: function(res) {
+							layer.close(load);
+							// 成功回调
+							if(res.code==200){
+								layer.close(that.data.layerIndex);
+								layer.msg(res.message, {
+									icon: 1
+								});
+								table.reload('table');
+								return;
+							}
+							layer.msg(res.message);
+							
+						},
+						error: function() {
+							layer.close(load)
+							layer.msg('系统繁忙，请稍后再试～');
+						}
+					})
+				}
+				
 			})
 		},
 		init: function() {

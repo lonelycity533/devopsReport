@@ -2,7 +2,6 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot,thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {box-sizing: border-box;}
 html{height: 100%;font-size: 0;}
 body{height: 100%;}
-/* table{display: block;} */
 .tc{text-align: center;}
 .tl{text-align: left;}
 .tr{text-align: right;}
@@ -19,30 +18,14 @@ body{height: 100%;}
 .hide{display: none;}
 .transition{transition: all .1s linear;}
 
-
 .bg-fff{background-color: #fff;}
 .bg-grey{background-color: #f7f7f7;}
-/***** 定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸 *****/
-::-webkit-scrollbar
-{
-    width: 8px;
-    height:8px;
-    background-color: #fff;
-}
 
-/***** 定义滚动条轨道 内阴影+圆角 *****/
-::-webkit-scrollbar-track
-{
-    margin:0 auto;
-    background-color: #fff;
-}
+/***** 定义滚动条 *****/
+::-webkit-scrollbar{ width: 8px; height:8px;background-color: #fff;}
+::-webkit-scrollbar-track{margin:0 auto;background-color: #fff;}
+::-webkit-scrollbar-thumb{border-radius: 100px;background-color: #f0f1f6;}
 
-/***** 定义滑块 内阴影+圆角 *****/
-::-webkit-scrollbar-thumb
-{
-	border-radius: 100px;
-    background-color: #f0f1f6;
-}
 /***** 排名 *****/
 .icon-num-1{background: url(../imgs/common/num-1.png);display: inline-block;width: 22px;height: 26px;background-size: 100% 100%;vertical-align: middle;}
 .icon-num-2{background: url(../imgs/common/num-2.png);display: inline-block;width: 22px;height: 26px;background-size: 100% 100%;vertical-align: middle;}
@@ -104,7 +87,6 @@ body{height: 100%;}
 .layui-side-off .layui-side .layui-nav-item {width: 60px;}
 .layui-side-off .layui-side .layui-nav-item .layui-nav-more{display: none;}
 .layui-side-off .layui-side .layui-nav-item a .iconfont{width: 60px;padding: 0;}
-
 .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover{background: linear-gradient(to right,rgba(85,212,253,1) 0% ,rgba(43,79,237,1) 60%);color: #fff;}
 .layui-nav-itemed>.layui-nav-child{background-color: transparent!important;}
 
@@ -174,6 +156,7 @@ select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i{ po
 /* form */
 .layui-form-wrap{padding: 10px;background-color: #fff;}
 .layui-form-wrap.null{padding: 5px;}
+.layui-form-wrap.pt-0{padding-top: 0;}
 .layui-form-wrap.p-0{padding: 0;}
 .layui-form-wrap.p-0 .layui-form{background-color: #fff;}
 .layui-form-wrap.p-10 .layui-form{padding: 10px;}
@@ -383,12 +366,17 @@ select[multiple]+.layui-form-select .layui-form-checkbox[lay-skin=primary] i{ po
 .layui-layer .layui-layer-title .layui-btn i{font-size: 14px;}
 
 .layui-layer .layui-table-cell{overflow: visible;height: 36px;line-height: 36px;}
-/* .layui-layer .layui-table-cell .layui-input{height: 36px;border-color: #BDC0C7;line-height: 34px;color: #3D4465;} */
 .layui-layer .layui-table-cell .layui-form-select dl>div{max-height: 94px!important;}
 .layui-layer .layui-table-cell .layui-form-select dl{max-height: 130px;}
 .layui-layer .layui-table-cell .layui-form-select .multiSelect+dl{max-height: none;}
 .layui-layer .layui-table-cell .layui-icon-delete{color: #2B4FED;}
 .layui-layer .layui-table-grid-down{display: none;}
+
+.layui-layer .layer-table .layui-table-cell{overflow: hidden;}
+.layui-layer .layer-table .layui-table-grid-down{display: block;}
+.layui-layer .layer-table .layui-table-cell.moreShow{overflow: visible;}
+.layui-layer .layer-table .layui-table-box.moreShow{overflow: visible;}
+.layui-layer .layer-table .layui-table-body.moreShow{overflow: visible;}
 
 .layui-layer .layui-layer-btn{padding: 10px 15px 15px;}
 .layui-layer .layui-layer-btn a{border-radius: 8px;height: 30px;line-height: 28px;min-width: 85px;text-align: center;margin: 0 0 0 40px}

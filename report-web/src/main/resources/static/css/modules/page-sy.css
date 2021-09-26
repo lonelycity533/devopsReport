@@ -1,0 +1,11 @@
+/* .page-sy{height: 100%;} */
+/* .page-sy .layui-row{position: absolute;top: 48px;left: 18px;right: 18px;bottom: 18px;} */
+.page-sy .layui-col-md6{min-height:405px}
+
+.page-sy .layui-table-wrap{background: #fff;min-height:350px;}
+.page-sy .layui-table-wrap .layui-table-header{background: #fff;}
+.page-sy .layui-table-wrap th,.page-sy .layui-table-wrap td{border: 0;border-bottom: 1px solid #EAEDF1;}
+.page-sy .layui-table-wrap th{background-color: #fff;}
+.page-sy .layui-table-wrap td{color: #95A5BA;font-size: 12px;}
+
+.page-sy .echarts{height:350px;background-color: #fff;}

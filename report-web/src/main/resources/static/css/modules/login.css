@@ -1,0 +1,21 @@
+.login{height: 100%;background: linear-gradient(to right top,#0349fa,#0395f5);}
+.login .canvas{position: absolute;width: 120%;height: 100%;bottom: -20%;left: -10%;z-index: 2;}
+.login .login-main{width: 100%;position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);z-index: 1;}
+.login .login-form{padding: 0 .45rem .65rem;border:1px solid rgba(255,255,255,.3);width: 5rem;right: 2.1rem;position: absolute;top: 50%;transform: translateY(-50%);background-color: rgba(255,255,255,.1);z-index: 3;}
+.login .login-form .icon-arrow{width: .26rem;height: .26rem;border: .06rem solid transparent;position: absolute;}
+.login .login-form .icon-arrow-tl{border-top-color: rgba(255,255,255,.3);border-left-color: rgba(255,255,255,.3);left: 0;top: 0;}
+.login .login-form .icon-arrow-tr{border-top-color: rgba(255,255,255,.3);border-right-color: rgba(255,255,255,.3);right: 0;top: 0;}
+.login .login-form .icon-arrow-bl{border-bottom-color: rgba(255,255,255,.3);border-left-color: rgba(255,255,255,.3);left: 0;bottom: 0;}
+.login .login-form .icon-arrow-br{border-bottom-color: rgba(255,255,255,.3);border-right-color: rgba(255,255,255,.3);right: 0;bottom: 0;}
+.login .login-form h3{font-size: .38rem;color: #fff;font-weight: normal;line-height: 1rem;text-align: center;}
+.login .login-form .layui-form-item{margin-bottom: .33rem;padding-left: 0;}
+.login .login-form .layui-input{font-size: .2rem;color: #fff;border:1px solid rgba(255,255,255,.6);background-color: rgba(255,255,255,.2);height: .56rem;padding: .1rem 0 .1rem .6rem;border-radius: .05rem;background-repeat: no-repeat;}
+.login .login-form .layui-input::placeholder{color: #fff;}
+.login .login-form .layui-input.input-user{background-image: url(../../imgs/modules/login/icon-user.png);background-size: .22rem auto;background-position: .19rem .17rem;}
+.login .login-form .layui-input.input-psd{background-image: url(../../imgs/modules/login/icon-psd.png);background-size: .22rem auto;background-position: .19rem .12rem;}
+.login .login-form .layui-input.input-yzm{background-image: url(../../imgs/modules/login/icon-yzm.png);background-size: .22rem auto;background-position: .19rem .13rem;}
+.login .login-form .btn-login{height: .56rem;border-radius: .05rem;width: 100%;color: #fff;background: linear-gradient(to bottom,#00b8ff,#034dfa);border:1px solid #004ee6;font-size: .26rem;cursor: pointer;}
+.login .login-form .btn-send-wrap{padding-left: .2rem;}
+.login .login-form .btn-send{height: .56rem;background-color: #00b7fe;font-size: .2rem;color: #2f54ef;width: 100%;border-radius: .05rem;border:0;cursor: pointer;}
+.login .login-form .btn-send[disabled]{background-color: #cecece;color: #fff;}
+

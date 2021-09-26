@@ -205,7 +205,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 											icon: 1
 										});
 										table.reload('table');
+										return;
 									}
+									layer.msg(res.message);
 								},
 								error: function() {
 									layer.close(load)
@@ -310,7 +312,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 										icon: 1
 									});
 									table.reload('table');
+									return;
 								}
+								layer.msg(res.message);
 							},
 							error: function() {
 								layer.close(load)

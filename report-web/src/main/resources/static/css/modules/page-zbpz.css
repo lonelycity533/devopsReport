@@ -1,0 +1,25 @@
+.page-zbpz{}
+.page-zbpz .layui-table-wrap .layui-table-tool-temp{float: right;}
+.page-zbpz .layui-table-wrap .layui-table-tool-temp .layui-btn:last-child{margin-right: 0;}
+.page-zbpz .layui-table-wrap .layui-table-tool-self .layui-inline[lay-event]{margin-right: 15px;}
+.page-zbpz .layui-table-wrap .layui-table-tool-self .layui-inline[lay-event='LAYTABLE_EXPORT']{background-color: #0083FF; border-color: #0083FF;color: #fff;}
+
+.page-zbpz .layui-table-wrap .layui-table-cell{height: auto;line-height: 20px;}
+.page-zbpz .layui-table-wrap .layui-table-header th{height: 78px;text-align: center;}
+.page-zbpz .layui-table-wrap .layui-table-header .layui-table-cell{height: auto;line-height: 34px;}
+.page-zbpz .layui-table-wrap .layui-table-body .layui-table td{text-align: center;}
+.page-zbpz .layui-table-wrap .layui-table-body .layui-table td[data-content='晚']{background-color: #F4FFFF;}
+.page-zbpz .layui-table-wrap .layui-table-body .layui-table td[data-content='全']{background-color: #eee;}
+.page-zbpz .layui-table-wrap .layui-table-fixed th{background-color: #D7F0E2;border-color: #fff;}
+.page-zbpz .layui-table-wrap .layui-table-fixed td{background-color: #D7F0E2;border-color: #fff;}
+
+.page-zbpz .tabbar-con-pb .layui-form-wrap{padding-top: 30px;}
+.page-zbpz .tabbar-con-pb .layui-form-item{margin-bottom: 20px;}
+.page-zbpz .tabbar-con-pb .layui-check-zqxz .layui-form-checkbox{padding-right: 0;margin:3px 10px 10px 0;}
+.page-zbpz .tabbar-con-pb .layui-check-zqxz .layui-form-checkbox span{width: 30px;height: 30px;border-radius: 6px;padding: 0;text-align: center;background-color: #F0F3F8;border: 1px solid #99A5B8;color: #3D4465;line-height: 28px;}
+.page-zbpz .tabbar-con-pb .layui-check-zqxz .layui-form-checkbox i{display: none;}
+.page-zbpz .tabbar-con-pb .layui-check-zqxz .layui-form-checkbox.layui-form-checked span{background-color: #0083FF;color: #fff;border-color: #0083FF;}
+
+.page-zbpz .tabbar-con-pb .layui-check-sjd{display: inline-block;}
+.page-zbpz .tabbar-con-pb .layui-check-sjd .layui-form-checkbox{}
+.page-zbpz .tabbar-con-pb .layui-check-sjd .layui-form-checkbox span{width: 20px;height: 20px;line-height: 18px;border-radius: 3px;font-size: 12px;}
