@@ -134,6 +134,11 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						btn: ['确认生成', '返回'],
 						success: function() {
 							$('.layer-form').removeClass('layui-hide');
+							$('.data-name').val('');
+							$('.data-username').val('');
+							$('.data-password').val('');
+							$('.data-connectinfo').val('');
+							$('.data-type').val('');
 							form.render('select','layerForm');
 						},
 						yes: function(index) {
@@ -258,6 +263,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						obj.databasePassword=$password;
 						obj.databaseUrl=$connectinfo;
 						obj.databaseType=$type;
+						obj.databaseId=$data.databaseId;
 						var load = layer.load(3);
 						$.ajax({
 							url: base + '/report/system/database/updateDatabase',
