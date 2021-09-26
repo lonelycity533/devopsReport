@@ -22,22 +22,22 @@
 
     </dependencies>
     <build>
-<!--        <finalName>DevopsReport</finalName>-->
+        <finalName>DevopsReport</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!--<configuration>
-　　　　　　　　　　　　&lt;!&ndash;项目启动类&ndash;&gt;
+                <configuration>
+　　　　　　　　　　　　<!--项目启动类-->
 　　　　　　　　　　　　<mainClass>com.hyc.report.DevopsReportApplication</mainClass>
-                </configuration>-->
-                <!--<executions>
+                </configuration>
+                <executions>
                     <execution>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                     </execution>
-                </executions>-->
+                </executions>
             </plugin>
         </plugins>
     </build>

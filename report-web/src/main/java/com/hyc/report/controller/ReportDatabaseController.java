@@ -1,6 +1,5 @@
 package com.hyc.report.controller;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.github.pagehelper.Page;
 import com.hyc.report.entity.ReportDatabase;
@@ -9,12 +8,12 @@ import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.Result;
 import com.hyc.report.response.ResultCode;
 import io.swagger.annotations.*;
-import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.sql.DriverManager;
 import java.util.List;
 
 /**
@@ -46,9 +45,6 @@ public class ReportDatabaseController {
     public Result getDatabaseList(@ApiParam(value = "当前页",required = true)@RequestParam(value = "current",required = true,defaultValue = "1") int current,
                                   @ApiParam(value = "每页数量",required = true)@RequestParam(value = "size",required = true,defaultValue = "5") int size,
                                   @ApiParam(value = "数据源配置名称",required = true)@RequestParam("databaseName") String databaseName) {
-        /*int current = 1;
-        int size = 5;
-        String databaseName = "";*/
         log.info("*****正在执行查询数据库配置接口");
         Page<ReportDatabase> pageInfo = reportDatabaseService.getDataBaseByName(current, size, databaseName);
         log.info("*****执行结束，结果已输出,数据库配置数据为第{}页",current);
@@ -68,12 +64,6 @@ public class ReportDatabaseController {
     @PostMapping("/insertDatabase")
     @Transactional(rollbackFor = Exception.class)
     public Result insertDatabase(@ApiParam(value = "数据源添加对象",required = true) @RequestBody ReportDatabase reportDatabase) {
-        /*ReportDatabase reportDatabase1 = new ReportDatabase();
-        reportDatabase1.setDatabaseName("短厅");
-        reportDatabase1.setDatabasePassword("123");
-        reportDatabase1.setDatabaseType("mysql");
-        reportDatabase1.setDatabaseUsername("sdf");
-        reportDatabase1.setDatabaseUrl("sdfsdf");*/
         log.info("*****正在执行插入数据库配置接口");
         LambdaQueryWrapper<ReportDatabase>  lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,reportDatabase.getDatabaseName());
@@ -96,7 +86,6 @@ public class ReportDatabaseController {
             log.info("*****数据库配置添加失败");
             throw new ReportException(ResultCode.DATABASE_INSERT_ERROR.getCode(),ResultCode.DATABASE_INSERT_ERROR.getMessage());
         }
-
     }
 
     @ApiOperation(value = "数据源配置数据修改",notes = "通过数据源添加对象进行修改", httpMethod = "POST"
@@ -105,14 +94,7 @@ public class ReportDatabaseController {
     @PostMapping("/updateDatabase")
     @Transactional(rollbackFor = Exception.class)
     public Result updateDatabase(@ApiParam(value = "数据源修改对象",required = true)@RequestBody ReportDatabase reportDatabase) {
-        /*ReportDatabase reportDatabase1 = new ReportDatabase();
-        reportDatabase1.setDatabaseId((long) 63);
-        reportDatabase1.setDatabaseName("短厅wangting");
-        reportDatabase1.setDatabasePassword("12345");
-        reportDatabase1.setDatabaseType("mysql");
-        reportDatabase1.setDatabaseUsername("sdf");
-        reportDatabase1.setDatabaseUrl("sdfsdf");*/
-
+        log.info(reportDatabase.toString());
         log.info("*****正在执行更新数据库配置接口");
         int updateCount;
         try{
@@ -120,6 +102,7 @@ public class ReportDatabaseController {
             log.info("*****数据库配置更新成功");
             return Result.ok().data(ResultCode.DATABASE_UPDATE_SUCCESS.getCode(),ResultCode.DATABASE_UPDATE_SUCCESS.getMessage());
         }catch (Exception e) {
+            log.info(e.getMessage());
             log.info("*****数据库配置更新失败");
             throw new ReportException(ResultCode.DATABASE_UPDATE_ERROR.getCode(),ResultCode.DATABASE_UPDATE_ERROR.getMessage());
         }
@@ -132,10 +115,6 @@ public class ReportDatabaseController {
     @PostMapping("/removeDatabase/{ids}")
     @Transactional(rollbackFor = Exception.class)
     public Result removeDatabase(@ApiParam(value = "删除数据源id集合",required = true)@PathVariable List<Integer> ids) {
-       /* List<Integer> ids = new ArrayList<>();
-        ids.add(67);*/
-//        ids.add(20);
-//        ids.add(61);
         log.info("*****正在执行删除数据库配置接口");
         boolean delFlag;
         try{
@@ -154,5 +133,26 @@ public class ReportDatabaseController {
         List<String> datatypeList = reportDatabaseService.getDatabaseTypeList();
 //        return Result.ok().data("数据库")
     }*/
+
+    @ApiOperation(value = "测试数据库连接",notes = "测试数据库连接", httpMethod = "POST"
+            , produces = "application/json"
+            , protocols = "http")
+    @PostMapping("/testDatabase")
+    public Result testDatabase(@ApiParam("传入数据源名称和数据源样式")@RequestBody ReportDatabase reportDatabase) {
+        String driveClass = "";
+        if (reportDatabase.getDatabaseType().equals("oracle")) {
+            driveClass = "oracle.jdbc.OracleDriver";
+        }
+        try { // 排除连接不上的错误
+            Class.forName(driveClass);
+            LambdaQueryWrapper<ReportDatabase>  lambdaQueryWrapper = new LambdaQueryWrapper<>();
+            lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,reportDatabase.getDatabaseName());
+            ReportDatabase one = reportDatabaseService.getOne(lambdaQueryWrapper);
+            DriverManager.getConnection(one.getDatabaseUrl(), one.getDatabaseUsername(), one.getDatabasePassword());// 相当于连接数据库
+        } catch (Exception e) {
+            throw new ReportException(600,"数据库连接失败");
+        }
+        return Result.ok().data(200,"数据库连接成功");
+    }
 }
 

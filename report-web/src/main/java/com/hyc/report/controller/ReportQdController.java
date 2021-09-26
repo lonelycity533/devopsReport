@@ -309,6 +309,7 @@ public class ReportQdController {
                     .data("businessList",businessList)
                     .data("fieldList",fieldList);
         }catch (Exception e){
+            log.error(e.getMessage());
             log.error("查询报表失败");
             return Result.error().data("message","查询报表失败");
         }

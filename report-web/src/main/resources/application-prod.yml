@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /report/system
-  port: 8081
+  port: 8083
 spring:
   application:
     name: report-web
