@@ -60,8 +60,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					return {
 						"code": res.code == '20000' ? 0 : 1, //解析接口状态
 						"msg": res.message, //解析提示文本
-						"count": res.data.data.total, //解析数据长度
-						"data": res.data.data.records //解析数据列表
+						"count": res.data.total, //解析数据长度
+						"data": res.data.records //解析数据列表
 					};
 				}
 			});

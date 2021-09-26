@@ -1,32 +1,54 @@
 {
-    "code": 20000,
-    "data": {
-        "data": {
-            "total": 41,
-            "records": [
-                {
-                    "createTime": "2021-08-19 14:31:56",
-                    "updateTime": "2021-08-19 14:31:56",
-                    "databaseId": 32,
-                    "databaseName": "短厅",
-                    "databaseUrl": "sdfsdf",
-                    "databaseUsername": "sdf",
-                    "databasePassword": "123",
-                    "databaseType": "mysql"
-                },
-                {
-                    "createTime": "2021-08-19 14:31:57",
-                    "updateTime": "2021-08-19 14:31:57",
-                    "databaseId": 33,
-                    "databaseName": "短厅",
-                    "databaseUrl": "sdfsdf",
-                    "databaseUsername": "sdf",
-                    "databasePassword": "123",
-                    "databaseType": "mysql"
-                }
-            ]
-        }
-    },
-    "message": "成功",
-    "success": true
+	"success": true,
+	"code": 20000,
+	"message": "成功",
+	"data": {
+		"total": 39,
+		"records": [{
+			"createTime": "2021-08-19 14:31:56",
+			"updateTime": "2021-08-19 14:31:56",
+			"databaseId": 32,
+			"databaseName": "短厅",
+			"databaseUrl": "sdfsdf",
+			"databaseUsername": "sdf",
+			"databasePassword": "123",
+			"databaseType": "mysql"
+		}, {
+			"createTime": "2021-08-19 14:31:57",
+			"updateTime": "2021-08-19 14:31:57",
+			"databaseId": 33,
+			"databaseName": "短厅",
+			"databaseUrl": "sdfsdf",
+			"databaseUsername": "sdf",
+			"databasePassword": "123",
+			"databaseType": "mysql"
+		}, {
+			"createTime": "2021-08-19 14:28:47",
+			"updateTime": "2021-08-19 14:28:47",
+			"databaseId": 31,
+			"databaseName": "短厅",
+			"databaseUrl": "sdfsdf",
+			"databaseUsername": "sdf",
+			"databasePassword": "123",
+			"databaseType": "mysql"
+		}, {
+			"createTime": "2021-08-19 14:31:58",
+			"updateTime": "2021-08-19 14:31:58",
+			"databaseId": 34,
+			"databaseName": "短厅",
+			"databaseUrl": "sdfsdf",
+			"databaseUsername": "sdf",
+			"databasePassword": "123",
+			"databaseType": "mysql"
+		}, {
+			"createTime": "2021-08-19 14:31:59",
+			"updateTime": "2021-08-19 14:31:59",
+			"databaseId": 35,
+			"databaseName": "短厅",
+			"databaseUrl": "sdfsdf",
+			"databaseUsername": "sdf",
+			"databasePassword": "123",
+			"databaseType": "mysql"
+		}]
+	}
 }
