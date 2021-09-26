@@ -40,7 +40,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				elem: '#table',
 				title: '统计报表配置',
 				url: base + '/report/system/database/getDatabaseList',
-				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp1.json',
+				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp1.json',
 				defaultToolbar: [],
 				toolbar: '#tableToolbar',
 				where: data.field,
@@ -56,7 +56,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				    limitName: 'size' //每页数据量的参数名，默认：limit
 				},
 				parseData: function(res) { //res 即为原始返回的数据
-					that.data.tableData = res.data.data.records
+					that.data.tableData = res.data.records
 					return {
 						"code": res.code == '20000' ? 0 : 1, //解析接口状态
 						"msg": res.message, //解析提示文本
