@@ -170,8 +170,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								"databaseUsername": "",
 								"updateTime": ""
 							}
-							obj.dataBaseName = $name;
-							obj.dataBaseType = $type;
+							obj.databaseName = $name;
+							obj.databaseType = $type;
 							var load = layer.load(3);
 							$.ajax({
 								url: base +
@@ -328,10 +328,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							"databasePassword": "",
 							"databaseUrl": "",
 							"databaseUsername": "",
-							"updateTime": ""
+							"updateTime": "",
 						}
-						obj.dataBaseName = $name;
-						obj.dataBaseType = $type;
+						obj.databaseName = $name;
+						obj.databaseType = $type;
 						var load = layer.load(3);
 						$.ajax({
 							url: base +
