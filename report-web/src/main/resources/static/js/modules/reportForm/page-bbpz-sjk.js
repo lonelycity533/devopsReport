@@ -29,8 +29,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				}]
 			],
 		},
-		data:{
-			tableData:[]
+		data: {
+			tableData: []
 		},
 		// 查询信息
 		onQueryData: function(data) {
@@ -52,8 +52,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					layout: ['count', 'limit', 'skip', 'prev', 'page', 'next']
 				},
 				request: {
-				    pageName: 'current', //页码的参数名称，默认：page
-				    limitName: 'size' //每页数据量的参数名，默认：limit
+					pageName: 'current', //页码的参数名称，默认：page
+					limitName: 'size' //每页数据量的参数名，默认：limit
 				},
 				parseData: function(res) { //res 即为原始返回的数据
 					that.data.tableData = res.data.records
@@ -87,25 +87,29 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					if (data.length === 0) {
 						layer.msg('请选择至少一行');
 					} else {
-						var ids=[];
-						data.forEach(function(item){
+						var ids = [];
+						data.forEach(function(item) {
 							ids.push(item.databaseId)
 						})
-						ids=ids.join(',')
+						ids = ids.join(',')
 						layer.confirm('真的删除行么', function(index) {
 							layer.close(index);
 							// 向服务端发送删除指令
-							var load=layer.load(3);
+							var load = layer.load(3);
 							$.ajax({
-								url: base + '/report/system/database/removeDatabase/' + ids,
+								url: base +
+									'/report/system/database/removeDatabase/' +
+									ids,
 								// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp2.json',
-								data: {'ids':ids},
-								dataType:'json',
-								type:'post',
-								success:function(res){
+								data: {
+									'ids': ids
+								},
+								dataType: 'json',
+								type: 'post',
+								success: function(res) {
 									layer.close(load)
 									// 成功回调
-									if (res.code == 200){
+									if (res.code == 200) {
 										layer.msg(res.message, {
 											icon: 1
 										});
@@ -114,7 +118,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									}
 									layer.msg(res.message);
 								},
-								error:function(){
+								error: function() {
 									layer.close(load)
 									layer.msg('系统繁忙，请稍后再试～');
 								}
@@ -131,7 +135,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						shadeClose: true,
 						area: ['520px', '377px'],
 						content: $('.layer-form'),
-						btn: ['连接测试','确认生成', '返回'],
+						btn: ['连接测试', '确认生成', '返回'],
 						success: function() {
 							$('.layer-form').removeClass('layui-hide');
 							$('.data-name').val('');
@@ -139,31 +143,39 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							$('.data-password').val('');
 							$('.data-connectinfo').val('');
 							$('.data-type').val('oracle');
-							form.render('select','layerForm');
+							form.render('select', 'layerForm');
 						},
-						btn1:function(index){
-							var $name=$('.data-name').val();
-							var $type=$('.data-type').val();
-							if(!$name){
+						btn1: function(index) {
+							var $name = $('.data-name').val();
+							var $type = $('.data-type').val();
+							if (!$name) {
 								layer.msg('请输入数据源名称', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							if(!$type){
+							if (!$type) {
 								layer.msg('请选择数据库类型', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							var obj={};
-							obj.dataBaseName=$name;
-							obj.dataBaseType=$type;
+							var obj = {
+								"createTime": "",
+								"databaseId": "",
+								"databasePassword": "",
+								"databaseUrl": "",
+								"databaseUsername": "",
+								"updateTime": ""
+							}
+							obj.dataBaseName = $name;
+							obj.dataBaseType = $type;
 							var load = layer.load(3);
 							$.ajax({
-								url: base + '/report/system/database/testDatabase',
+								url: base +
+									'/report/system/database/testDatabase',
 								data: JSON.stringify(obj),
 								contentType: 'application/json;charset=utf-8',
 								dataType: 'json',
@@ -171,7 +183,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								success: function(res) {
 									layer.close(load)
 									// 成功回调
-									if(res.code==200){
+									if (res.code == 200) {
 										layer.msg(res.message, {
 											icon: 1
 										});
@@ -186,40 +198,40 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							})
 						},
 						btn2: function(index) {
-							var $name=$('.data-name').val();
-							var $username=$('.data-username').val();
-							var $password=$('.data-password').val();
-							var $connectinfo=$('.data-connectinfo').val();
-							var $type=$('.data-type').val();
-							if(!$name){
+							var $name = $('.data-name').val();
+							var $username = $('.data-username').val();
+							var $password = $('.data-password').val();
+							var $connectinfo = $('.data-connectinfo').val();
+							var $type = $('.data-type').val();
+							if (!$name) {
 								layer.msg('请输入数据源名称', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							if(!$username){
+							if (!$username) {
 								layer.msg('请输入用户名', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							if(!$password){
+							if (!$password) {
 								layer.msg('请输入密码', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							if(!$connectinfo){
+							if (!$connectinfo) {
 								layer.msg('请输入连接信息', {
 									icon: 5,
 									anim: 6
 								});
 								return false;
 							}
-							if(!$type){
+							if (!$type) {
 								layer.msg('请选择数据库类型', {
 									icon: 5,
 									anim: 6
@@ -227,15 +239,16 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								return false;
 							}
 							layer.close(index);
-							var obj={};
-							obj.databaseName=$name;
-							obj.databaseUsername=$username;
-							obj.databasePassword=$password;
-							obj.databaseUrl=$connectinfo;
-							obj.databaseType=$type;
+							var obj = {};
+							obj.databaseName = $name;
+							obj.databaseUsername = $username;
+							obj.databasePassword = $password;
+							obj.databaseUrl = $connectinfo;
+							obj.databaseType = $type;
 							var load = layer.load(3);
 							$.ajax({
-								url: base + '/report/system/database/insertDatabase',
+								url: base +
+									'/report/system/database/insertDatabase',
 								// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp3.json',
 								data: JSON.stringify(obj),
 								contentType: 'application/json;charset=utf-8',
@@ -244,7 +257,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								success: function(res) {
 									layer.close(load)
 									// 成功回调
-									if(res.code==200){
+									if (res.code == 200) {
 										layer.msg(res.message, {
 											icon: 1
 										});
@@ -262,7 +275,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					});
 				}
 			});
-		
+
 		},
 		// 编辑
 		onClickEdit: function() {
@@ -270,9 +283,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			var layerIndex = '';
 			// 编辑
 			$(document).on('click', '.btn-edit', function() {
-				var $this=$(this);
-				var $index=$('.layui-table-wrap .btn-edit').index($this);
-				var $data=that.data.tableData[$index];
+				var $this = $(this);
+				var $index = $('.layui-table-wrap .btn-edit').index($this);
+				var $data = that.data.tableData[$index];
 				layerIndex = layer.open({
 					type: 1,
 					title: '编辑',
@@ -280,7 +293,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					shadeClose: true,
 					area: ['520px', '377px'],
 					content: $('.layer-form'),
-					btn: ['连接测试','确认生成', '返回'],
+					btn: ['连接测试', '确认生成', '返回'],
 					success: function() {
 						$('.layer-form').removeClass('layui-hide');
 						$('.data-name').val($data.databaseName);
@@ -288,20 +301,20 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						$('.data-password').val($data.databasePassword);
 						$('.data-connectinfo').val($data.databaseUrl);
 						$('.data-type').val($data.databaseType);
-						form.render('select','layerForm');
-						
+						form.render('select', 'layerForm');
+
 					},
-					btn1:function(index){
-						var $name=$('.data-name').val();
-						var $type=$('.data-type').val();
-						if(!$name){
+					btn1: function(index) {
+						var $name = $('.data-name').val();
+						var $type = $('.data-type').val();
+						if (!$name) {
 							layer.msg('请输入数据源名称', {
 								icon: 5,
 								anim: 6
 							});
 							return false;
 						}
-						if(!$type){
+						if (!$type) {
 							layer.msg('请选择数据库类型', {
 								icon: 5,
 								anim: 6
@@ -309,12 +322,20 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							return false;
 						}
 						var load = layer.load(3);
-						var obj={};
-						obj.dataBaseName=$name;
-						obj.dataBaseType=$type;
+						var obj = {
+							"createTime": "",
+							"databaseId": "",
+							"databasePassword": "",
+							"databaseUrl": "",
+							"databaseUsername": "",
+							"updateTime": ""
+						}
+						obj.dataBaseName = $name;
+						obj.dataBaseType = $type;
 						var load = layer.load(3);
 						$.ajax({
-							url: base + '/report/system/database/testDatabase',
+							url: base +
+								'/report/system/database/testDatabase',
 							data: JSON.stringify(obj),
 							contentType: 'application/json;charset=utf-8',
 							dataType: 'json',
@@ -322,7 +343,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							success: function(res) {
 								layer.close(load)
 								// 成功回调
-								if(res.code==200){
+								if (res.code == 200) {
 									layer.msg(res.message, {
 										icon: 1
 									});
@@ -337,40 +358,40 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						})
 					},
 					btn2: function(index) {
-						var $name=$('.data-name').val();
-						var $username=$('.data-username').val();
-						var $password=$('.data-password').val();
-						var $connectinfo=$('.data-connectinfo').val();
-						var $type=$('.data-type').val();
-						if(!$name){
+						var $name = $('.data-name').val();
+						var $username = $('.data-username').val();
+						var $password = $('.data-password').val();
+						var $connectinfo = $('.data-connectinfo').val();
+						var $type = $('.data-type').val();
+						if (!$name) {
 							layer.msg('请输入数据源名称', {
 								icon: 5,
 								anim: 6
 							});
 							return false;
 						}
-						if(!$username){
+						if (!$username) {
 							layer.msg('请输入用户名', {
 								icon: 5,
 								anim: 6
 							});
 							return false;
 						}
-						if(!$password){
+						if (!$password) {
 							layer.msg('请输入密码', {
 								icon: 5,
 								anim: 6
 							});
 							return false;
 						}
-						if(!$connectinfo){
+						if (!$connectinfo) {
 							layer.msg('请输入连接信息', {
 								icon: 5,
 								anim: 6
 							});
 							return false;
 						}
-						if(!$type){
+						if (!$type) {
 							layer.msg('请选择数据库类型', {
 								icon: 5,
 								anim: 6
@@ -378,16 +399,17 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							return false;
 						}
 						layer.close(index);
-						var obj={};
-						obj.databaseName=$name;
-						obj.databaseUsername=$username;
-						obj.databasePassword=$password;
-						obj.databaseUrl=$connectinfo;
-						obj.databaseType=$type;
-						obj.databaseId=$data.databaseId;
+						var obj = {};
+						obj.databaseName = $name;
+						obj.databaseUsername = $username;
+						obj.databasePassword = $password;
+						obj.databaseUrl = $connectinfo;
+						obj.databaseType = $type;
+						obj.databaseId = $data.databaseId;
 						var load = layer.load(3);
 						$.ajax({
-							url: base + '/report/system/database/updateDatabase',
+							url: base +
+								'/report/system/database/updateDatabase',
 							// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp3.json',
 							data: JSON.stringify(obj),
 							contentType: 'application/json;charset=utf-8',
@@ -396,7 +418,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							success: function(res) {
 								layer.close(load)
 								// 成功回调
-								if(res.code==200){
+								if (res.code == 200) {
 									layer.msg(res.message, {
 										icon: 1
 									});
@@ -416,7 +438,11 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 		},
 		init: function() {
 			var that = this;
-			that.onQueryData({field:{databaseName:''}});
+			that.onQueryData({
+				field: {
+					databaseName: ''
+				}
+			});
 			that.onClickSubmit();
 			that.onClickTool();
 			that.onClickEdit();
