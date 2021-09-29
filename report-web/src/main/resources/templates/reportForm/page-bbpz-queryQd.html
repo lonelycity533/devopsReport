@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
-		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
-		<link rel="stylesheet" href="css/modules/page-bbpz.css" th:href="@{/css/modules/page-bbpz.css}">
+		<link rel="stylesheet" href="../../static/js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
+		<link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
+		<link rel="stylesheet" href="../../static/css/modules/page-bbpz.css" th:href="@{/css/modules/page-bbpz.css}">
 	</head>
 	<body>
 		<div class="content page-bbpz">
@@ -22,7 +22,7 @@
 						<div class="layui-col-md2">
 							<div class="layui-form-item label-width-70">
 								<label class="layui-form-label">报表名称</label>
-								<input type="text" name="name" autocomplete="off" class="layui-input" placeholder="请输入报表名称">
+								<input type="text" name="reportName" autocomplete="off" class="layui-input" placeholder="请输入报表名称">
 							</div>
 						</div>
 						<div class="layui-col-md1 pl-20">
@@ -35,9 +35,7 @@
 							</div>
 						</div>
 						<div class="layui-col-md2 pl-20">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
-									class="iconfont icon-sousuo"></i>查询</button>
-							<button class="layui-btn layui-btn-danger btn-del" plain type="button">删除</button>
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i class="iconfont icon-sousuo"></i>查询</button>
 						</div>
 					</div>
 				</div>
@@ -46,11 +44,11 @@
 				<table id="table" lay-filter="table"></table>
 			</div>
 		</div>
-		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
-		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
-		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
-		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
-		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
-		<script src="js/modules/reportForm/page-bbpz-queryQd.js" th:src="@{/js/modules/reportForm/page-bbpz-queryQd.js}"></script>
+		<script src="../../static/js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
+		<script src="../../static/js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
+		<script src="../../static/js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="../../static/js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
+		<script src="../../static/js/common/common.js" th:src="@{/js/common/common.js}"></script>
+		<script src="../../static/js/modules/reportForm/page-bbpz-queryQd.js" th:src="@{/js/modules/reportForm/page-bbpz-queryQd.js}"></script>
 	</body>
 </html>

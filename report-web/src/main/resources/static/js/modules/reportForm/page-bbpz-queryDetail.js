@@ -30,6 +30,9 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 				}]
 			],
 		},
+		data:{
+			tableData:[],
+		},
 		// 初始化时间选择
 		onInitLaydate: function() {
 			var that = this;
@@ -62,7 +65,8 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 			table.render({
 				elem: '#table',
 				title: 'XX报表',
-				url: base + '/report/system/data/table3.json',
+				url: base + '/report/system/qdReport/getReportBusiness',
+				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 				defaultToolbar: [],
 				toolbar: '#tableToolbar',
 				where: data.field,
@@ -73,6 +77,19 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 					limits: [10, 20, 30, 40, 50, 1000],
 					layout: ['count', 'limit', 'skip', 'prev', 'page', 'next']
 				},
+				request: {
+				    pageName: 'current', //页码的参数名称，默认：page
+				    limitName: 'size' //每页数据量的参数名，默认：limit
+				},
+				parseData: function(res) { //res 即为原始返回的数据
+					that.data.tableData = res.data.records
+					return {
+						"code": res.code == '20000' ? 0 : 1, //解析接口状态
+						"msg": res.message, //解析提示文本
+						"count": res.data.total, //解析数据长度
+						"data": res.data.records //解析数据列表
+					};
+				}
 			});
 			return;
 		},
@@ -118,7 +135,9 @@ layui.use(['element', 'form', 'table', 'layer','laydate'], function() {
 			var that = this;
 			that.onInitLaydate();
 			that.onClickAdd();
-			that.onQueryData({});
+			var reportId=mixin.onGetUrlKey('reportId');
+			var reportDetailId=mixin.onGetUrlKey('reportDetailId');
+			that.onQueryData({field:{reportId:reportId,reportDetailId:reportDetailId}});
 			that.onClickSubmit();
 			that.onClickTool();
 		}
