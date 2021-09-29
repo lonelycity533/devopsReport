@@ -158,13 +158,14 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								});
 								return false;
 							}
+							var obj={};
+							obj.dataBaseName=$name;
+							obj.dataBaseType=$type,
 							var load = layer.load(3);
 							$.ajax({
 								url: base + '/report/system/database/testDatabase',
-								data: {
-									dataBaseName:'',
-									dataBaseType:'',
-								},
+								data: JSON.stringify(obj),
+								contentType: 'application/json;charset=utf-8',
 								dataType: 'json',
 								type: 'post',
 								success: function(res) {
@@ -308,12 +309,14 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							return false;
 						}
 						var load = layer.load(3);
+						var obj={};
+						obj.dataBaseName=$name;
+						obj.dataBaseType=$type,
+						var load = layer.load(3);
 						$.ajax({
 							url: base + '/report/system/database/testDatabase',
-							data: {
-								dataBaseName:'',
-								dataBaseType:'',
-							},
+							data: JSON.stringify(obj),
+							contentType: 'application/json;charset=utf-8',
 							dataType: 'json',
 							type: 'post',
 							success: function(res) {
