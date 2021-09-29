@@ -158,9 +158,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								});
 								return false;
 							}
-							var obj={reportDatabase:{}};
-							obj.reportDatabase.dataBaseName=$name;
-							obj.reportDatabase.dataBaseType=$type;
+							var obj={};
+							obj.dataBaseName=$name;
+							obj.dataBaseType=$type;
 							var load = layer.load(3);
 							$.ajax({
 								url: base + '/report/system/database/testDatabase',
@@ -309,9 +309,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							return false;
 						}
 						var load = layer.load(3);
-						var obj={reportDatabase:{}};
-						obj.reportDatabase.dataBaseName=$name;
-						obj.reportDatabase.dataBaseType=$type;
+						var obj={};
+						obj.dataBaseName=$name;
+						obj.dataBaseType=$type;
 						var load = layer.load(3);
 						$.ajax({
 							url: base + '/report/system/database/testDatabase',
