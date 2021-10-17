@@ -335,7 +335,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					var $xpzFieldname=$('.part-el').eq(i).find('.data-xpz-fieldname').val();
 					var $xpzFieldvalue=$('.part-el').eq(i).find('.data-xpz-fieldvalue').val();
 					var $xpzPzmc=$('.part-el').eq(i).find('.data-xpz-pzmc').val();
-					fieldList.push({sqlContent:$xpzFieldname,sqlType:$xpzFieldvalue})
+					fieldList.push({sqlContent:$xpzFieldvalue,sqlType:$xpzFieldname})
 				}
 				obj.reportName=$pzmc;
 				obj.reportDescribe=$pzms;
