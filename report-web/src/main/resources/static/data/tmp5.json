@@ -1,40 +1,19 @@
 {
-	"success": true,
-	"code": 20000,
-	"message": "成功",
-	"data": {
-		"databaseName": "ZJCSC517",
-		"businessList": [{
-			"reportDetailId": null,
-			"businessField": "password",
-			"id": null
-		}, {
-			"reportDetailId": null,
-			"businessField": "username",
-			"id": null
-		}],
-		"fieldList": [{
-			"reportDetailId": null,
-			"sqlType": "从SQL",
-			"sqlContent": "where id = 2",
-			"id": null
-		}, {
-			"reportDetailId": null,
-			"sqlType": "主SQL",
-			"sqlContent": "select * from testHycDEPT",
-			"id": null
-		}],
-		"queryInfo": {
-			"createTime": null,
-			"updateTime": null,
-			"reportId": 142,
-			"reportName": "测试2",
-			"reportDescribe": null,
-			"reportDetailId": 102,
-			"fieldList": null,
-			"businessField": null,
-			"businessInfoList": null,
-			"databaseId": 63
-		}
-	}
+  "success": true,
+  "code": 20000,
+  "message": "成功",
+  "data": {
+    "businessInfos": [
+      {
+        "columnName": "USERNAME",
+        "dataType": "掌厅",
+        "dataValue": "22"
+      },
+      {
+        "columnName": "PASSWORD",
+        "dataType": "短厅",
+        "dataValue": "33"
+      }
+    ]
+  }
 }

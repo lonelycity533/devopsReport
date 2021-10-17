@@ -3,9 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="../../static/js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
-		<link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
-		<link rel="stylesheet" href="../../static/modules/page-bbpz.css">
+		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
+		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
 	</head>
 	<body>
 		<div class="content page-bbpz">
@@ -19,60 +18,37 @@
 			<div class="layui-form-wrap">
 				<h3 class="layui-form-wrap-title mb-10">XX报表</h3>
 				<div class="layui-form" lay-filter="form">
-					<div class="layui-row">
-						<div class="layui-col-md2">
-							<div class="layui-form-item label-width-70">
-								<label class="layui-form-label">地市</label>
-								<select name="">
-									<option value="网厅">网厅</option>
-									<option value="掌厅">掌厅</option>
-									<option value="短厅">短厅</option>
-								</select>
-							</div>
-						</div>
-						<div class="layui-col-md4">
-							<div class="layui-form-item label-width-70">
-								<label class="layui-form-label">选择时间</label>
-								<div class="layui-col-md5">
-									<input name="start" type="text" class="layui-input layui-date" id="dateStart"
-										readonly placeholder="请选择">
+					<div class="list">
+						<div class="layui-row">
+							<div class="layui-col-md8">
+								<div class="layui-col-md2">
+									<div class="layui-form-item label-width-70">
+										<label class="layui-form-label">条件1</label>
+										<select name="dataType1">
+											<option value="网厅">网厅</option>
+											<option value="掌厅">掌厅</option>
+											<option value="短厅">短厅</option>
+										</select>
+									</div>
 								</div>
-								<div class="layui-col-md1 line">-</div>
-								<div class="layui-col-md5">
-									<input name="end" type="text" class="layui-input layui-date" id="dateEnd" readonly
-										placeholder="请选择">
+								<div class="layui-col-md2 pl-20">
+									<div class="layui-form-item label-width-0">
+										<input name="dataValue1" type="text" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-col-md2">
+									<div class="layui-form-item label-width-0">
+										<a href="javascript:" class="btn btn-add">+添加条件</a>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="layui-col-md2">
-							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
-									class="iconfont icon-sousuo"></i>查询</button>
 						</div>
 					</div>
 					<div class="layui-row">
-						<div class="layui-col-md8">
-							<div class="layui-col-md2">
-								<div class="layui-form-item label-width-70">
-									<label class="layui-form-label">条件1</label>
-									<select name="aa">
-										<option value="网厅">网厅</option>
-										<option value="掌厅">掌厅</option>
-										<option value="短厅">短厅</option>
-									</select>
-								</div>
-							</div>
-							<div class="layui-col-md2 pl-20">
-								<div class="layui-form-item label-width-0">
-									<input name="" type="text" class="layui-input" readonly>
-								</div>
-							</div>
-							<div class="layui-col-md2">
-								<div class="layui-form-item label-width-0">
-									<a href="javascript:" class="btn btn-add">+添加条件</a>
-								</div>
-							</div>
+						<div class="layui-col-md2 pl-20">
+							<button class="layui-btn layui-btn-normal" lay-submit lay-filter="btn"><i
+									class="iconfont icon-sousuo"></i>查询</button>
 						</div>
-						
 					</div>
 				</div>
 			</div>
@@ -85,11 +61,11 @@
 				<table id="table" lay-filter="table"></table>
 			</div>
 		</div>
-		<script src="../../static/js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
-		<script src="../../static/js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
-		<script src="../../static/js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
-		<script src="../../static/js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
-		<script src="../../static/js/common/common.js" th:src="@{/js/common/common.js}"></script>
-		<script src="../../static/js/modules/reportForm/page-bbpz-queryDetail.js" th:src="@{/js/modules/reportForm/page-bbpz-queryDetail.js}"></script>
+		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
+		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
+		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
+		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
+		<script src="js/modules/reportForm/page-bbpz-queryDetail.js" th:src="@{/js/modules/reportForm/page-bbpz-queryDetail.js}"></script>
 	</body>
 </html>
