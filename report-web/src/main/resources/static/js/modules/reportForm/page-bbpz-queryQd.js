@@ -37,7 +37,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				elem: '#table',
 				title: '清单报表',
 				url: base + '/report/system/qdReport/getQdReport',
-				url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
+				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 				defaultToolbar: [],
 				where: data.field,
 				cols: that.html.cols1,
