@@ -6,13 +6,13 @@
     "businessInfos": [
       {
         "columnName": "USERNAME",
-        "dataType": "掌厅",
-        "dataValue": "22"
+        "dataType": "VARCHAR2",
+        "dataValue": null
       },
       {
         "columnName": "PASSWORD",
-        "dataType": "短厅",
-        "dataValue": "33"
+        "dataType": "VARCHAR2",
+        "dataValue": null
       }
     ]
   }

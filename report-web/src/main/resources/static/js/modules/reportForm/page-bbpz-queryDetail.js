@@ -23,7 +23,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 			reportId: '',
 			reportDetailId: '',
 			databaseId: '',
-			reportName:'',
+			reportName: '',
 			businessInfos: []
 		},
 		// 添加条件
@@ -35,13 +35,96 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				var $row = $this.closest('.layui-row');
 				var $clone = $row.clone();
 				var $index = $row.index() + 1;
-				$clone.find('.layui-form-label').html('条件' + ($index + 1));
-				$clone.find('select').prop('name', 'dataType' + ($index + 1)).val('网厅');
-				$clone.find('input').prop('name', 'dataValue' + ($index + 1)).val('');
-				$form.find('.list').append($clone);
+				var html='';
+				html += '<div class="layui-row">';
+				html += '<div class="layui-col-md10">';
+				html += '<div class="layui-col-md2">';
+				html += '<div class="layui-form-item label-width-90">';
+				html += '<label class="layui-form-label data-column">条件' + ($index + 1)+'</label>';
+				html += '<select name="dataType' + ($index + 1) + '">';
+				html += '<option value="VARCHAR2" selected>VARCHAR2</option>';
+				html += '<option value="NUMBER">NUMBER</option>';
+				html += '<option value="DATE">DATE</option>';
+				html += '</select>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="layui-col-md2 pl-20 lay-input">';
+				html += '<div class="layui-form-item label-width-0">';
+				html += '<input name="dataValue' + ($index + 1) +'" type="text" class="layui-input data-value" value="">';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="layui-col-md4 pl-20 lay-date hide">';
+				html += '<div class="layui-form-item label-width-0">';
+				html += '<div class="layui-col-md5">';
+				html += '<input name="start' + ($index + 1) +
+					'" type="text" class="layui-input layui-date data-start data-start'+($index+1)+'" readonly placeholder="请选择">';
+				html += '</div>';
+				html += '<div class="layui-col-md1 line">-</div>';
+				html += '<div class="layui-col-md5">';
+				html += '<input name="end' + ($index + 1) +
+					'" type="text" class="layui-input layui-date data-end data-end'+($index+1)+'" readonly placeholder="请选择">';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '<div class="layui-col-md2">';
+				html += '<div class="layui-form-item label-width-0">';
+				html += '<a href="javascript:" class="btn btn-add">+添加条件</a>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				
+				$form.find('.list').append(html);
 				$this.remove();
 				form.render('select', 'form');
+				laydate.render({
+					elem: '.data-start'+($index + 1),
+					format: 'yyyy-MM-dd HH:mm:ss',
+					type: 'datetime',
+					trigger: 'click'
+				});
+				laydate.render({
+					elem: '.data-end'+($index + 1),
+					format: 'yyyy-MM-dd HH:mm:ss',
+					type: 'datetime',
+					trigger: 'click'
+				});
 			})
+		},
+		// 初始化时间选择
+		onInitLaydate: function() {
+			var that = this;
+			$('.data-start').each(function() {
+				console.log($(this)[0])
+				laydate.render({
+					elem: this,
+					format: 'yyyy-MM-dd HH:mm:ss',
+					type: 'datetime',
+					trigger: 'click'
+				});
+			});
+			$('.data-end').each(function() {
+				console.log($(this)[0])
+				laydate.render({
+					elem: this,
+					format: 'yyyy-MM-dd HH:mm:ss',
+					type: 'datetime',
+					trigger: 'click'
+				});
+			});
+
+			// laydate.render({
+			// 	elem: '.data-start',
+			// 	format: 'yyyy-MM-dd HH:mm:ss',
+			// 	type: 'datetime',
+			// 	trigger: 'click'
+			// });
+			// laydate.render({
+			// 	elem: '.data-end',
+			// 	format: 'yyyy-MM-dd HH:mm:ss',
+			// 	type: 'datetime',
+			// 	trigger: 'click'
+			// });
 		},
 		// 查询信息
 		onQueryData: function(data) {
@@ -71,6 +154,9 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				for (var i = 0, j = $('.list .layui-row').length; i < j; i++) {
 					var dataType = '';
 					var dataValue = 'dataValue' + (i + 1);
+					var columnName = $('.list .layui-row').eq(i).find('.data-column').text();
+					var start = '';
+					var end = '';
 					for (var key in data.field) {
 						if (key == 'dataType' + (i + 1)) {
 							dataType = data.field[key]
@@ -78,13 +164,23 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 						if (key == 'dataValue' + (i + 1)) {
 							dataValue = data.field[key]
 						}
+						if (key == 'start' + (i + 1)) {
+							start = data.field[key]
+						}
+						if (key == 'end' + (i + 1)) {
+							end = data.field[key]
+						}
+					}
+					if (start && end) {
+						dataValue = [start, end]
 					}
 					businessInfoList.push({
-						"columnName": "username",
+						"columnName": columnName,
 						"dataType": dataType,
 						"dataValue": dataValue
 					})
 				}
+				console.log(businessInfoList)
 				var obj = {
 					"businessInfoList": businessInfoList,
 					"databaseId": that.databaseId,
@@ -93,7 +189,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				}
 				var load = layer.load(3);
 				$.ajax({
-					url: base + '/report/system/qdReport/getReportData?current=1&size=10',
+					url: base +
+						'/report/system/qdReport/getReportData?current=1&size=10000',
 					// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp6.json?current=1&size=10',
 					data: JSON.stringify(obj),
 					contentType: 'application/json;charset=utf-8',
@@ -154,7 +251,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 			var load = layer.load(3);
 			$.ajax({
 				url: base + '/report/system/qdReport/getReportBusiness',
-				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp5.json',
+				url: base +
+					'/other/2021/devops-report/report-web/src/main/resources/static/data/tmp5.json',
 				data: {
 					reportId: that.reportId,
 					reportDetailId: that.reportDetailId,
@@ -167,40 +265,70 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 					if (res.code == 20000) {
 						that.businessInfos = res.data.businessInfos;
 						var html = '';
+
 						for (var i = 0, j = that.businessInfos.length; i < j; i++) {
 							html += '<div class="layui-row">';
-							html += '<div class="layui-col-md8">';
+							html += '<div class="layui-col-md10">';
 							html += '<div class="layui-col-md2">';
-							html += '<div class="layui-form-item label-width-70">';
-							html += '<label class="layui-form-label">条件'+(i+1)+'</label>';
-							html += '<select name="dataType'+(i+2)+'">';
-							if(that.businessInfos[i].dataType=='网厅'){
-								html += '<option value="网厅" selected>网厅</option>';
-							}else{
-								html += '<option value="网厅">网厅</option>';
+							html += '<div class="layui-form-item label-width-90">';
+							html += '<label class="layui-form-label data-column">' + that.businessInfos[i].columnName + '</label>';
+							html += '<select name="dataType' + (i + 1) + '">';
+							if (that.businessInfos[i].dataType == 'VARCHAR2') {
+								html += '<option value="VARCHAR2" selected>VARCHAR2</option>';
+							} else {
+								html += '<option value="VARCHAR2">VARCHAR2</option>';
 							}
-							if(that.businessInfos[i].dataType=='掌厅'){
-								html += '<option value="掌厅" selected>掌厅</option>';
-							}else{
-								html += '<option value="掌厅">掌厅</option>';
+							if (that.businessInfos[i].dataType == 'NUMBER') {
+								html += '<option value="NUMBER" selected>NUMBER</option>';
+							} else {
+								html += '<option value="NUMBER">NUMBER</option>';
 							}
-							if(that.businessInfos[i].dataType=='短厅'){
-								html += '<option value="短厅" selected>短厅</option>';
-							}else{
-								html += '<option value="短厅">短厅</option>';
+							if (that.businessInfos[i].dataType == 'DATE') {
+								html += '<option value="DATE" selected>DATE</option>';
+							} else {
+								html += '<option value="DATE">DATE</option>';
 							}
 							html += '</select>';
 							html += '</div>';
 							html += '</div>';
-							html += '<div class="layui-col-md2 pl-20">';
+							if (that.businessInfos[i].dataType == 'DATE') {
+								html += '<div class="layui-col-md2 pl-20 lay-input hide">';
+							} else {
+								html += '<div class="layui-col-md2 pl-20 lay-input">';
+							}
 							html += '<div class="layui-form-item label-width-0">';
-							html += '<input name="dataValue'+(i+1)+'" type="text" class="layui-input" value="'+that.businessInfos[i].dataValue+'">';
+							if (that.businessInfos[i].dataValue) {
+								html += '<input name="dataValue' + (i + 1) +
+									'" type="text" class="layui-input data-value" value="' + that
+									.businessInfos[i].dataValue + '">';
+							} else {
+								html += '<input name="dataValue' + (i + 1) +
+									'" type="text" class="layui-input data-value" value="">';
+							}
+							html += '</div>';
+							html += '</div>';
+							if (that.businessInfos[i].dataType == 'DATE') {
+								html += '<div class="layui-col-md4 pl-20 lay-date">';
+							} else {
+								html += '<div class="layui-col-md4 pl-20 lay-date hide">';
+							}
+							html += '<div class="layui-form-item label-width-0">';
+							html += '<div class="layui-col-md5">';
+							html += '<input name="start' + (i + 1) +
+								'" type="text" class="layui-input layui-date data-start data-start'+(i+1)+'" readonly placeholder="请选择">';
+							html += '</div>';
+							html += '<div class="layui-col-md1 line">-</div>';
+							html += '<div class="layui-col-md5">';
+							html += '<input name="end' + (i + 1) +
+								'" type="text" class="layui-input layui-date data-end data-end'+(i+1)+'" readonly placeholder="请选择">';
+							html += '</div>';
 							html += '</div>';
 							html += '</div>';
 							html += '<div class="layui-col-md2">';
 							html += '<div class="layui-form-item label-width-0">';
-							if(i==that.businessInfos.length-1){
-								html += '<a href="javascript:" class="btn btn-add">+添加条件</a>';
+							if (i == that.businessInfos.length - 1) {
+								html +=
+									'<a href="javascript:" class="btn btn-add">+添加条件</a>';
 							}
 							html += '</div>';
 							html += '</div>';
@@ -209,6 +337,20 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 						}
 						$('.list').html(html)
 						form.render('select', 'form');
+						that.onInitLaydate();
+						form.on('select', function(data) {
+							if (data.value == 'DATE') {
+								$(data.elem).closest('.layui-row').find(
+									'.lay-input').hide();
+								$(data.elem).closest('.layui-row').find('.lay-date')
+									.show();
+							} else {
+								$(data.elem).closest('.layui-row').find(
+									'.lay-input').show();
+								$(data.elem).closest('.layui-row').find('.lay-date')
+									.hide();
+							}
+						});
 						return;
 					}
 					layer.msg(res.message);

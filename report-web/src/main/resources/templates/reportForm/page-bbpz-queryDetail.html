@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link rel="stylesheet" href="js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
-		<link rel="stylesheet" href="css/common.css" th:href="@{/css/common.css}">
+		<link rel="stylesheet" href="../../static/js/lib/layui/css/layui.css" th:href="@{/js/lib/layui/css/layui.css}">
+		<link rel="stylesheet" href="../../static/css/common.css" th:href="@{/css/common.css}">
 	</head>
 	<body>
 		<div class="content page-bbpz">
@@ -20,20 +20,32 @@
 				<div class="layui-form" lay-filter="form">
 					<div class="list">
 						<div class="layui-row">
-							<div class="layui-col-md8">
+							<div class="layui-col-md10">
 								<div class="layui-col-md2">
-									<div class="layui-form-item label-width-70">
-										<label class="layui-form-label">条件1</label>
+									<div class="layui-form-item label-width-90">
+										<label class="layui-form-label data-column">条件1</label>
 										<select name="dataType1">
-											<option value="网厅">网厅</option>
-											<option value="掌厅">掌厅</option>
-											<option value="短厅">短厅</option>
+											<option value="VARCHAR2">VARCHAR2</option>
+											<option value="NUMBER">NUMBER</option>
+											<option value="DATE">DATE</option>
 										</select>
 									</div>
 								</div>
-								<div class="layui-col-md2 pl-20">
+								<div class="layui-col-md2 pl-20 lay-input">
 									<div class="layui-form-item label-width-0">
-										<input name="dataValue1" type="text" class="layui-input">
+										<input name="dataValue1" type="text" class="layui-input data-value">
+									</div>
+								</div>
+								<div class="layui-col-md4 pl-20 lay-date hide">
+									<div class="layui-form-item label-width-0">
+										<div class="layui-col-md5">
+											<input name="start1" type="text" class="layui-input layui-date data-start data-start1" readonly placeholder="请选择">
+										</div>
+										<div class="layui-col-md1 line">-</div>
+										<div class="layui-col-md5">
+											<input name="end1" type="text" class="layui-input layui-date data-end data-end1" readonly
+												placeholder="请选择">
+										</div>
 									</div>
 								</div>
 								<div class="layui-col-md2">
@@ -61,11 +73,11 @@
 				<table id="table" lay-filter="table"></table>
 			</div>
 		</div>
-		<script src="js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
-		<script src="js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
-		<script src="js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
-		<script src="js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
-		<script src="js/common/common.js" th:src="@{/js/common/common.js}"></script>
-		<script src="js/modules/reportForm/page-bbpz-queryDetail.js" th:src="@{/js/modules/reportForm/page-bbpz-queryDetail.js}"></script>
+		<script src="../../static/js/lib/jquery.js" th:src="@{/js/lib/jquery.js}"></script>
+		<script src="../../static/js/lib/layui/layui.js" th:src="@{/js/lib/layui/layui.js}"></script>
+		<script src="../../static/js/lib/layui/lay/modules/excel.js" th:src="@{/js/lib/layui/lay/modules/excel.js}"></script>
+		<script src="../../static/js/plugins/echarts.min.js" th:src="@{/js/plugins/echarts.min.js}"></script>
+		<script src="../../static/js/common/common.js" th:src="@{/js/common/common.js}"></script>
+		<script src="../../static/js/modules/reportForm/page-bbpz-queryDetail.js" th:src="@{/js/modules/reportForm/page-bbpz-queryDetail.js}"></script>
 	</body>
 </html>
