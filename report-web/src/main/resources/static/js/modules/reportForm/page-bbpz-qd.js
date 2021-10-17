@@ -342,11 +342,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				obj.businessField=businessFieldArr;
 				obj.fieldList=fieldList;
 				obj.reportName=$bbmc;
-				obj.databaseName=$pzmc;
 				if(that.data.layerType=='add'){
 					var load = layer.load(3);
 					$.ajax({
-						url: base + '/report/system/qdReport/insertQdReport',
+						url: base + '/report/system/qdReport/insertQdReport?databaseName='+$pzmc,
 						// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 						data: JSON.stringify(obj),
 						contentType: 'application/json;charset=utf-8',
@@ -375,7 +374,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				if(that.data.layerType=='edit'){
 					var load = layer.load(3);
 					$.ajax({
-						url: base + '/report/system/qdReport/updateReportDataConfig',
+						url: base + '/report/system/qdReport/updateReportDataConfig?databaseName='+$pzmc,
 						// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp4.json',
 						data: JSON.stringify(obj),
 						contentType: 'application/json;charset=utf-8',
