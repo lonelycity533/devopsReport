@@ -13,6 +13,9 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 					field: 'USERNAME',
 					title: 'USERNAME',
 				}, {
+					field: 'PASSWORD',
+					title: 'PASSWORD',
+				}, {
 					field: 'CREATE_TIME',
 					title: 'CREATE_TIME',
 				}]
