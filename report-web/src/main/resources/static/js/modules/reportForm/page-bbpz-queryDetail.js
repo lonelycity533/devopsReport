@@ -189,8 +189,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				}
 				var load = layer.load(3);
 				$.ajax({
-					url: base +
-						'/report/system/qdReport/getReportData?current=1&size=10000',
+					url: base + '/report/system/qdReport/getReportData?current=1&size=10000',
 					// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp6.json?current=1&size=10',
 					data: JSON.stringify(obj),
 					contentType: 'application/json;charset=utf-8',
@@ -251,8 +250,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 			var load = layer.load(3);
 			$.ajax({
 				url: base + '/report/system/qdReport/getReportBusiness',
-				url: base +
-					'/other/2021/devops-report/report-web/src/main/resources/static/data/tmp5.json',
+				// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp5.json',
 				data: {
 					reportId: that.reportId,
 					reportDetailId: that.reportDetailId,
