@@ -342,6 +342,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				obj.businessField=businessFieldArr;
 				obj.fieldList=fieldList;
 				obj.reportName=$bbmc;
+				obj.databaseName=$pzmc;
 				if(that.data.layerType=='add'){
 					var load = layer.load(3);
 					$.ajax({
