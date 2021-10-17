@@ -11,7 +11,7 @@
       },
       {
         "columnName": "PASSWORD",
-        "dataType": "VARCHAR2",
+        "dataType": "DATE",
         "dataValue": null
       }
     ]
