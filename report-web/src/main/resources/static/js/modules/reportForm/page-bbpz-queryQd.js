@@ -78,7 +78,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				var $this=$(this);
 				var $index=$('.layui-table-wrap .btn-detail').index($this);
 				var $data=that.data.tableData[$index];
-				window.location.href=base+'/other/2021/devops-report/report-web/src/main/resources/templates/reportForm/page-bbpz-queryDetail.html?reportId='+$data.reportId+'&reportDetailId='+$data.reportDetailId+'&databaseId='+$data.databaseId+'&reportName='+$data.reportName;
+				window.location.href=base+'/report/system/queryDetail?reportId='+$data.reportId+'&reportDetailId='+$data.reportDetailId+'&databaseId='+$data.databaseId+'&reportName='+$data.reportName;
 			})
 		},
 		init: function() {

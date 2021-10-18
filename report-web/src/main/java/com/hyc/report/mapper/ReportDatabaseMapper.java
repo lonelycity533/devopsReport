@@ -21,7 +21,6 @@ public interface ReportDatabaseMapper extends BaseMapper<ReportDatabase> {
 
     int insertDatabase(@Param("reportDatabase") ReportDatabase reportDatabase);
 
-
     int updateDatabase(@Param("reportDatabase") ReportDatabase reportDatabase);
 
     @Deprecated

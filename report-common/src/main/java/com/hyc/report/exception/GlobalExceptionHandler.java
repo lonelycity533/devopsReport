@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
     /**
      * 全局异常处理,没有指定异常的类型,不管什么异常都是可以捕获的
      * @param e
      * @return
      */
-    @ExceptionHandler(Exception.class)
+    /*@ExceptionHandler(Exception.class)
     public Result error(Exception e){
         e.printStackTrace();
         log.error(e.getMessage());
         return Result.error();
-    }
+    }*/
 
     /**
      * 处理特定异常类型,可以定义多个,这里只以ArithmeticException为例

@@ -10,7 +10,6 @@ spring:
     url: jdbc:oracle:thin:@172.20.2.193:1521:wtuat2
     driver-class-name: oracle.jdbc.OracleDriver
 
-    #    134.96.162.189:1521
     #    username: ZJCSC517
     #    password: 99gY_52
     #    url: jdbc:oracle:thin:@134.96.162.186:1521:wttest1

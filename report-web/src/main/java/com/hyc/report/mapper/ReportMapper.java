@@ -21,7 +21,7 @@ public interface ReportMapper{
 
     @Select("select d.REPORT_NAME,da.DATABASE_NAME \n" +
             "from REPORT_QD_DETAIL d,REPORT_DATABASE da\n" +
-            "where d.REPORT_ID=#{reportId} and d.DATABASE_ID = da.DATABASE_ID")
+            "where d.DATABASE_ID = da.DATABASE_ID and d.REPORT_ID=#{reportId}")
     ReportCondition getReportDetailInfo(@Param("reportId") int reportId);
 
     @Select("select business_field from REPORT_QD_BUSINESS where REPORT_DETAIL_ID = #{reportDetailId}")
@@ -50,4 +50,5 @@ public interface ReportMapper{
     List<Integer> getDelId(@Param("ids")List<Integer> ids);
 
     List<BusinessInfo> getBusinessInfoList(@Param("businessList") List<String> businessList,@Param("tableName") String tableName);
+
 }
