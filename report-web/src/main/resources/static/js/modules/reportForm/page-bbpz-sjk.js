@@ -148,8 +148,32 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						btn1: function(index) {
 							var $name = $('.data-name').val();
 							var $type = $('.data-type').val();
+							var $password = $('.data-password').val('');
+							var $connectinfo=$('.data-connectinfo').val('');
+							var $username=$('.data-username').val('');
 							if (!$name) {
 								layer.msg('请输入数据源名称', {
+									icon: 5,
+									anim: 6
+								});
+								return false;
+							}
+							if (!$username) {
+								layer.msg('请输入用户名', {
+									icon: 5,
+									anim: 6
+								});
+								return false;
+							}
+							if (!$password) {
+								layer.msg('请输入密码', {
+									icon: 5,
+									anim: 6
+								});
+								return false;
+							}
+							if (!$connectinfo) {
+								layer.msg('请输入连接信息', {
 									icon: 5,
 									anim: 6
 								});
@@ -163,19 +187,15 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								return false;
 							}
 							var obj = {
-								"createTime": "",
-								"databaseId": "",
-								"databasePassword": "",
-								"databaseUrl": "",
-								"databaseUsername": "",
-								"updateTime": ""
+								"databaseName":$name,
+								"databasePassword": $password,
+								"databaseUrl": $connectinfo,
+								"databaseUsername": $username,
+								"databaseType":$type
 							}
-							obj.databaseName = $name;
-							obj.databaseType = $type;
 							var load = layer.load(3);
 							$.ajax({
-								url: base +
-									'/report/system/database/testDatabase',
+								url: base + '/report/system/database/testDatabase',
 								data: JSON.stringify(obj),
 								contentType: 'application/json;charset=utf-8',
 								dataType: 'json',
@@ -326,19 +346,16 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						}
 						var load = layer.load(3);
 						var obj = {
-							"createTime": "",
-							"databaseId": "",
-							"databasePassword": "",
-							"databaseUrl": "",
-							"databaseUsername": "",
-							"updateTime": "",
+							"databaseId": $data.databaseId,
+							"databaseName":$name,
+							"databasePassword": $data.databasePassword,
+							"databaseUrl": $data.databaseUrl,
+							"databaseUsername": $data.databaseUsername,
+							"databaseType":$type
 						}
-						obj.databaseName = $name;
-						obj.databaseType = $type;
 						var load = layer.load(3);
 						$.ajax({
-							url: base +
-								'/report/system/database/testDatabase',
+							url: base + '/report/system/database/testDatabase',
 							data: JSON.stringify(obj),
 							contentType: 'application/json;charset=utf-8',
 							dataType: 'json',
@@ -352,7 +369,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 									});
 									return;
 								}
-								layer.msg(res.message);
+								layer.msg(res.message, {
+									icon: 5,
+									anim: 6
+								});
 							},
 							error: function() {
 								layer.close(load)
