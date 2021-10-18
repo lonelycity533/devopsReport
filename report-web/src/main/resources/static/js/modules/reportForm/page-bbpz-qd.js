@@ -31,7 +31,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			layerIndex:'',
 			layerType:'',
 			databaseId:''
-		},
+		}, 
 		// 查询信息
 		onQueryData: function(data) {
 			var that = this;
