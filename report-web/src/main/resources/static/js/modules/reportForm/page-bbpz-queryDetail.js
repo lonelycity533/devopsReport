@@ -252,7 +252,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 					// 		layer.close(load)
 					// 		layer.msg('系统繁忙，请稍后再试～');
 					// 	}
-					// })
+					// }) 
 				}
 			});
 
