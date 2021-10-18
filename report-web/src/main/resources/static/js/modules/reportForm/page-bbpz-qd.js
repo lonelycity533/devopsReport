@@ -30,7 +30,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 			tableData:[],
 			layerIndex:'',
 			layerType:'',
-			databaseId:''
+			databaseId:'',
+			reportId:'',
+			reportDetailId:''
 		}, 
 		// 查询信息
 		onQueryData: function(data) {
@@ -184,7 +186,9 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								success: function() {
 									$('.layer-form').removeClass('layui-hide');
 									// 赋值
-									that.data.databaseId=res.data.databaseId;
+									that.data.databaseId=res.data.queryInfo.databaseId;
+									that.data.reportId=res.data.queryInfo.reportId;
+									that.data.reportDetailId=res.data.queryInfo.reportDetailId;
 									$('.data-pzmc').val(res.data.databaseName);
 									$('.data-pzms').val(res.data.queryInfo.reportDescribe);
 									$('.data-bbmc').val(res.data.queryInfo.reportName);
@@ -375,6 +379,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 				}
 				if(that.data.layerType=='edit'){
 					obj.databaseId=that.data.databaseId;
+					obj.reportId=that.data.reportId;
+					obj.reportDetailId=that.data.reportDetailId;
 					var load = layer.load(3);
 					$.ajax({
 						url: base + '/report/system/qdReport/updateReportDataConfig?databaseName='+$pzmc,
