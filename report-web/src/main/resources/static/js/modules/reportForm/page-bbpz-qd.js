@@ -29,7 +29,8 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 		data:{
 			tableData:[],
 			layerIndex:'',
-			layerType:''
+			layerType:'',
+			databaseId:''
 		},
 		// 查询信息
 		onQueryData: function(data) {
@@ -88,7 +89,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					} else {
 						var ids=[];
 						data.forEach(function(item){
-							ids.push(item.databaseId)
+							ids.push(item.reportId)
 						})
 						ids=ids.join(',')
 						layer.confirm('真的删除行么', function(index) {
@@ -183,6 +184,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 								success: function() {
 									$('.layer-form').removeClass('layui-hide');
 									// 赋值
+									that.data.databaseId=res.data.databaseId;
 									$('.data-pzmc').val(res.data.databaseName);
 									$('.data-pzms').val(res.data.queryInfo.reportDescribe);
 									$('.data-bbmc').val(res.data.queryInfo.reportName);
@@ -372,6 +374,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					})
 				}
 				if(that.data.layerType=='edit'){
+					obj.databaseId=that.data.databaseId;
 					var load = layer.load(3);
 					$.ajax({
 						url: base + '/report/system/qdReport/updateReportDataConfig?databaseName='+$pzmc,
