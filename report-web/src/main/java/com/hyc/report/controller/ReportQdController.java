@@ -1,8 +1,10 @@
 package com.hyc.report.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.hyc.report.dynamiconfig.context.DBContextHolder;
 import com.hyc.report.entity.*;
 import com.hyc.report.exception.ReportException;
 import com.hyc.report.response.ResultCode;
@@ -12,10 +14,13 @@ import com.hyc.report.service.ReportService;
 import com.hyc.report.response.Result;
 import com.hyc.report.util.PageInfoUtil;
 import com.hyc.report.util.SqlUtil;
+import com.hyc.report.util.StringUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -87,6 +92,8 @@ public class ReportQdController {
         }
 
         log.info("表结构输出:{}",businessInfos);
+        //数据取好后，要切换回主数据源
+        DBContextHolder.clearDataSource();
         return Result.ok().data("businessInfos",businessInfos);
     }
 
@@ -110,8 +117,8 @@ public class ReportQdController {
             ,@ApiParam(value = "当前页",required = true)@RequestParam("current") int current
             ,@ApiParam(value = "查询长度",required = true)@RequestParam("size") int size) throws Exception {
         /*int reportDetailId = 102;
-        int reportId = 142;
-        ReportDetail reportDetail =new ReportDetail();
+        int reportId = 142;*/
+        /*ReportDetail reportDetail =new ReportDetail();
         reportDetail.setReportId(reportId);
         reportDetail.setReportDetailId(reportDetailId);
         BusinessInfo business1 = new BusinessInfo();
@@ -121,9 +128,9 @@ public class ReportQdController {
         business1.setDataType("VARCHAR2");
         business2.setColumnName("password");
         business2.setDataType("VARCHAR2");
-        *//*List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<>();
         stringList.add("2021-09-22 00:00:00");
-        stringList.add("2021-09-24 00:00:00");*//*
+        stringList.add("2021-09-24 00:00:00");
         business2.setDataValue("123");
         List<BusinessInfo> businessList = new ArrayList<>();
         businessList.add(business1);
@@ -131,16 +138,28 @@ public class ReportQdController {
         reportDetail.setBusinessInfoList(businessList);*/
 
         List<Field> fieldList = reportService.getQdFieldById(reportDetail.getReportDetailId());
-
+        List<Object> list = new ArrayList<>();
         String sql = "",mainSql = "",cSql = "",condition = "",Sql="";
         if (fieldList.size()==1) {
             sql=fieldList.get(0).getSqlContent();
             if (reportDetail.getBusinessInfoList().size()>0) {
                 sql+=" where ";
                 for (int i = 0; i < reportDetail.getBusinessInfoList().size(); i++) {
-                    condition =SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(), reportDetail.getBusinessInfoList().get(i).getColumnName(),reportDetail.getBusinessInfoList().get(i).getDataValue());
-                    sql=(i!=reportDetail.getBusinessInfoList().size()-1)?(sql+= condition+" and "):(sql+=condition);
+                    String con = (String) reportDetail.getBusinessInfoList().get(i).getDataValue();
+                    if (!StringUtil.isNullOrEmpty(con)) {
+                        condition = SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(), reportDetail.getBusinessInfoList().get(i).getColumnName(), reportDetail.getBusinessInfoList().get(i).getDataValue());
+                        sql = (i != reportDetail.getBusinessInfoList().size() - 1) ? (sql += condition + " and ") : (sql += condition);
+                        list.add(con);
+                    }
                 }
+            }
+            log.info("判断输出list："+list);
+            System.out.println("好奇："+reportDetail.getBusinessInfoList().size());
+            System.out.println(list.isEmpty());
+            System.out.println(list.size());
+            if(list.isEmpty()) {
+                sql = SqlUtil.getSql(sql);
+                log.info("去掉where后的SQL:" + sql);
             }
         }else {
             for (int i = 0 ; i< fieldList.size(); i++) {
@@ -152,10 +171,11 @@ public class ReportQdController {
             }
             sql=mainSql+cSql;
             for (int i = 0 ; i< reportDetail.getBusinessInfoList().size(); i++) {
-                condition ="and "+SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(),
-                        reportDetail.getBusinessInfoList().get(i).getColumnName()
-                        ,reportDetail.getBusinessInfoList().get(i).getDataValue())+" ";
-                sql+=condition;
+                if (StringUtil.isNullOrEmpty(ObjectUtils.toString(reportDetail.getBusinessInfoList().get(i).getDataValue(),"")))
+                    condition ="and "+SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(),
+                            reportDetail.getBusinessInfoList().get(i).getColumnName()
+                            ,reportDetail.getBusinessInfoList().get(i).getDataValue())+" ";
+                    sql+=condition;
             }
         }
 
@@ -165,6 +185,8 @@ public class ReportQdController {
         dbChangeServiceImpl.changeDb(reportService.getReportDetailInfo(reportDetail.getReportId()).getDatabaseName());
         List<LinkedHashMap<String, Object>> reportData = reportService.getReportData(sql);
         PageInfo pageInfo = PageInfoUtil.getPageInfoBylist(reportData, size, current);
+        //取完数据后，切换回主数据源
+        DBContextHolder.clearDataSource();
         return Result.ok()
                 .data("list",pageInfo.getList())
                 .data("total",pageInfo.getTotal());
@@ -271,6 +293,7 @@ public class ReportQdController {
         Ids.add(129);
         Ids.add(130);*/
 //        Ids.add(39);
+        log.info("删除报表集合："+ Ids);
         if (Ids.size()>0) {
             try{
                 List<Integer> delIds = reportService.getDelId(Ids);
@@ -350,11 +373,13 @@ public class ReportQdController {
 //        String databaseName = "更新数据库哦";
         Integer databaseId = reportDatabaseService.getDataBaseIdByName(databaseName);
         reportDetail.setDatabaseId(Math.toIntExact(databaseId));
+        log.info("测试输出："+reportDetail);
         try {
             reportService.updateReportDataConfig(reportDetail);
             return Result.ok().data(ResultCode.REPORT_UPDATE_SUCCESS.getCode(),ResultCode.REPORT_UPDATE_SUCCESS.getMessage());
         }catch (Exception e){
             log.error("报表配置修改失败");
+            log.error(e.getMessage());
             throw new ReportException(ResultCode.REPORT_UPDATE_ERROR.getCode(),ResultCode.REPORT_UPDATE_ERROR.getMessage());
         }
     }

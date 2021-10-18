@@ -1,15 +1,20 @@
 package com.hyc.report.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class SqlUtil {
     public static List<String> getTableNameBySql(String sql) {
         //获取from字符串的开始索引
         int fromIndex = sql.indexOf("from");
         //以from末尾字符的索引开始截取所有主SQL的字段长度即为from后面的一个或多个表名
+        log.info("fromindex到底是多少："+fromIndex);
         String substring = sql.substring(fromIndex + 5, sql.length());
+        log.info("这里到底出了什么错，substring:"+substring);
         //定义存放table的列表
         List<String> tableList = new ArrayList<>();
         //判断SQL语句中表名是否重命名（也就是是否包含空格）
@@ -49,5 +54,18 @@ public class SqlUtil {
             condition+=dateSql;
         }
         return condition;
+    }
+
+    public static String getSql(String sql) {
+        String[] s = sql.split(" ");
+        String str = "";
+        for (int i = 0; i < s.length; i++) {
+            if ("where".equals(s[i])) {
+                break;
+            }
+            str+=(s[i]+" ");
+        }
+        log.info("去掉where后的SQL：" +str);
+        return str;
     }
 }

@@ -96,6 +96,11 @@ public class ReportDatabaseController {
     public Result updateDatabase(@ApiParam(value = "数据源修改对象",required = true)@RequestBody ReportDatabase reportDatabase) {
         log.info(reportDatabase.toString());
         log.info("*****正在执行更新数据库配置接口");
+        if (!(reportDatabase.getDatabasePassword().contains("*")) && reportDatabase.getDatabaseUrl().contains("*")) {
+            reportDatabase.setDatabaseUrl("");
+        } else if (reportDatabase.getDatabasePassword().contains("*") && !(reportDatabase.getDatabaseUrl().contains("*"))) {
+            reportDatabase.setDatabasePassword("");
+        }
         int updateCount;
         try{
             updateCount = reportDatabaseService.updateDatabase(reportDatabase);
@@ -139,6 +144,7 @@ public class ReportDatabaseController {
             , protocols = "http")
     @PostMapping("/testDatabase")
     public Result testDatabase(@ApiParam("传入数据源名称和数据源样式")@RequestBody ReportDatabase reportDatabase) {
+        log.info(reportDatabase.toString());
         String driveClass = "";
         if (reportDatabase.getDatabaseType().equals("oracle")) {
             driveClass = "oracle.jdbc.OracleDriver";
