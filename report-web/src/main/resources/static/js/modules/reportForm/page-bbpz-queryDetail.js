@@ -141,7 +141,18 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				title: that.reportName,
 				defaultToolbar: [],
 				cols: that.html.cols1,
-				data: data
+				toolbar: '#tableToolbar',
+				data: data,
+				page: {
+					prev: '<i class="layui-icon layui-icon-left"></i>',
+					next: '<i class="layui-icon layui-icon-right"></i>',
+					limits: [10, 20, 30, 40, 50, 1000],
+					layout: ['count', 'limit', 'skip', 'prev', 'page', 'next']
+				},
+				request: {
+					pageName: 'current', //页码的参数名称，默认：page
+					limitName: 'size' //每页数据量的参数名，默认：limit
+				},
 			});
 			return;
 		},
@@ -195,8 +206,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				}
 				var load = layer.load(3);
 				$.ajax({
-					url: base + '/report/system/qdReport/getReportData?current=1&size=10000',
-					// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp6.json?current=1&size=10',
+					url: base + '/report/system/qdReport/getReportData?current=1&size=100000',
+					// url: base + '/other/2021/devops-report/report-web/src/main/resources/static/data/tmp6.json?current=1&size=100000',
 					data: JSON.stringify(obj),
 					contentType: 'application/json;charset=utf-8',
 					dataType: 'json',
@@ -228,7 +239,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 				if (event == 'export') {
 					var load = layer.load(3);
 					$.ajax({
-						url: base + '/report/system/data/table3.json',
+						url: base + '/report/system/qdReport/exportReportData',
 						data: {},
 						dataType: 'json',
 						type: 'post',
