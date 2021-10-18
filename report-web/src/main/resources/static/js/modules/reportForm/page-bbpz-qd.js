@@ -89,7 +89,7 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 					} else {
 						var ids=[];
 						data.forEach(function(item){
-							ids.push(item.databaseId)
+							ids.push(item.reportId)
 						})
 						ids=ids.join(',')
 						layer.confirm('真的删除行么', function(index) {
