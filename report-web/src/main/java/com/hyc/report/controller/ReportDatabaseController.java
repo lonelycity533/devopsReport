@@ -100,6 +100,9 @@ public class ReportDatabaseController {
             reportDatabase.setDatabaseUrl("");
         } else if (reportDatabase.getDatabasePassword().contains("*") && !(reportDatabase.getDatabaseUrl().contains("*"))) {
             reportDatabase.setDatabasePassword("");
+        } else if (reportDatabase.getDatabasePassword().contains("*") && reportDatabase.getDatabaseUrl().contains("*")){
+            reportDatabase.setDatabaseUrl("");
+            reportDatabase.setDatabasePassword("");
         }
         int updateCount;
         try{
@@ -154,7 +157,16 @@ public class ReportDatabaseController {
             LambdaQueryWrapper<ReportDatabase>  lambdaQueryWrapper = new LambdaQueryWrapper<>();
             lambdaQueryWrapper.eq(ReportDatabase::getDatabaseName,reportDatabase.getDatabaseName());
             ReportDatabase one = reportDatabaseService.getOne(lambdaQueryWrapper);
-            DriverManager.getConnection(one.getDatabaseUrl(), one.getDatabaseUsername(), one.getDatabasePassword());// 相当于连接数据库
+            if (!(reportDatabase.getDatabasePassword().contains("*")) && reportDatabase.getDatabaseUrl().contains("*")) {
+                reportDatabase.setDatabaseUrl(one.getDatabaseUrl());
+            } else if (reportDatabase.getDatabasePassword().contains("*") && !(reportDatabase.getDatabaseUrl().contains("*"))) {
+                reportDatabase.setDatabasePassword(one.getDatabasePassword());
+            } else if (reportDatabase.getDatabasePassword().contains("*") && reportDatabase.getDatabaseUrl().contains("*")){
+                reportDatabase.setDatabasePassword(one.getDatabasePassword());
+                reportDatabase.setDatabaseUrl(one.getDatabaseUrl());
+            }
+            log.info("处理后的测试数据："+reportDatabase);
+            DriverManager.getConnection(reportDatabase.getDatabaseUrl(), reportDatabase.getDatabaseUsername(), reportDatabase.getDatabasePassword());// 相当于连接数据库
         } catch (Exception e) {
             throw new ReportException(600,"数据库连接失败");
         }

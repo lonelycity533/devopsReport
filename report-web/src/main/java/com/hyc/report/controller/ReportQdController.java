@@ -12,9 +12,7 @@ import com.hyc.report.service.DBChangeService;
 import com.hyc.report.service.ReportDatabaseService;
 import com.hyc.report.service.ReportService;
 import com.hyc.report.response.Result;
-import com.hyc.report.util.PageInfoUtil;
-import com.hyc.report.util.SqlUtil;
-import com.hyc.report.util.StringUtil;
+import com.hyc.report.util.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -26,6 +24,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 @Api(tags = "清单报表查询管理")
@@ -38,11 +38,15 @@ public class ReportQdController {
     @Resource
     private DBChangeService dbChangeServiceImpl;
 
+    //报表service接口
     @Resource
     private ReportService reportService;
 
+    //数据源service接口
     @Resource
     private ReportDatabaseService reportDatabaseService;
+
+    private List<LinkedHashMap<String,Object>> mapList;
 
     /**
      * 点击详情按钮查询运营定义字段和报表清单主要信息
@@ -136,10 +140,11 @@ public class ReportQdController {
         businessList.add(business1);
         businessList.add(business2);
         reportDetail.setBusinessInfoList(businessList);*/
-
+        this.mapList = null;
         List<Field> fieldList = reportService.getQdFieldById(reportDetail.getReportDetailId());
         List<Object> list = new ArrayList<>();
-        String sql = "",mainSql = "",cSql = "",condition = "",Sql="";
+        List<String> list1 = new ArrayList<>();
+        String sql = "",mainSql = "",cSql = "",condition = "";
         if (fieldList.size()==1) {
             sql=fieldList.get(0).getSqlContent();
             if (reportDetail.getBusinessInfoList().size()>0) {
@@ -147,16 +152,22 @@ public class ReportQdController {
                 for (int i = 0; i < reportDetail.getBusinessInfoList().size(); i++) {
                     String con = (String) reportDetail.getBusinessInfoList().get(i).getDataValue();
                     if (!StringUtil.isNullOrEmpty(con)) {
-                        condition = SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(), reportDetail.getBusinessInfoList().get(i).getColumnName(), reportDetail.getBusinessInfoList().get(i).getDataValue());
-                        sql = (i != reportDetail.getBusinessInfoList().size() - 1) ? (sql += condition + " and ") : (sql += condition);
+                        condition = SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(),
+                                reportDetail.getBusinessInfoList().get(i).getColumnName(),
+                                reportDetail.getBusinessInfoList().get(i).getDataValue());
                         list.add(con);
+                        list1.add(condition);
                     }
+                }
+                for (int i = 0 ;i<list1.size();i++) {
+                    if (i==0) {
+                        sql += list1.get(i);
+                        continue;
+                    }
+                    sql+=" and "+list1.get(i);
                 }
             }
             log.info("判断输出list："+list);
-            System.out.println("好奇："+reportDetail.getBusinessInfoList().size());
-            System.out.println(list.isEmpty());
-            System.out.println(list.size());
             if(list.isEmpty()) {
                 sql = SqlUtil.getSql(sql);
                 log.info("去掉where后的SQL:" + sql);
@@ -171,7 +182,8 @@ public class ReportQdController {
             }
             sql=mainSql+cSql;
             for (int i = 0 ; i< reportDetail.getBusinessInfoList().size(); i++) {
-                if (StringUtil.isNullOrEmpty(ObjectUtils.toString(reportDetail.getBusinessInfoList().get(i).getDataValue(),"")))
+                String con = (String) reportDetail.getBusinessInfoList().get(i).getDataValue();
+                if (!StringUtil.isNullOrEmpty(con))
                     condition ="and "+SqlUtil.sqlCompose(reportDetail.getBusinessInfoList().get(i).getDataType(),
                             reportDetail.getBusinessInfoList().get(i).getColumnName()
                             ,reportDetail.getBusinessInfoList().get(i).getDataValue())+" ";
@@ -184,12 +196,26 @@ public class ReportQdController {
         //切换到数据库dbtest2
         dbChangeServiceImpl.changeDb(reportService.getReportDetailInfo(reportDetail.getReportId()).getDatabaseName());
         List<LinkedHashMap<String, Object>> reportData = reportService.getReportData(sql);
+        this.mapList = reportData;
+        System.out.println(this.mapList);
         PageInfo pageInfo = PageInfoUtil.getPageInfoBylist(reportData, size, current);
         //取完数据后，切换回主数据源
         DBContextHolder.clearDataSource();
         return Result.ok()
                 .data("list",pageInfo.getList())
                 .data("total",pageInfo.getTotal());
+    }
+
+    @ApiOperation(value = "导出报表",httpMethod = "POST")
+    @PostMapping("/exportReportData")
+    public Result exportReportData(HttpServletResponse response) {
+        log.info("exportReportData:"+this.mapList);
+        List<String> headList = HeadUtil.getHead(this.mapList);
+        if (this.mapList!=null || this.mapList.size()!=0) {
+            ExportUtils.uploadExcelAboutUser(response,"导出报表.xlsx",headList,this.mapList);
+            return Result.ok().data(200,"导出成功");
+        }
+        return Result.error().data(500,"导出失败");
     }
 
     /**
