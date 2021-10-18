@@ -189,7 +189,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 										});
 										return;
 									}
-									layer.msg(res.message);
+									layer.msg(res.message, {
+										icon: 5,
+										anim: 6
+									});
 								},
 								error: function() {
 									layer.close(load)
