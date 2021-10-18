@@ -237,22 +237,22 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate'], function() {
 					event = obj.event;
 				// 导出
 				if (event == 'export') {
-					var load = layer.load(3);
-					$.ajax({
-						url: base + '/report/system/qdReport/exportReportData',
-						data: {},
-						dataType: 'json',
-						type: 'post',
-						success: function(res) {
-							layer.close(load)
-							// 成功回调
-							table.exportFile('table', table.cache['table'], 'xls');
-						},
-						error: function() {
-							layer.close(load)
-							layer.msg('系统繁忙，请稍后再试～');
-						}
-					})
+					table.exportFile('table', table.cache['table'], 'xls');
+					// var load = layer.load(3);
+					// $.ajax({
+					// 	url: base + '/report/system/qdReport/exportReportData',
+					// 	data: {},
+					// 	dataType: 'json',
+					// 	type: 'post',
+					// 	success: function(res) {
+					// 		layer.close(load)
+					// 		// 成功回调
+					// 	},
+					// 	error: function() {
+					// 		layer.close(load)
+					// 		layer.msg('系统繁忙，请稍后再试～');
+					// 	}
+					// })
 				}
 			});
 
