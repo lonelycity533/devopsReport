@@ -147,10 +147,10 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						},
 						btn1: function(index) {
 							var $name = $('.data-name').val();
+							var $username = $('.data-username').val();
+							var $password = $('.data-password').val();
+							var $connectinfo = $('.data-connectinfo').val();
 							var $type = $('.data-type').val();
-							var $password = $('.data-password').val('');
-							var $connectinfo=$('.data-connectinfo').val('');
-							var $username=$('.data-username').val('');
 							if (!$name) {
 								layer.msg('请输入数据源名称', {
 									icon: 5,
@@ -325,13 +325,36 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 						$('.data-connectinfo').val($data.databaseUrl);
 						$('.data-type').val($data.databaseType);
 						form.render('select', 'layerForm');
-
 					},
 					btn1: function(index) {
 						var $name = $('.data-name').val();
+						var $username = $('.data-username').val();
+						var $password = $('.data-password').val();
+						var $connectinfo = $('.data-connectinfo').val();
 						var $type = $('.data-type').val();
 						if (!$name) {
 							layer.msg('请输入数据源名称', {
+								icon: 5,
+								anim: 6
+							});
+							return false;
+						}
+						if (!$username) {
+							layer.msg('请输入用户名', {
+								icon: 5,
+								anim: 6
+							});
+							return false;
+						}
+						if (!$password) {
+							layer.msg('请输入密码', {
+								icon: 5,
+								anim: 6
+							});
+							return false;
+						}
+						if (!$connectinfo) {
+							layer.msg('请输入连接信息', {
 								icon: 5,
 								anim: 6
 							});
@@ -344,13 +367,11 @@ layui.use(['element', 'form', 'table', 'layer'], function() {
 							});
 							return false;
 						}
-						var load = layer.load(3);
 						var obj = {
-							"databaseId": $data.databaseId,
 							"databaseName":$name,
-							"databasePassword": $data.databasePassword,
-							"databaseUrl": $data.databaseUrl,
-							"databaseUsername": $data.databaseUsername,
+							"databasePassword": $password,
+							"databaseUrl": $connectinfo,
+							"databaseUsername": $username,
 							"databaseType":$type
 						}
 						var load = layer.load(3);
